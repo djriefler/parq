@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+       <title>home | PARQ</title>
+       <link rel="stylesheet" href="css/style.css"/>
+	   <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+       <link href='http://fonts.googleapis.com/css?family=Wellfleet' rel='stylesheet' type='text/css'>
+	   <link href='http://fonts.googleapis.com/css?family=Wellfleet' rel='stylesheet' type='text/css'>
+	   <link href='http://fonts.googleapis.com/css?family=Arvo:400,700,400italic,700italic' rel='stylesheet' type='text/css'>	
+	   <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+	   <link href='http://fonts.googleapis.com/css?family=Goudy+Bookletter+1911' rel='stylesheet' type='text/css'>
+	   <link href="bootstrap/bootstrap.css" rel="stylesheet">
+
+	<script>
+   
+<!----- JQUERY FOR SLIDING NAVIGATION --->   
+$(document).ready(function() {
+  $('a[href*=#]').each(function() {
+    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
+    && location.hostname == this.hostname
+    && this.hash.replace(/#/,'') ) {
+      var $targetId = $(this.hash), $targetAnchor = $('[name=' + this.hash.slice(1) +']');
+      var $target = $targetId.length ? $targetId : $targetAnchor.length ? $targetAnchor : false;
+       if ($target) {
+         var targetOffset = $target.offset().top;
+
+<!----- JQUERY CLICK FUNCTION REMOVE AND ADD CLASS "ACTIVE" + SCROLL TO THE #DIV--->   
+         $(this).click(function() {
+            $("#nav li a").removeClass("active");
+            $(this).addClass('active');
+           $('html, body').animate({scrollTop: targetOffset}, 1000);
+           return false;
+         });
+      }
+    }
+  });
+
+});
+
+
+</script>
+
+
+ </head> 
+	
+<body>
+<!----- LINK BACK TO THE TUTORIAL--->  
+<div id="demo_back">
+
+</div>
+
+<!----- HEADER START--->   
+<header id="header">
+<div class="content">
+<div id="logo"><a href=""> PARQ </a> </div>
+
+<nav id="nav">
+	<ul>
+		<li><a href="#slide1" class="active" title="Next Section" >Home</a></li>
+		<li><a href="#slide2" title="Next Section">About</a></li>
+		<li><a href="#slide3" title="Next Section">Reserve</a></li>
+		<li><a href="#slide4" title="Next Section">Sell</a></li>
+		<li><a href="#slide5" title="Next Section">About Us</a></li>
+	</ul>
+</nav>
+</div>
+</header>	
+<!----- HEADER END--->   
+
+<!----- SLIDES START --->   	
+	<div id="slide1">
+		<div class="content">
+		     <br><br><br><br>
+		     <h1>PARQ</h1><br>
+		     <h2>Find & Reserve Parking <br></h2>
+               <form class="form-inline" role="form">
+                  <div class="form-group">
+                    <label class="sr-only" for="exampleInputEmail2">Email address</label>
+                    <input style="width:500px; height:50px" type="email" class="form-control" id="exampleInputEmail2" placeholder="Enter email">
+                  </div>
+                  <button style="width:200px; height:50px; background-color:#63D1F4; color:#ffffff" type="submit" class="btn btn-default">Get Early Access</button>
+                </form>
+                <br>
+                
+	       <div class="row" style="margin-top: 50px">
+               <div class="benefits col-md-4">
+                   <h3>Make Money </h3>
+                   <p>Have extra driveway or garage space? Rent it out as temporary parking and make some extra cash for doing absolutely nothing. You could make an extra $100 a week!</p>
+               </div>
+               <div class="benefits col-md-4 ">
+                   <h3>Never Worry About Finding Parking Again </h3>
+                   <p>Reserve parking ahead of time and never waste time looking for parking again. Take the stress out of parking. </p>
+               </div>
+               <div class="benefits col-md-4">
+                   <h3>Pay Through Your Phone </h3>
+                   <p>Search, reserve and pay for parking through your phone. Need to stay longer? Add to your time through your phone. No cash, no expiring meters, no stress.</p>
+               </div>
+            </div>
+		</div> 
+    </div> 
+
+	<div id="slide2">
+		<div class="content" >
+		    <h3 class="quotes">PARQ is a peer-to-peer parking reservation application, connecting people with the parking spots they need.  </h3>
+		</div> 
+    </div> 
+	
+	
+   <div id="slide3">
+		<div class="content">
+				<center> <h2> Reserve a spot </h2> </center>
+		       <h3 class="quotes">Rent out your driveway or reserve parking ahead of time. </h3>
+		</div> 
+    </div> 
+	
+	
+	<div id="slide4"> 
+		<div class="content">
+			<center> <h2> Rent out a spot </h2></center>
+		    <h3 class="quotes">Got a free driveway?  Or don't mind people parking on your fucking lawn?  Make some fucking money by having people park there.</h3>
+		</div> 
+    </div> 
+	
+	
+	<div id="slide5">
+		<div class="content">
+			<center><h2> About Us </h2> </center>
+		    <h3 class="quotes">Yeah, stuff about us.  We're people.  Who do stuff.  And have things.</h3>
+		  </div> 
+		
+
+    </div> 
+	
+<!----- SLIDES END --->
+
+</body>
+</html>

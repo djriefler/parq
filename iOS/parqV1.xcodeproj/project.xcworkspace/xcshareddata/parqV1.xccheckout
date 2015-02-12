@@ -10,31 +10,31 @@
 	<string>parqV1</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>545F640F9586EBB217D0478B6FA37E15F26227CF</key>
-		<string>https://github.com/justinwalz/itp466-parking-ios.git</string>
+		<key>EDA9F65153ED6A4279BD949591CF3D0EA69835CF</key>
+		<string>https://github.com/djriefler/parq.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>parqV1/parqV1.xcodeproj</string>
+	<string>iOS/parqV1.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>545F640F9586EBB217D0478B6FA37E15F26227CF</key>
+		<key>EDA9F65153ED6A4279BD949591CF3D0EA69835CF</key>
 		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/justinwalz/itp466-parking-ios.git</string>
+	<string>https://github.com/djriefler/parq.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>545F640F9586EBB217D0478B6FA37E15F26227CF</string>
+	<string>EDA9F65153ED6A4279BD949591CF3D0EA69835CF</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>545F640F9586EBB217D0478B6FA37E15F26227CF</string>
+			<string>EDA9F65153ED6A4279BD949591CF3D0EA69835CF</string>
 			<key>IDESourceControlWCCName</key>
-			<string>itp466-parking-ios</string>
+			<string>Parq</string>
 		</dict>
 	</array>
 </dict>

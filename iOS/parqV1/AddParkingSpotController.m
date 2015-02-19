@@ -7,7 +7,7 @@
 //
 
 #import "AddParkingSpotController.h"
-#define kLatestParkingSpotsURL [NSURL URLWithString:@"http://54.200.152.228:3000/add"] //2
+#define kLatestParkingSpotsURL [NSURL URLWithString:@"http://intense-hollows-4714.herokuapp.com/add"] //2
 
 @interface AddParkingSpotController ()
 

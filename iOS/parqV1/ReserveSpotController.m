@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Duncan Riefler. All rights reserved.
 //
 #define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) //1
-#define kLatestParkingSpotsURL [NSURL URLWithString:@"http://54.200.152.228:3000/reserve"] //2
+#define kLatestParkingSpotsURL [NSURL URLWithString:@"http://intense-hollows-4714.herokuapp.com/reserve"] //2
 
 #import "ReserveSpotController.h"
 #import "ReserveConfirmationPage.h"

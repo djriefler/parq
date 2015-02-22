@@ -18,12 +18,12 @@
     [FBLoginView class];
     
     // Init with login screen
-//    UIViewController *loginController = [[PQSignUpViewController alloc] initWithNibName:@"PQSignUpViewController" bundle:nil];
-//    self.navController = [[UINavigationController alloc] initWithRootViewController:loginController];
+    UIViewController *loginController = [[PQSignUpViewController alloc] initWithNibName:@"PQSignUpViewController" bundle:nil];
+    self.navController = [[UINavigationController alloc] initWithRootViewController:loginController];
 
     // Init with map
-    UIViewController *mapViewController = [[MapViewController alloc] initWithNibName:@"MapViewController" bundle:nil];
-    self.navController = [[UINavigationController alloc] initWithRootViewController:mapViewController];
+//    UIViewController *mapViewController = [[MapViewController alloc] initWithNibName:@"MapViewController" bundle:nil];
+//    self.navController = [[UINavigationController alloc] initWithRootViewController:mapViewController];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
     self.window.rootViewController = navController;

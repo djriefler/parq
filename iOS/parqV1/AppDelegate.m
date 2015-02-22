@@ -9,12 +9,19 @@
 #import "AppDelegate.h"
 #import <FacebookSDK/FacebookSDK.h>
 
+
 @implementation AppDelegate
 @synthesize navController;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
     [FBLoginView class];
+    
+    // Init with login screen
+//    UIViewController *loginController = [[PQSignUpViewController alloc] initWithNibName:@"PQSignUpViewController" bundle:nil];
+//    self.navController = [[UINavigationController alloc] initWithRootViewController:loginController];
+
+    // Init with map
     UIViewController *mapViewController = [[MapViewController alloc] initWithNibName:@"MapViewController" bundle:nil];
     self.navController = [[UINavigationController alloc] initWithRootViewController:mapViewController];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

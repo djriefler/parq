@@ -23,21 +23,27 @@
     return self;
 }
 
+- (void) loginViewShowingLoggedInUser:(FBLoginView *)loginView {
+    
+}
+
+// This method gives you access to a user's fb info
 - (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
                             user:(id<FBGraphUser>)user {
-//    self.profilePictureView.profileID = user.id;
-//    self.nameLabel.text = user.name;
     
     // CREATE A NEW PARQ USER HERE
     // Create an instance of a PQUser and set their first name, last name, and email.
     
-    // EXIT PAGE
+
+    // Onboard users if this is their first time
+    // Otherwise just log in 
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.loginView.readPermissions = @[@"basic_info", @"email"];
+    self.loginView.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning

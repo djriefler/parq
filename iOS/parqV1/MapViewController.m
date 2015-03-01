@@ -7,7 +7,7 @@
 //
 
 #define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) //1
-#define kLatestParkingSpotsURL [NSURL URLWithString:@"http://intense-hollows-4714.herokuapp.com"] //2
+#define kLatestParkingSpotsURL [NSURL URLWithString:@"http://intense-hollows-4714.herokuapp.com/spots"] //2
 
 #import "MapViewController.h"
 #import "MapPin.h"
@@ -28,11 +28,16 @@
         locationManager = [[CLLocationManager alloc] init];
         [locationManager setDelegate:self];
         
+        if ([locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+            [locationManager requestWhenInUseAuthorization];
+        }
         // And we want it to be as accurate as possible regardless of how much time/power it takes
         [locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
         
         // Set to false to make sure that we zoom to users location when the view is loaded
         atUserLocation = false;
+        
+        _parkingSpots = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -40,6 +45,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     // Map Stuff
     [self.worldView setDelegate:self];
     [self.worldView setShowsUserLocation:YES];
@@ -135,6 +141,7 @@
                           error:&error];
     
     parkingSpots = [json objectForKey:@"spots"];
+    
     if (parkingSpots != NULL) {
         [self populateMap];
     }

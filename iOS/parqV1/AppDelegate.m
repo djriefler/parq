@@ -11,19 +11,31 @@
 
 
 @implementation AppDelegate
-@synthesize navController;
+@synthesize navController, authenticated;
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    
     [FBLoginView class];
+    authenticated = NO;
+    // If a user has already been logged in
+    if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
+        authenticated = YES;
+        NSLog(@"Already logged in");
+        [FBSession openActiveSessionWithReadPermissions:@[@"basic_info", @"email"] allowLoginUI:NO completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
+            // Handler for session state changes
+            // Call this method EACH time the session state changes,
+            //  NOT just when the session open
+        }];
+    }
+    if (authenticated) {
+        UIViewController *mapViewController = [[MapViewController alloc] initWithNibName:@"MapViewController" bundle:nil];
+        self.navController = [[UINavigationController alloc] initWithRootViewController:mapViewController];
+    }
+    else { // Login/Sign up
+        UIViewController *loginController = [[PQSignUpViewController alloc] initWithNibName:@"PQSignUpViewController" bundle:nil];
+        self.navController = [[UINavigationController alloc] initWithRootViewController:loginController];
+    }
     
-    // Init with login screen
-    UIViewController *loginController = [[PQSignUpViewController alloc] initWithNibName:@"PQSignUpViewController" bundle:nil];
-    self.navController = [[UINavigationController alloc] initWithRootViewController:loginController];
-
-    // Init with map
-//    UIViewController *mapViewController = [[MapViewController alloc] initWithNibName:@"MapViewController" bundle:nil];
-//    self.navController = [[UINavigationController alloc] initWithRootViewController:mapViewController];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
     self.window.rootViewController = navController;

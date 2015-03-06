@@ -28,6 +28,7 @@
 		7E6A3C7718C81AFE00BBCC7D /* ReserveConfirmationPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E6A3C7518C81AFE00BBCC7D /* ReserveConfirmationPage.xib */; };
 		7E6A3C7E18C81F6E00BBCC7D /* Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E6A3C7D18C81F6E00BBCC7D /* Checkmark.png */; };
 		7E7BA21D190762AC0014F06F /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E7BA21C190762AC0014F06F /* FacebookSDK.framework */; };
+		7E8D00501AA6629F00FB0417 /* CurrentUserSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E8D004F1AA6629F00FB0417 /* CurrentUserSingleton.m */; };
 		7EAA3EA6185978EB002DB255 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAA3EA5185978EB002DB255 /* Foundation.framework */; };
 		7EAA3EA8185978EB002DB255 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAA3EA7185978EB002DB255 /* CoreGraphics.framework */; };
 		7EAA3EAA185978EB002DB255 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAA3EA9185978EB002DB255 /* UIKit.framework */; };
@@ -91,6 +92,8 @@
 		7E6A3C7518C81AFE00BBCC7D /* ReserveConfirmationPage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReserveConfirmationPage.xib; sourceTree = "<group>"; };
 		7E6A3C7D18C81F6E00BBCC7D /* Checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Checkmark.png; sourceTree = "<group>"; };
 		7E7BA21C190762AC0014F06F /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		7E8D004E1AA6629F00FB0417 /* CurrentUserSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentUserSingleton.h; sourceTree = "<group>"; };
+		7E8D004F1AA6629F00FB0417 /* CurrentUserSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentUserSingleton.m; sourceTree = "<group>"; };
 		7EAA3EA2185978EB002DB255 /* parqV1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = parqV1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EAA3EA5185978EB002DB255 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7EAA3EA7185978EB002DB255 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -218,15 +221,17 @@
 			name = "Add Spot";
 			sourceTree = "<group>";
 		};
-		7E6A3C7C18C81C0600BBCC7D /* Map Pin */ = {
+		7E6A3C7C18C81C0600BBCC7D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7E8D004E1AA6629F00FB0417 /* CurrentUserSingleton.h */,
+				7E8D004F1AA6629F00FB0417 /* CurrentUserSingleton.m */,
 				7EDB25C71905C3A6004868FC /* PQUser.h */,
 				7EDB25C81905C3A6004868FC /* PQUser.m */,
 				7EAA3ED918597A3E002DB255 /* MapPin.h */,
 				7EAA3EDA18597A50002DB255 /* MapPin.m */,
 			);
-			name = "Map Pin";
+			name = Model;
 			sourceTree = "<group>";
 		};
 		7EAA3E99185978EA002DB255 = {
@@ -272,7 +277,7 @@
 				7E6A3C7A18C81BA000BBCC7D /* Main Screen */,
 				7E6A3C7918C81B6500BBCC7D /* Reserve Spot */,
 				7E6A3C7B18C81BF100BBCC7D /* Add Spot */,
-				7E6A3C7C18C81C0600BBCC7D /* Map Pin */,
+				7E6A3C7C18C81C0600BBCC7D /* Model */,
 				7EAA3EB7185978EB002DB255 /* Images.xcassets */,
 				7EAA3EAC185978EB002DB255 /* Supporting Files */,
 			);
@@ -445,6 +450,7 @@
 				7EAA3EDF18597A50002DB255 /* MapViewController.m in Sources */,
 				7E42D4AD1866A308003376DB /* SearchViewControllerNew.m in Sources */,
 				7EAA3ED7185979D6002DB255 /* AddParkingSpotController.m in Sources */,
+				7E8D00501AA6629F00FB0417 /* CurrentUserSingleton.m in Sources */,
 				7EAA3EB2185978EB002DB255 /* main.m in Sources */,
 				7EDB25C91905C3A6004868FC /* PQUser.m in Sources */,
 				7EAA3F0918599B6C002DB255 /* AppDelegate.m in Sources */,

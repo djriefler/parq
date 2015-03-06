@@ -14,8 +14,10 @@
 @interface MapViewController : UIViewController<CLLocationManagerDelegate, MKMapViewDelegate, UIGestureRecognizerDelegate>
 {
     CLLocationManager *locationManager;
+    
     // contains a list of pins with info on them
     NSMutableArray * _parkingSpots;
+    
     // used to store the results from the forward geocoding of the given address
     NSArray * _searchPlacemarksCache;
     
@@ -27,6 +29,7 @@
     
      IBOutlet MKMapView * worldView;
 }
+
 @property (nonatomic, retain) IBOutlet MKMapView * worldView;
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
 @property (nonatomic) NSArray * parkingSpots;
@@ -34,6 +37,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *findParkingButton;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet UIButton *searchBarButton;
+
 - (IBAction)searchBarButtonPressed:(id)sender;
 
 - (IBAction)showUserLocation:(id)sender;

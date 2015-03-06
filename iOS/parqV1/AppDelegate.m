@@ -8,30 +8,38 @@
 
 #import "AppDelegate.h"
 #import <FacebookSDK/FacebookSDK.h>
-
+#import "CurrentUserSingleton.h"
 
 @implementation AppDelegate
-@synthesize navController, authenticated;
+@synthesize navController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [FBLoginView class];
-    authenticated = NO;
+    
+    [[CurrentUserSingleton currentUser] setUserSignedIn:NO];
+    
     // If a user has already been logged in
     if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
-        authenticated = YES;
-        NSLog(@"Already logged in");
+
+        // Update current user info - may need to add info from server database or app cache
+        [[CurrentUserSingleton currentUser] setUserSignedIn:YES];
+        
+        // Go straight to app
+        UIViewController *mapViewController = [[MapViewController alloc] initWithNibName:@"MapViewController" bundle:nil];
+        self.navController = [[UINavigationController alloc] initWithRootViewController:mapViewController];
+        
         [FBSession openActiveSessionWithReadPermissions:@[@"basic_info", @"email"] allowLoginUI:NO completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
             // Handler for session state changes
             // Call this method EACH time the session state changes,
             //  NOT just when the session open
         }];
     }
-    if (authenticated) {
-        UIViewController *mapViewController = [[MapViewController alloc] initWithNibName:@"MapViewController" bundle:nil];
-        self.navController = [[UINavigationController alloc] initWithRootViewController:mapViewController];
-    }
-    else { // Login/Sign up
+    
+    // If user has not been logged in  
+    else {
+        [[CurrentUserSingleton currentUser] setUserSignedIn:NO];
+
         UIViewController *loginController = [[PQSignUpViewController alloc] initWithNibName:@"PQSignUpViewController" bundle:nil];
         self.navController = [[UINavigationController alloc] initWithRootViewController:loginController];
     }

@@ -32,10 +32,10 @@
 	<string>598648026898639</string>
 	<key>FacebookDisplayName</key>
 	<string>Parq</string>
-	<key>URL types</key>
+	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
-			<key>URL Schemes</key>
+			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>fb598648026898639</string>
 			</array>

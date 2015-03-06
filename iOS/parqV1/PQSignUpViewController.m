@@ -6,24 +6,25 @@
 //  Copyright (c) 2014 Duncan Riefler. All rights reserved.
 //
 
+#define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) //1
 #define kServerURL [NSURL URLWithString:@"http://intense-hollows-4714.herokuapp.com/users"] //2
 
 
 #import "PQSignUpViewController.h"
 #import "MapViewController.h"
-#import "PQUser.h"
+#import "CurrentUserSingleton.h"
 
 @interface PQSignUpViewController ()
 @end
 
 @implementation PQSignUpViewController
 
-@synthesize currentUser, navController;
+@synthesize navController;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        currentUser = NULL;
+        
     }
     return self;
 }
@@ -35,16 +36,18 @@
 // This method gives you access to a user's fb info
 - (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
                             user:(id<FBGraphUser>)user {
-    if (currentUser == NULL) {
+    if ([[CurrentUserSingleton currentUser] isUserSignedIn] == NO) {
+        
+        
+        // UI updates
         self.lblEmail.text = [user objectForKey:@"email"];
-        NSNumber * rating = [NSNumber numberWithFloat:5.0];
+        
+        // Prepare request for server to see if user already exists
         NSDictionary* info = [[NSDictionary alloc] initWithObjectsAndKeys:
                              user.name, @"name",
                               user[@"email"], @"email",
-                              rating, @"rating",
                               user[@"id"], @"UUID", nil];
-        NSLog(@"%@", user[@"objectID"]);
-        currentUser = user;
+        
         NSError *error;
         
         // Convert object to data
@@ -64,24 +67,38 @@
             
             // Send request
             [NSURLConnection connectionWithRequest:request delegate:self];
-            NSLog(@"request sent");
 
-            // Open map
-            UIViewController *mapViewController = [[MapViewController alloc] initWithNibName:@"MapViewController" bundle:nil];
-            self.navController = [[UINavigationController alloc] initWithRootViewController:mapViewController];
-
-            [[UIApplication sharedApplication]delegate].window.rootViewController = navController;
         }
         else if (error) {
             NSLog(@"%@", [error localizedDescription]);
         }
     }
-    
-    // Go to main map view
-  
+}
 
-    // Onboard users if this is their first time
-    // Otherwise just log in 
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    NSError * error;
+    NSDictionary* json = [NSJSONSerialization
+                          JSONObjectWithData:data
+                          options:kNilOptions
+                          error:&error];
+    
+    // enter their information into the Singleton
+    
+    [[CurrentUserSingleton currentUser] setUserSignedIn:YES];
+    
+    // If the user already exists, run the app normally
+    if ([[json objectForKey:@"status"]  isEqual: @"confirmed"]) {
+        NSLog(@"%@", json);
+        UIViewController *mapViewController = [[MapViewController alloc] initWithNibName:@"MapViewController" bundle:nil];
+        self.navController = [[UINavigationController alloc] initWithRootViewController:mapViewController];
+        [[UIApplication sharedApplication]delegate].window.rootViewController = navController;
+    }
+    
+    // The user doesn't exist, onboard them
+    else {
+        
+    }
+        
 }
 
 - (void)viewDidLoad

@@ -10,8 +10,10 @@
 #import <FacebookSDK/FacebookSDK.h>
 
 @interface PQSignUpViewController : UIViewController <FBLoginViewDelegate>
+
 @property (strong, nonatomic) UINavigationController *navController;
 @property (weak, nonatomic) IBOutlet FBLoginView *loginView;
 @property (weak, nonatomic) IBOutlet UILabel *lblEmail;
-@property (nonatomic) id<FBGraphUser> currentUser;
+
+
 @end

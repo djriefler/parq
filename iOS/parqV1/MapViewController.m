@@ -141,7 +141,7 @@
                           error:&error];
     
     parkingSpots = [json objectForKey:@"spots"];
-    
+    // 
     if (parkingSpots != NULL) {
         [self populateMap];
     }

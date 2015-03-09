@@ -7,6 +7,8 @@
 //
 
 #import "AddParkingSpotController.h"
+#import "CurrentUserSingleton.h"
+
 #define kLatestParkingSpotsURL [NSURL URLWithString:@"http://intense-hollows-4714.herokuapp.com/add"] //2
 
 @interface AddParkingSpotController ()
@@ -33,6 +35,7 @@
                           priceField.text, @"price",
                           [self getStringFromDate:startTimePicker.date], @"startTime",
                           [self getStringFromDate:endTimePicker.date], @"endTime",
+                          [[CurrentUserSingleton currentUser] UUID], @"user_id",
                           nil];
     
     NSError *error;

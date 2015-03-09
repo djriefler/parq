@@ -52,6 +52,9 @@
 		7EAA3F0D1859A0AC002DB255 /* House.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EAA3F0C1859A0AC002DB255 /* House.png */; };
 		7EAA3F111859A3A3002DB255 /* ReserveSpotController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EAA3F0F1859A3A2002DB255 /* ReserveSpotController.m */; };
 		7EAA3F121859A3A3002DB255 /* ReserveSpotController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EAA3F101859A3A3002DB255 /* ReserveSpotController.xib */; };
+		7EB668BB1AABCDB800A82EF7 /* PQSpot.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EB668BA1AABCDB800A82EF7 /* PQSpot.m */; };
+		7EB668BD1AAC03F400A82EF7 /* OpenSpot.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EB668BC1AAC03F400A82EF7 /* OpenSpot.png */; };
+		7EB668BF1AAC04AC00A82EF7 /* Driveway.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EB668BE1AAC04AC00A82EF7 /* Driveway.png */; };
 		7EDB25C91905C3A6004868FC /* PQUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EDB25C81905C3A6004868FC /* PQUser.m */; };
 		7EDB25CD1905D3FE004868FC /* PQSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EDB25CB1905D3FE004868FC /* PQSignUpViewController.m */; };
 		7EDB25CE1905D3FE004868FC /* PQSignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EDB25CC1905D3FE004868FC /* PQSignUpViewController.xib */; };
@@ -125,6 +128,10 @@
 		7EAA3F0E1859A3A2002DB255 /* ReserveSpotController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReserveSpotController.h; sourceTree = "<group>"; };
 		7EAA3F0F1859A3A2002DB255 /* ReserveSpotController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReserveSpotController.m; sourceTree = "<group>"; };
 		7EAA3F101859A3A3002DB255 /* ReserveSpotController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReserveSpotController.xib; sourceTree = "<group>"; };
+		7EB668B91AABCDB800A82EF7 /* PQSpot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PQSpot.h; sourceTree = "<group>"; };
+		7EB668BA1AABCDB800A82EF7 /* PQSpot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PQSpot.m; sourceTree = "<group>"; };
+		7EB668BC1AAC03F400A82EF7 /* OpenSpot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = OpenSpot.png; sourceTree = "<group>"; };
+		7EB668BE1AAC04AC00A82EF7 /* Driveway.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Driveway.png; sourceTree = "<group>"; };
 		7EDB25C71905C3A6004868FC /* PQUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PQUser.h; sourceTree = "<group>"; };
 		7EDB25C81905C3A6004868FC /* PQUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PQUser.m; sourceTree = "<group>"; };
 		7EDB25CA1905D3FE004868FC /* PQSignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PQSignUpViewController.h; sourceTree = "<group>"; };
@@ -162,6 +169,8 @@
 		7E6A3C7818C81B1A00BBCC7D /* images */ = {
 			isa = PBXGroup;
 			children = (
+				7EB668BC1AAC03F400A82EF7 /* OpenSpot.png */,
+				7EB668BE1AAC04AC00A82EF7 /* Driveway.png */,
 				7E6A3C7D18C81F6E00BBCC7D /* Checkmark.png */,
 				7EAA3EE818597CCA002DB255 /* DJ.jpg */,
 				7E563F3F185FFF1C009FDE8D /* location.png */,
@@ -226,6 +235,8 @@
 			children = (
 				7E8D004E1AA6629F00FB0417 /* CurrentUserSingleton.h */,
 				7E8D004F1AA6629F00FB0417 /* CurrentUserSingleton.m */,
+				7EB668B91AABCDB800A82EF7 /* PQSpot.h */,
+				7EB668BA1AABCDB800A82EF7 /* PQSpot.m */,
 				7EDB25C71905C3A6004868FC /* PQUser.h */,
 				7EDB25C81905C3A6004868FC /* PQUser.m */,
 				7EAA3ED918597A3E002DB255 /* MapPin.h */,
@@ -408,6 +419,7 @@
 				7E4CE7E71861083F0089E227 /* Fui.jpg in Resources */,
 				7E4CE7DF186104470089E227 /* Yen.jpg in Resources */,
 				7E4CE7E61861083F0089E227 /* Ben.jpg in Resources */,
+				7EB668BD1AAC03F400A82EF7 /* OpenSpot.png in Resources */,
 				7EAA3EE918597CCA002DB255 /* DJ.jpg in Resources */,
 				7EAA3ED8185979D6002DB255 /* AddParkingSpotController.xib in Resources */,
 				7E563F40185FFF1C009FDE8D /* location.png in Resources */,
@@ -425,6 +437,7 @@
 				7E563F3A185FD689009FDE8D /* texture1.jpg in Resources */,
 				7E4CE7E41861083F0089E227 /* Maria.jpg in Resources */,
 				7E4CE7DE186104470089E227 /* Justin.jpg in Resources */,
+				7EB668BF1AAC04AC00A82EF7 /* Driveway.png in Resources */,
 				7E442BE3185D5E2000C516EE /* lightGreyTexture.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -452,6 +465,7 @@
 				7EAA3ED7185979D6002DB255 /* AddParkingSpotController.m in Sources */,
 				7E8D00501AA6629F00FB0417 /* CurrentUserSingleton.m in Sources */,
 				7EAA3EB2185978EB002DB255 /* main.m in Sources */,
+				7EB668BB1AABCDB800A82EF7 /* PQSpot.m in Sources */,
 				7EDB25C91905C3A6004868FC /* PQUser.m in Sources */,
 				7EAA3F0918599B6C002DB255 /* AppDelegate.m in Sources */,
 				7E4E609A1A91AC320083CEB9 /* CheckInViewController.m in Sources */,

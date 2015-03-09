@@ -76,29 +76,32 @@
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    NSError * error;
-    NSDictionary* json = [NSJSONSerialization
-                          JSONObjectWithData:data
-                          options:kNilOptions
-                          error:&error];
-    
-    // enter their information into the Singleton
-    
-    [[CurrentUserSingleton currentUser] setUserSignedIn:YES];
-    
-    // If the user already exists, run the app normally
-    if ([[json objectForKey:@"status"]  isEqual: @"confirmed"]) {
+    if ([[CurrentUserSingleton currentUser] isUserSignedIn] == NO) {
+        NSError * error;
+        NSDictionary* json = [NSJSONSerialization
+                              JSONObjectWithData:data
+                              options:kNilOptions
+                              error:&error];
+        
         NSLog(@"%@", json);
-        UIViewController *mapViewController = [[MapViewController alloc] initWithNibName:@"MapViewController" bundle:nil];
-        self.navController = [[UINavigationController alloc] initWithRootViewController:mapViewController];
-        [[UIApplication sharedApplication]delegate].window.rootViewController = navController;
-    }
-    
-    // The user doesn't exist, onboard them
-    else {
         
-    }
+        // enter their information into the Singleton
+        [[CurrentUserSingleton currentUser] setUserDataFromJSON:json];
+        [[CurrentUserSingleton currentUser] setUserSignedIn:YES];
         
+        // If the user already exists, run the app normally
+        if ([[json objectForKey:@"status"]  isEqual: @"existing user"]) {
+            NSLog(@"%@", json);
+            UIViewController *mapViewController = [[MapViewController alloc] initWithNibName:@"MapViewController" bundle:nil];
+            self.navController = [[UINavigationController alloc] initWithRootViewController:mapViewController];
+            [[UIApplication sharedApplication]delegate].window.rootViewController = navController;
+        }
+        
+        // The user doesn't exist, onboard them
+        else {
+            
+        }
+    }
 }
 
 - (void)viewDidLoad

@@ -48,6 +48,33 @@
     return self;
 }
 
+- (NSString *) UUID
+{
+    return  UUID;
+}
+
+- (void) setUserDataFromJSON:(NSDictionary *)data
+{
+    if ([data objectForKey:@"UUID"]) {
+        UUID = [data objectForKey:@"UUID"];
+    }
+    if ([data objectForKey:@"name"]) {
+        name = [data objectForKey:@"name"];
+    }
+    if ([data objectForKey:@"email"]) {
+        email = [data objectForKey:@"email"];
+    }
+    if ([data objectForKey:@"rating"]) {
+        rating = [[data objectForKey:@"rating"] floatValue];
+    }
+    if ([data objectForKey:@"reserved"]) {
+        reservedParkingSpots = [data objectForKey:@"reserved"];
+    }
+    if ([data objectForKey:@"owned"]) {
+        ownedParkingSpots = [data objectForKey:@"owned"];
+    }
+}
+
 + (CurrentUserSingleton *) currentUser
 {
     static CurrentUserSingleton * _currentUser = nil;

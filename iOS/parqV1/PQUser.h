@@ -9,10 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface PQUser : NSObject
-@property NSString * firstName;
-@property NSString * lastName;
+@property NSString * name;
 @property NSString * email;
-@property NSString * password;
 @property NSString * UUID;
 @property float rating;
 @property NSMutableArray * reservedSpots;

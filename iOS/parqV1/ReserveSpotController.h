@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import "PQSpot.h"
 
 typedef enum {None,Start,End} DatePickerState;
 
@@ -15,7 +16,6 @@ typedef enum {None,Start,End} DatePickerState;
 {
     DatePickerState datePickerState;
 }
-@property NSDictionary * user;
 
 // Top Part
 @property (weak, nonatomic) IBOutlet UIImageView *ProfPic;
@@ -38,59 +38,9 @@ typedef enum {None,Start,End} DatePickerState;
 @property (weak, nonatomic) IBOutlet UIButton *endTime;
 @property (weak, nonatomic) IBOutlet UIButton *reserveButton;
 
-- (id) initWithMapView: (MKMapView *) currentMapView andUser: (NSDictionary *) usr;
+- (id) initWithMapView: (MKMapView *) currentMapView andSpot: (PQSpot *) spot;
 - (IBAction)reserveButtonPressed:(id)sender;
 
-// ------ TOP SECTION ------//
-// User Name
-- (NSString *) getUserName ;
-- (void) setUserName:(NSString *) name;
-
-// Rating
-- (int) getRating ;
-- (void) setRating:(int) rating;
-
-// Number of parkers
-- (int) getNumParkers ;
-- (void) setNumParkers:(int) numParkers ;
-
-// Profile picture
-- (NSString *) getProfPic ;
-- (void) setProfilePic:(NSString *)profPic ;
-
-// Driveway picture
-- (NSString *) getDrivewayPic ;
-- (void) setDrivewayPic:(NSString *)parkingView;
-
-// ------ MIDDLE SECTION ------//
-
-// Hours Available
-- (NSString *) getHoursAvailable ;
-- (void) setHoursAvailable:(NSString *) hours;
-// Hourly Rate
-- (double) getHourlyRate;
-- (void) setHourlyRate:(double) rate ;
-// Address
-- (NSString *) getAddress;
-- (void) setTheAddress:(NSString *) addr;
-
-// ------ BOTTOM SECTION ------//
-
-// Wanted Hours
-- (float) getNumWantedHours;
-- (void) setNumWantedHours:(float) wntd;
-
-// Price
-- (double) getTotalPrice ;
-- (void) setTotalPrice:(double) pr;
-
-// Start Time
-- (NSDate *) getStartTime ;
-- (void) setTheStartTime:(NSDate *) date ;
-
-// End Time
-- (NSDate *) getEndTime ;
-- (void) setTheEndTime:(NSDate *) date;
 
 
 @end

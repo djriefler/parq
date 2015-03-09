@@ -10,9 +10,13 @@
 
 #import "ReserveSpotController.h"
 #import "ReserveConfirmationPage.h"
+#import "CurrentUserSingleton.h"
 
 @interface ReserveSpotController ()
-
+{
+    PQSpot * spot;
+    PQUser * user;
+}
 @end
 
 @implementation ReserveSpotController
@@ -26,30 +30,24 @@
     return self;
 }
 
-- (id) initWithMapView: (MKMapView *) currentMapView andUser: (NSDictionary *) usr {
+- (id) initWithMapView: (MKMapView *) currentMapView andSpot: (PQSpot *) spt {
     self = [super initWithNibName:@"ReserveSpotController" bundle:nil];
     if (self) {
         _parkingMapView = currentMapView;
-        if(usr != NULL)
-            _user = usr;
-        else {
-            _user = [[NSDictionary alloc] initWithObjectsAndKeys:
-                     [NSNumber numberWithInt:1], @"UUID",
-                    @"DJ", @"name",
-                     [NSNumber numberWithInt:2], @"price",
-                     [NSNumber numberWithInt:13], @"startTime",
-                     [NSNumber numberWithInt:17], @"endTime",
-                     nil];
-        }
+        spot = spt;
+        user = [spot owner];
     }
     return self;
 }
 
 - (IBAction)reserveButtonPressed:(id)sender {
     
+    // Disable button
+    
     // Send data to server
     NSDictionary* info = [[NSDictionary alloc] initWithObjectsAndKeys:
-                          [_user objectForKey:@"UUID"],@"id",
+                          [[CurrentUserSingleton currentUser] UUID] , @"user_id",
+                          [spot spotID], @"spot_id",
                           nil];
     
     NSError *error;
@@ -73,10 +71,24 @@
     else if (error) {
         NSLog(@"%@", [error localizedDescription]);
     }
-    // Load confirmation page
-    ReserveConfirmationPage *rcp = [[ReserveConfirmationPage alloc] initWithNibName:@"ReserveConfirmationPage" bundle:nil];
-    [[self navigationController] pushViewController:rcp animated:YES];
     
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    
+    NSError * error;
+    NSDictionary* json = [NSJSONSerialization
+                          JSONObjectWithData:data
+                          options:kNilOptions
+                          error:&error];
+    
+    NSLog(@"%@", json);
+    NSLog(@"fasdfasdf");
+    // If spot reservation is confirmed, then load confirmation controller
+    if ([[json objectForKey:@"confirmed"]  isEqual: @"confirmed"]) {
+        ReserveConfirmationPage *rcp = [[ReserveConfirmationPage alloc] initWithNibName:@"ReserveConfirmationPage" bundle:nil];
+        [[self navigationController] pushViewController:rcp animated:YES];
+    }
 }
 
 - (void)viewDidLoad
@@ -144,7 +156,7 @@
 }
 
 - (CLLocationCoordinate2D) getPinCoordinates {
-    NSArray * coords = [_user objectForKey:@"latlng"];
+    NSArray * coords = [spot coordinates];
     return CLLocationCoordinate2DMake([[coords objectAtIndex:0] doubleValue], [[coords objectAtIndex:1] doubleValue]);
 }
 
@@ -152,7 +164,7 @@
 // ------ TOP SECTION ------//
 // User Name
 - (NSString *) getUserName {
-    return [_user objectForKey:@"name"];
+    return [user name];
 }
 - (void) setUserName:(NSString *) name {
     _nameLabel.text = name;
@@ -176,7 +188,7 @@
 
 // Profile picture
 - (NSString *) getProfPic {
-    NSString * name = [_user objectForKey:@"name"];
+    NSString * name = [user name];
     if ([name isEqualToString:@"Justin Walz"]) {
         return @"Justin.jpg";
     }
@@ -202,8 +214,8 @@
 
 // Hours Available
 - (NSString *) getHoursAvailable {
-    int start = [[_user objectForKey:@"startTime"] integerValue];
-    int end = [[_user objectForKey:@"endTime"] integerValue];
+    int start = [[spot startTime] integerValue];
+    int end = [[spot endTime] integerValue];
     NSString * startStr;
     NSString * endStr;
     if (start < 12) {
@@ -232,7 +244,7 @@
 
 // Hourly Rate
 - (double) getHourlyRate {
-    return [[_user objectForKey:@"price"] doubleValue];
+    return [[spot price] doubleValue];
 }
 - (void) setHourlyRate:(double) rate {
     _price.text = [NSString stringWithFormat:@"$%.02f",rate];
@@ -240,7 +252,7 @@
 
 // Address
 - (NSString *) getAddress {
-    return [_user objectForKey:@"address"];
+    return [spot address];
 }
 - (void) setTheAddress:(NSString *) addr {
     _address.text = addr;
@@ -249,7 +261,7 @@
 // ------ BOTTOM SECTION ------//
 // Price
 - (double) getTotalPrice {
-    int hours = abs([[_user objectForKey:@"startTime"] integerValue] - [[_user objectForKey:@"endTime"] integerValue]);
+    int hours = abs([[spot startTime] integerValue] - [[spot endTime] integerValue]);
     return hours*[self getHourlyRate];
 }
 - (void) setTotalPrice:(double) pr{
@@ -268,7 +280,7 @@
 
 
 - (NSDate *) getStartHour {
-    int start = [[_user objectForKey:@"startTime"] integerValue];
+    int start = [[spot startTime] integerValue];
     
     NSDateComponents *comps = [[NSDateComponents alloc] init];
     [comps setHour:start];
@@ -292,7 +304,7 @@
 }
 
 - (NSDate *) getEndHour {
-    int end = [[_user objectForKey:@"endTime"] integerValue];
+    int end = [[spot endTime] integerValue];
     
     NSDateComponents *comps = [[NSDateComponents alloc] init];
     [comps setHour:end];

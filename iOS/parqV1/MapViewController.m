@@ -194,14 +194,20 @@
 
 - (void) loadReserveSpotView
 {
-    NSDictionary * selectedSpot;
+    NSDictionary * spotData;
     for (NSDictionary* spot in parkingSpots) {
         if ([[spot objectForKey:@"UUID"] integerValue] == currentUserUUID) {
-            selectedSpot = [NSDictionary dictionaryWithDictionary:spot];
+            spotData = [NSDictionary dictionaryWithDictionary:spot];
         }
     }
+    
+    NSLog(@"%@",spotData);
+    
+    PQSpot * selectedSpot = [[PQSpot alloc] init];
+    [selectedSpot setInfoWithJSON:spotData];
+    
     // Pushes the next view where you can add a parking spot (button on top right)
-    ReserveSpotController *rsc = [[ReserveSpotController alloc] initWithMapView:worldView andUser:selectedSpot];
+    ReserveSpotController *rsc = [[ReserveSpotController alloc] initWithMapView:worldView andSpot:selectedSpot];
     rsc.modalTransitionStyle = UIModalTransitionStyleCoverVertical ;
     [[self navigationController] pushViewController:rsc animated:YES];
 }

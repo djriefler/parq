@@ -11,11 +11,12 @@
 @interface CurrentUserSingleton : NSObject
 
 + (CurrentUserSingleton *) currentUser;
-
+- (void) setUserDataFromJSON: (NSDictionary *) data;
 - (BOOL) isUserSignedIn;
 - (void) setUserSignedIn: (BOOL) isSignedIn;
 - (void) setEmail:(NSString *) email;
 - (void) setName:(NSString *) name;
+- (NSString *) UUID;
 - (void) setUUID:(NSString *) uuid;
 - (void) setRating:(float) rating;
 - (void) setReservedSpots: (NSMutableArray *) reserved;

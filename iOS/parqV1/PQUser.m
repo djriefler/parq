@@ -9,6 +9,6 @@
 #import "PQUser.h"
 
 @implementation PQUser
-
+@synthesize UUID, email, name, ownedSpots, reservedSpots, rating;
 
 @end

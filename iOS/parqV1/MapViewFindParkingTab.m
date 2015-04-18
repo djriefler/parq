@@ -16,6 +16,26 @@
 #import "ReserveSpotController.h"
 #import "SearchViewControllerNew.h"
 
+@interface MapViewFindParkingTab()
+{
+    CLLocationManager *locationManager;
+    
+    // contains a list of pins with info on them
+    NSMutableArray * _parkingSpots;
+    
+    // used to store the results from the forward geocoding of the given address
+    NSArray * _searchPlacemarksCache;
+    
+    // used to make sure the map doesnt keep zooming in on the users location after finding it
+    BOOL atUserLocation;
+    
+    // used to keep track of which pin is currently selected
+    int selectedSpotUUID;
+    
+}
+
+@end
+
 @implementation MapViewFindParkingTab
 @synthesize parkingSpots, worldView;
 
@@ -180,7 +200,7 @@
 {
     NSDictionary * spotData;
     for (NSDictionary* spot in parkingSpots) {
-        if ([[spot objectForKey:@"UUID"] integerValue] == currentUserUUID) {
+        if ([[spot objectForKey:@"UUID"] integerValue] == selectedSpotUUID) {
             spotData = [NSDictionary dictionaryWithDictionary:spot];
         }
     }
@@ -352,7 +372,7 @@
 
 - (void) mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
-    currentUserUUID = (int)[(MapPin *)view.annotation getUUID];
+    selectedSpotUUID = (int)[(MapPin *)view.annotation getUUID];
 }
 
 /***************

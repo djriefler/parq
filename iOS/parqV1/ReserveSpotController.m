@@ -33,7 +33,6 @@
 - (id) initWithMapView: (MKMapView *) currentMapView andSpot: (PQSpot *) spt {
     self = [super initWithNibName:@"ReserveSpotController" bundle:nil];
     if (self) {
-        _parkingMapView = currentMapView;
         spot = spt;
         user = [spot owner];
     }
@@ -44,6 +43,11 @@
     
     // Disable button
     
+    // Confirm the reservation with the server
+    [self confirmReservationWithServer];
+}
+
+- (void) confirmReservationWithServer {
     // Send data to server
     NSDictionary* info = [[NSDictionary alloc] initWithObjectsAndKeys:
                           [[CurrentUserSingleton currentUser] UUID] , @"user_id",
@@ -57,7 +61,7 @@
                                                        options:NSJSONWritingPrettyPrinted error:&error];
     if (jsonData) {
         NSLog(@"request sent");
-        NSString *postLength = [NSString stringWithFormat:@"%d", [jsonData length]];
+        NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[jsonData length]];
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:kLatestParkingSpotsURL];
         [request setHTTPMethod:@"POST"];
         [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
@@ -71,7 +75,6 @@
     else if (error) {
         NSLog(@"%@", [error localizedDescription]);
     }
-    
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
@@ -96,24 +99,16 @@
     [super viewDidLoad];
     
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"parq_logo_2.png"]];
+    
+    
     // Top Section
-    [self setUserName:[self getUserName]];
-    [self setRating:[self getRating]];
-    [self setNumParkers:[self getNumParkers]];
-    [self setProfilePic:[self getProfPic]];
     [self setDrivewayPic:[self getDrivewayPic]];
+    
     // Middle Section
     [self setHoursAvailable:[self getHoursAvailable]];
-    [self setHourlyRate:[self getHourlyRate]];
     [self setTheAddress:[self getAddress]];
-    [self setParkingMapView:[self parkingMapView]];
-    
-    // Do map setup
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance([self getPinCoordinates], 800, 800);
-    [self.parkingMapView setRegion:region animated:YES];
     
     // Bottom Section
-    [self setTotalPrice:[self getTotalPrice]];
     [self setTheStartTime:[self getStartHour]];
     [self setTheEndTime:[self getEndHour]];
     
@@ -162,45 +157,6 @@
 
 
 // ------ TOP SECTION ------//
-// User Name
-- (NSString *) getUserName {
-    return [user name];
-}
-- (void) setUserName:(NSString *) name {
-    _nameLabel.text = name;
-}
-
-// Rating
-- (int) getRating {
-    return 5;
-}
-- (void) setRating:(int) rating {
-    _ratingLabel.text = [NSString stringWithFormat:@"%d", rating];
-}
-
-// Number of parkers
-- (int) getNumParkers {
-    return 5;
-}
-- (void) setNumParkers:(int) numParkers {
-    _numPrevParkers.text = [NSString stringWithFormat:@"%d", numParkers];
-}
-
-// Profile picture
-- (NSString *) getProfPic {
-    NSString * name = [user name];
-    if ([name isEqualToString:@"Justin Walz"]) {
-        return @"Justin.jpg";
-    }
-    else if ([name isEqualToString:@"Yen Hoang"]) {
-        return @"Yen.jpg";
-    }
-    else
-        return @"DJ.jpg";
-}
-- (void) setProfilePic:(NSString *)profPic {
-    [_ProfPic setImage:[UIImage imageNamed:profPic]];
-}
 
 // Driveway picture
 - (NSString *) getDrivewayPic {
@@ -242,14 +198,6 @@
     _numHours.text = hours;
 }
 
-// Hourly Rate
-- (double) getHourlyRate {
-    return [[spot price] doubleValue];
-}
-- (void) setHourlyRate:(double) rate {
-    _price.text = [NSString stringWithFormat:@"$%.02f",rate];
-}
-
 // Address
 - (NSString *) getAddress {
     return [spot address];
@@ -259,14 +207,6 @@
 }
 
 // ------ BOTTOM SECTION ------//
-// Price
-- (double) getTotalPrice {
-    int hours = abs([[spot startTime] integerValue] - [[spot endTime] integerValue]);
-    return hours*[self getHourlyRate];
-}
-- (void) setTotalPrice:(double) pr{
-    _totalAmount.text = [NSString stringWithFormat:@"$%.02f",pr];
-}
 
 // Start Time
 - (void) setTheStartTime:(NSDate *) date {
@@ -394,8 +334,6 @@
     NSDateComponents *comps = [calendar components:unitFlags fromDate:start  toDate:end  options:0];
     int hours = [comps hour];
     NSLog(@"%ld",(long)hours);
-    double price = hours * [self getHourlyRate];
-    [self setTotalPrice:price];
 }
 
 - (void)removeViews:(id)object {

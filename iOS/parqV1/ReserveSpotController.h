@@ -18,22 +18,13 @@ typedef enum {None,Start,End} DatePickerState;
 }
 
 // Top Part
-@property (weak, nonatomic) IBOutlet UIImageView *ProfPic;
 @property (weak, nonatomic) IBOutlet UIImageView *parkingSpotView;
-@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *ratingLabel;
-@property (weak, nonatomic) IBOutlet UILabel *numPrevParkers;
 
 // Middle Part
 @property (weak, nonatomic) IBOutlet UILabel *numHours;
-@property (weak, nonatomic) IBOutlet UILabel *price;
 @property (weak, nonatomic) IBOutlet UILabel *address;
-@property (weak, nonatomic) IBOutlet MKMapView *parkingMapView;
-
 
 // Bottom Part
-@property (weak, nonatomic) IBOutlet UILabel *totalWantedHours;
-@property (weak, nonatomic) IBOutlet UILabel *totalAmount;
 @property (weak, nonatomic) IBOutlet UIButton *startTime;
 @property (weak, nonatomic) IBOutlet UIButton *endTime;
 @property (weak, nonatomic) IBOutlet UIButton *reserveButton;

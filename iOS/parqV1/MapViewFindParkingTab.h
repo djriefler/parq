@@ -13,20 +13,6 @@
 
 @interface MapViewFindParkingTab : UIViewController<CLLocationManagerDelegate, MKMapViewDelegate, UIGestureRecognizerDelegate>
 {
-    CLLocationManager *locationManager;
-    
-    // contains a list of pins with info on them
-    NSMutableArray * _parkingSpots;
-    
-    // used to store the results from the forward geocoding of the given address
-    NSArray * _searchPlacemarksCache;
-    
-    // used to make sure the map doesnt keep zooming in on the users location after finding it
-    BOOL atUserLocation;
-    
-    // used to keep track of which pin is currently selected
-    int currentUserUUID;
-    
     IBOutlet MKMapView * worldView;
 }
 

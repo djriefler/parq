@@ -24,7 +24,7 @@
     return self;
 }
 
-- (id) initWithMapViewController: (MapViewController *) mvc
+- (id) initWithMapViewController: (MapViewFindParkingTab *) mvc
 {
     self = [super initWithNibName:@"SearchViewControllerNew" bundle:nil];
     if (self) {
@@ -126,7 +126,6 @@ shouldReloadTableForSearchString:(NSString *)searchString
     // Create a mapItem from the chosen result
     MKMapItem *item = [searchResults objectAtIndex:indexPath.row];
     // set the searchBar text on the MapViewController to the address of the chosen place
-    [[mapViewController searchBar] setText:item.name];
     
     // Dismiss the search view controller
     [self dismissController];

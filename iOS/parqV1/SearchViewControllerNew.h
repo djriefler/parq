@@ -10,15 +10,15 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
-#import "MapViewController.h"
+#import "MapViewFindParkingTab.h"
 
 @interface SearchViewControllerNew : UIViewController <UISearchBarDelegate, UISearchDisplayDelegate>
 {
     NSArray *searchResults;
-    MapViewController *mapViewController;
+    MapViewFindParkingTab *mapViewController;
 }
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 
-- (id) initWithMapViewController: (MapViewController *) mvc;
+- (id) initWithMapViewController: (MapViewFindParkingTab *) mvc;
 
 @end

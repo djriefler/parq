@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import "CurrentUserSingleton.h"
+#import "MapTabBarController.h"
+#import "PQSignUpViewController.h"
 
 @implementation AppDelegate
 @synthesize navController;
@@ -26,8 +28,8 @@
         [[CurrentUserSingleton currentUser] setUserSignedIn:YES];
         
         // Go straight to app
-        UIViewController *mapViewController = [[MapViewController alloc] initWithNibName:@"MapViewController" bundle:nil];
-        self.navController = [[UINavigationController alloc] initWithRootViewController:mapViewController];
+        UIViewController *mapTabBarController = [[MapTabBarController alloc] init];
+        self.navController = [[UINavigationController alloc] initWithRootViewController:mapTabBarController];
         
         [FBSession openActiveSessionWithReadPermissions:@[@"basic_info", @"email"] allowLoginUI:NO completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
             // Handler for session state changes

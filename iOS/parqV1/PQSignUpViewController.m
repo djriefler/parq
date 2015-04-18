@@ -11,10 +11,13 @@
 
 
 #import "PQSignUpViewController.h"
-#import "MapViewController.h"
+#import "MapTabBarController.h"
 #import "CurrentUserSingleton.h"
 
 @interface PQSignUpViewController ()
+{
+    BOOL receivedFBInfo;
+}
 @end
 
 @implementation PQSignUpViewController
@@ -24,7 +27,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        
+        receivedFBInfo = NO;
     }
     return self;
 }
@@ -36,9 +39,11 @@
 // This method gives you access to a user's fb info
 - (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
                             user:(id<FBGraphUser>)user {
-    if ([[CurrentUserSingleton currentUser] isUserSignedIn] == NO) {
-        
-        
+    NSLog(@"1");
+    if ([[CurrentUserSingleton currentUser] isUserSignedIn] == NO && receivedFBInfo == NO) {
+        receivedFBInfo = YES;
+        NSLog(@"2");
+
         // UI updates
         self.lblEmail.text = [user objectForKey:@"email"];
         
@@ -92,14 +97,16 @@
         // If the user already exists, run the app normally
         if ([[json objectForKey:@"status"]  isEqual: @"existing user"]) {
             NSLog(@"%@", json);
-            UIViewController *mapViewController = [[MapViewController alloc] initWithNibName:@"MapViewController" bundle:nil];
-            self.navController = [[UINavigationController alloc] initWithRootViewController:mapViewController];
+            UIViewController *mapTabBarController = [[MapTabBarController alloc] init];
+            self.navController = [[UINavigationController alloc] initWithRootViewController:mapTabBarController];
             [[UIApplication sharedApplication]delegate].window.rootViewController = navController;
         }
         
         // The user doesn't exist, onboard them
         else {
-            
+            UIViewController *mapTabBarController = [[MapTabBarController alloc] init];
+            self.navController = [[UINavigationController alloc] initWithRootViewController:mapTabBarController];
+            [[UIApplication sharedApplication]delegate].window.rootViewController = navController;
         }
     }
 }

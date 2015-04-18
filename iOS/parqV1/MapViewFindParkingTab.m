@@ -9,13 +9,14 @@
 #define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) //1
 #define kLatestParkingSpotsURL [NSURL URLWithString:@"http://intense-hollows-4714.herokuapp.com/spots"] //2
 
-#import "MapViewController.h"
+
+#import "MapViewFindParkingTab.h"
 #import "MapPin.h"
 #import "AddParkingSpotController.h"
 #import "ReserveSpotController.h"
 #import "SearchViewControllerNew.h"
 
-@implementation MapViewController
+@implementation MapViewFindParkingTab
 @synthesize parkingSpots, worldView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -51,26 +52,12 @@
     [self.worldView setShowsUserLocation:YES];
     [self.worldView setMapType:MKMapTypeStandard];
     
-    // NavBar stuff
-    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"parq_logo_2.png"]];
-    self.navigationItem.titleView.layer.frame = CGRectMake(50, 0, 125, 84);
-    self.navigationItem.titleView.layer.masksToBounds = NO;
-    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"texture3.jpg"]forBarMetrics:UIBarMetricsDefault];
-    
-    // Right Button
-    UIImage* image3 = [UIImage imageNamed:@"icon-garage1.png"];
-    CGRect frameimg = CGRectMake(0, 0, 35, 35);
-    UIButton* someButton = [[UIButton alloc] initWithFrame:frameimg];
-    [someButton setBackgroundImage:image3 forState:UIControlStateNormal];
-    [someButton addTarget:self action:@selector(loadAddParkingSpotView)
-         forControlEvents:UIControlEventTouchUpInside];
-    [someButton setShowsTouchWhenHighlighted:YES];
-    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithCustomView:someButton];
-    [[self navigationItem] setRightBarButtonItem:barButton];
-    [someButton.layer setZPosition:2];
+    // Setup address bar
+    _addressBar.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    _addressBar.layer.borderWidth = 1.0;
+    _addressBar.layer.cornerRadius = 3.0;
     
     // Arrow Button
-    
     _userLocationButton.layer.cornerRadius = 3.0f;
     _userLocationButton.layer.shadowRadius = 3.0f;
     _userLocationButton.layer.shadowColor = [UIColor blackColor].CGColor;
@@ -78,45 +65,42 @@
     _userLocationButton.layer.shadowOpacity = 0.5f;
     _userLocationButton.layer.masksToBounds = NO;
     
-    // Search Bar button
-    self.searchBar.searchBarStyle = UISearchBarStyleMinimal;
-    [self.searchBar setUserInteractionEnabled:NO];
-    
     // Find Parking Button
     // Add corner radius
     self.findParkingButton.layer.cornerRadius = 4.0f;
     self.findParkingButton.layer.masksToBounds = NO;
     
-    // Create colors for a gradient
-    UIColor *color1 =
-    [UIColor colorWithRed:(float)62/255 green:(float)177/255 blue:(float)213/255 alpha:1.0];
-    UIColor *color2 =
-    [UIColor colorWithRed:(float)72/255 green:(float)200/255 blue:(float)222/255 alpha:1.0];
-    UIColor *color3 =
-    [UIColor colorWithRed:(float)72/255 green:(float)200/255 blue:(float)222/255 alpha:1.0];
-    UIColor *color4 =
-    [UIColor colorWithRed:(float)72/255 green:(float)200/255 blue:(float)222/255 alpha:1.0];
-    UIColor *color5 =
-    [UIColor colorWithRed:(float)62/255 green:(float)177/255 blue:(float)213/255 alpha:1.0];
-    
-    // Create the gradient
-    CAGradientLayer *gradient = [CAGradientLayer layer];
-    
-    // Set colors
-    gradient.colors = [NSArray arrayWithObjects:
-                       (id)color1.CGColor,
-                       (id)color2.CGColor,
-                       (id)color3.CGColor,
-                       (id)color4.CGColor,
-                       (id)color5.CGColor,
-                       nil];
-    
-    // Set bounds
-    gradient.frame = self.findParkingButton.bounds;
-    gradient.cornerRadius = 4.0f;
-    
-    // Add the gradient to the view
-    [self.findParkingButton.layer insertSublayer:gradient atIndex:0];
+    // Gradient
+//    // Create colors for a gradient
+//    UIColor *color1 =
+//    [UIColor colorWithRed:(float)62/255 green:(float)177/255 blue:(float)213/255 alpha:1.0];
+//    UIColor *color2 =
+//    [UIColor colorWithRed:(float)72/255 green:(float)200/255 blue:(float)222/255 alpha:1.0];
+//    UIColor *color3 =
+//    [UIColor colorWithRed:(float)72/255 green:(float)200/255 blue:(float)222/255 alpha:1.0];
+//    UIColor *color4 =
+//    [UIColor colorWithRed:(float)72/255 green:(float)200/255 blue:(float)222/255 alpha:1.0];
+//    UIColor *color5 =
+//    [UIColor colorWithRed:(float)62/255 green:(float)177/255 blue:(float)213/255 alpha:1.0];
+//    
+//    // Create the gradient
+//    CAGradientLayer *gradient = [CAGradientLayer layer];
+//    
+//    // Set colors
+//    gradient.colors = [NSArray arrayWithObjects:
+//                       (id)color1.CGColor,
+//                       (id)color2.CGColor,
+//                       (id)color3.CGColor,
+//                       (id)color4.CGColor,
+//                       (id)color5.CGColor,
+//                       nil];
+//    
+//    // Set bounds
+//    gradient.frame = self.findParkingButton.bounds;
+//    gradient.cornerRadius = 4.0f;
+//    
+//    // Add the gradient to the view
+//    [self.findParkingButton.layer insertSublayer:gradient atIndex:0];
     
     // Bottom view
     UIImage *background =[UIImage imageNamed:@"texture3.jpg"];
@@ -229,6 +213,9 @@
     [[self navigationController] pushViewController:svc animated:NO];
 }
 
+- (IBAction)addressBarButtonTapped:(id)sender {
+}
+
 - (IBAction)showUserLocation:(id)sender
 {
     
@@ -237,28 +224,77 @@
 
 - (IBAction)findParking:(id)sender
 {
-    // Request parking spot data
-    dispatch_async(kBgQueue, ^{
-        NSData* data = [NSData dataWithContentsOfURL:
-                        kLatestParkingSpotsURL];
-        if (data != nil) {
-            [self performSelectorOnMainThread:@selector(fetchedData:)
-                                   withObject:data waitUntilDone:YES];
-        }
-        else {
-            NSLog(@"NO DATA! Check internet connection or server connection");
-        }
-    });
+    // Get nearest parking spots
+    [self requestNearestParkingSpots];
     
     // HACK to put pins on map
-        MapPin * pin = [[MapPin alloc] initWithCoord:CLLocationCoordinate2DMake((double)34.1205,(double)-118.2856)
-                                             andUUID:1
-                                             andName:@"DJ"
-                                           andRating:5
-                                             andRate:0.5
-                                        andStartTime:2
-                                          andEndTime:8];
-        [worldView addAnnotation:pin];
+    [self addFakePinToMap];
+}
+
+- (void) requestNearestParkingSpots {
+    // Request parking spot data
+    dispatch_async(kBgQueue, ^{
+        NSLog(@"in hurr");
+        float longitude = [[locationManager location] coordinate].longitude;
+        float latitude = [[locationManager location] coordinate].latitude;
+        
+        // Prepare request for server to see if user already exists
+        NSDictionary* info = [[NSDictionary alloc] initWithObjectsAndKeys:
+                              [NSNumber numberWithFloat:longitude], @"longitude",
+                              [NSNumber numberWithFloat:latitude], @"latitude", nil];
+        
+        NSError *error;
+        
+        // Convert object to data
+        NSData* jsonData = [NSJSONSerialization dataWithJSONObject:info
+                                                           options:NSJSONWritingPrettyPrinted
+                                                             error:&error];
+        
+        // Create POST request
+        NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[jsonData length]];
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:kLatestParkingSpotsURL];
+        [request setHTTPMethod:@"POST"];
+        [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+        [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+        [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        [request setHTTPBody:jsonData];
+        
+        // Send request
+        [NSURLConnection connectionWithRequest:request delegate:self];
+        
+    });
+
+}
+
+- (void) addFakePinToMap {
+    MapPin * pin = [[MapPin alloc] initWithCoord:CLLocationCoordinate2DMake((double)34.1205,(double)-118.2856)
+                                         andUUID:1
+                                         andName:@"DJ"
+                                       andRating:5
+                                         andRate:0.5
+                                    andStartTime:2
+                                      andEndTime:8];
+    [worldView addAnnotation:pin];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    NSError * error;
+    NSDictionary* json = [NSJSONSerialization
+                              JSONObjectWithData:data
+                              options:kNilOptions
+                              error:&error];
+    
+    // If there are parking spots available, fill map with them
+    if (data != nil) {
+        [self performSelectorOnMainThread:@selector(fetchedData:)
+                               withObject:data waitUntilDone:YES];
+    }
+    else {
+        NSLog(@"NO DATA! Check internet connection or server connection");
+    }
+
+    NSLog(@"%@", json);
+        
 }
 
 /****************************

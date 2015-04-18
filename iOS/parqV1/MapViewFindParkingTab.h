@@ -11,7 +11,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 
-@interface MapViewController : UIViewController<CLLocationManagerDelegate, MKMapViewDelegate, UIGestureRecognizerDelegate>
+@interface MapViewFindParkingTab : UIViewController<CLLocationManagerDelegate, MKMapViewDelegate, UIGestureRecognizerDelegate>
 {
     CLLocationManager *locationManager;
     
@@ -27,7 +27,7 @@
     // used to keep track of which pin is currently selected
     int currentUserUUID;
     
-     IBOutlet MKMapView * worldView;
+    IBOutlet MKMapView * worldView;
 }
 
 @property (nonatomic, retain) IBOutlet MKMapView * worldView;
@@ -35,10 +35,9 @@
 @property (nonatomic) NSArray * parkingSpots;
 @property (weak, nonatomic) IBOutlet UIButton *userLocationButton;
 @property (weak, nonatomic) IBOutlet UIButton *findParkingButton;
-@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
-@property (weak, nonatomic) IBOutlet UIButton *searchBarButton;
+@property (weak, nonatomic) IBOutlet UIButton *addressBar;
 
-- (IBAction)searchBarButtonPressed:(id)sender;
+- (IBAction)addressBarButtonTapped:(id)sender;
 
 - (IBAction)showUserLocation:(id)sender;
 

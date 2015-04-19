@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "parqV1/ReserveSpotController.m"
-            timestampString = "451097543.33009"
+            filePath = "parqV1/MapViewFindParkingTab.m"
+            timestampString = "451113807.66603"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
-            landmarkName = "-confirmReservationWithServer"
+            startingLineNumber = "230"
+            endingLineNumber = "230"
+            landmarkName = "-showUserLocation:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

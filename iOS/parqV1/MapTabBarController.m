@@ -10,6 +10,7 @@
 #import "MapViewFindParkingTab.h"
 #import "MapViewListParkingTab.h"
 #import "SettingsViewController.h"
+#import "CurrentUserSingleton.h"
 
 @interface MapTabBarController ()
 
@@ -19,6 +20,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    NSLog(@"Email: %@",[[CurrentUserSingleton currentUser] getEmail]);
+    NSLog(@"Name: %@",[[CurrentUserSingleton currentUser] getName]);
+    NSLog(@"UUID: %@",[[CurrentUserSingleton currentUser] UUID]);
+    NSLog(@"reserved spots: %@",[[CurrentUserSingleton currentUser] reservedParkingSpots]);
+    NSLog(@"owned spots: %@",[[CurrentUserSingleton currentUser] ownedParkingSpots]);
+    NSLog(@"rating: %f",[[CurrentUserSingleton currentUser] rating]);
+
     
     // Update Navbar
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"parq_logo_2.png"]];

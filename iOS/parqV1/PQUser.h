@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface PQUser : NSObject
+@interface PQUser : NSObject<NSCoding>
 @property NSString * name;
 @property NSString * email;
 @property NSString * UUID;

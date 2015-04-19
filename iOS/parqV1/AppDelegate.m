@@ -19,13 +19,10 @@
 {
     [FBLoginView class];
     
-    [[CurrentUserSingleton currentUser] setUserSignedIn:NO];
-    
     // If a user has already been logged in
-    if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
-
-        // Update current user info - may need to add info from server database or app cache
-        [[CurrentUserSingleton currentUser] setUserSignedIn:YES];
+//    if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded ) {
+    if ([[CurrentUserSingleton currentUser] isUserSignedIn] == YES) {
+         // Update current user info - may need to add info from server database or app cache
 
         // Go straight to app
         UIViewController *mapTabBarController = [[MapTabBarController alloc] init];
@@ -40,8 +37,6 @@
     
     // If user has not been logged in  
     else {
-        [[CurrentUserSingleton currentUser] setUserSignedIn:NO];
-
         UIViewController *loginController = [[PQSignUpViewController alloc] initWithNibName:@"PQSignUpViewController" bundle:nil];
         self.navController = [[UINavigationController alloc] initWithRootViewController:loginController];
     }
@@ -74,8 +69,14 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    
+    BOOL success = [[CurrentUserSingleton currentUser] saveChanges];
+    if (success) {
+        NSLog(@"Saved user data");
+    }
+    else {
+        NSLog(@"Could not save user data");
+    }
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -90,7 +91,13 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    BOOL success = [[CurrentUserSingleton currentUser] saveChanges];
+    if (success) {
+        NSLog(@"Saved user data");
+    }
+    else {
+        NSLog(@"Could not save user data");
+    }
 }
 
 @end

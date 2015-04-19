@@ -62,7 +62,7 @@
         // Send request to server
         if (jsonData) {
             // Create request
-            NSString *postLength = [NSString stringWithFormat:@"%d", [jsonData length]];
+            NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[jsonData length]];
             NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:kServerURL];
             [request setHTTPMethod:@"POST"];
             [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
@@ -93,8 +93,6 @@
         // enter their information into the Singleton
         [[CurrentUserSingleton currentUser] setUserDataFromJSON:json];
         [[CurrentUserSingleton currentUser] setUserSignedIn:YES];
-        NSLog(@"%@", [[CurrentUserSingleton currentUser] UUID]);
-
         
         // If the user already exists, run the app normally
         if ([[json objectForKey:@"status"]  isEqual: @"existing user"]) {

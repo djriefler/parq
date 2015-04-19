@@ -7,10 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PQUser.h"
 
 @interface CurrentUserSingleton : NSObject
 
 + (CurrentUserSingleton *) currentUser;
+
+- (BOOL) saveChanges;
 
 - (void) setUserDataFromJSON: (NSDictionary *) data;
 - (void) setUserSignedIn: (BOOL) isSignedIn;
@@ -25,7 +28,11 @@
 - (NSString *) UUID;
 - (NSString *) getEmail;
 - (NSString *) getName;
+- (float) rating;
 - (NSMutableArray *) reservedParkingSpots;
 - (NSMutableArray *) ownedParkingSpots;
+
+
+- (PQUser *) theUser;
 
 @end

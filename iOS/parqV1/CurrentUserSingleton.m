@@ -12,97 +12,7 @@
 @implementation CurrentUserSingleton
 {
     BOOL userSignedIn;
-    NSMutableArray * reservedParkingSpots;
-    NSMutableArray * ownedParkingSpots;
-    NSString * name;
-    NSString * email;
-    NSString * UUID;
-    float rating;
-
-}
-
-- (id) init
-{
-    self = [super init];
-    if (self) {
-        
-    }
-    return self;
-}
-
-- (id)initForFirstTime
-{
-    self = [super init];
-    if (self) {
-        reservedParkingSpots = [[NSMutableArray alloc] init];
-        ownedParkingSpots = [[NSMutableArray alloc] init];
-    }
-    return self;
-}
-
-- (id)initForExistingUser
-{
-    self = [super init];
-    if (self) {
-        reservedParkingSpots = [[NSMutableArray alloc] init];
-        ownedParkingSpots = [[NSMutableArray alloc] init];
-    }
-    return self;
-}
-
-- (NSString *)userDataArchivePath {
-    NSArray * documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString * documentDirectory = [documentDirectories objectAtIndex:0];
-    return [documentDirectory stringByAppendingPathComponent:@"userData.archive"];
-}
-
-- (BOOL) saveChanges
-{
-    NSString * path = [self userDataArchivePath];
-    PQUser * user = [[PQUser alloc] init];
-    [user setReservedSpots:reservedParkingSpots];
-    [user setOwnedSpots:ownedParkingSpots];
-    [user setRating:rating];
-    [user setName:name];
-    [user setEmail:email];
-    [user setUUID:UUID];
-    return [NSKeyedArchiver archiveRootObject:user toFile:path];
-}
-
-- (NSString *) UUID
-{
-    return  UUID;
-}
-
-- (void) setUserDataFromJSON:(NSDictionary *)data
-{
-    if ([data objectForKey:@"UUID"]) {
-        UUID = [data objectForKey:@"UUID"];
-    }
-    if ([data objectForKey:@"name"]) {
-        name = [data objectForKey:@"name"];
-    }
-    if ([data objectForKey:@"email"]) {
-        email = [data objectForKey:@"email"];
-    }
-    if ([data objectForKey:@"rating"]) {
-        rating = [[data objectForKey:@"rating"] floatValue];
-    }
-    if ([data objectForKey:@"reserved"]) {
-        reservedParkingSpots = [data objectForKey:@"reserved"];
-    }
-    if ([data objectForKey:@"owned"]) {
-        ownedParkingSpots = [data objectForKey:@"owned"];
-    }
-}
-
-- (NSString *) getEmail
-{
-    return name;
-}
-- (NSString *) getName
-{
-    return email;
+    PQUser * currentUser;
 }
 
 + (CurrentUserSingleton *) currentUser
@@ -118,19 +28,137 @@
     return _currentUser;
 }
 
-- (BOOL) isUserSignedIn {
-    return userSignedIn;
+- (id) init
+{
+    self = [super init];
+    if (self) {
+        NSString * path = [self userDataArchivePath];
+        currentUser = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+        // User has not logged in on this phone before
+        if (!currentUser) {
+            currentUser = [[PQUser alloc] init];
+            currentUser.rating = 5.0;
+            currentUser.ownedSpots = [[NSMutableArray alloc] init];
+            currentUser.reservedSpots = [[NSMutableArray alloc] init];
+            userSignedIn = NO;
+        }
+        else {
+            userSignedIn = YES;
+        }
+    }
+    return self;
+}
+
+// Caching
+
+- (NSString *)userDataArchivePath {
+    NSArray * documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString * documentDirectory = [documentDirectories objectAtIndex:0];
+    return [documentDirectory stringByAppendingPathComponent:@"userData.archive"];
+}
+
+- (BOOL) saveChanges
+{
+    NSString * path = [self userDataArchivePath];
+    return [NSKeyedArchiver archiveRootObject:currentUser toFile:path];
+    NSLog(@"Saved changes");
+}
+
+// Setters
+
+- (void) setUserDataFromJSON:(NSDictionary *)json
+{
+    NSDictionary * data = [json objectForKey:@"data"];
+
+    if ([data objectForKey:@"UUID"]) {
+        currentUser.UUID = [data objectForKey:@"UUID"];
+    }
+    if ([data objectForKey:@"name"]) {
+        currentUser.name = [data objectForKey:@"name"];
+    }
+    if ([data objectForKey:@"email"]) {
+        currentUser.email = [data objectForKey:@"email"];
+    }
+    if ([data objectForKey:@"rating"] != NULL) {
+        currentUser.rating = [[data objectForKey:@"rating"] floatValue];
+    }
+    if ([data objectForKey:@"reserved"]) {
+        currentUser.reservedSpots = [data objectForKey:@"reserved"];
+    }
+    if ([data objectForKey:@"owned"]) {
+        currentUser.ownedSpots = [data objectForKey:@"owned"];
+    }
 }
 
 - (void) setUserSignedIn:(BOOL)isSignedIn {
     userSignedIn = isSignedIn;
 }
 
+- (BOOL) isUserSignedIn {
+    return userSignedIn;
+}
+
+- (void) setUUID:(NSString *)uuid
+{
+    currentUser.UUID = uuid;
+}
+
+- (void) setName:(NSString *)name
+{
+    currentUser.name = name;
+}
+
+- (void) setEmail:(NSString *)email
+{
+    currentUser.email = email;
+}
+
+- (void) setRating:(float)rating
+{
+    currentUser.rating = rating;
+}
+
+- (void) setReservedSpots:(NSMutableArray *)reserved
+{
+    currentUser.reservedSpots = reserved;
+}
+
+- (void) setOwnedSpots:(NSMutableArray *)owned
+{
+    currentUser.ownedSpots = owned;
+}
+
+// Getters
+
+- (NSString *) getEmail
+{
+    return currentUser.email;
+}
+- (NSString *) getName
+{
+    return currentUser.name;
+}
+
+- (NSString *) UUID
+{
+    return  currentUser.UUID;
+}
+
+- (float) rating
+{
+    return currentUser.rating;
+}
+
 - (NSMutableArray *) reservedParkingSpots {
-    return reservedParkingSpots;
+    return currentUser.reservedSpots;
 }
 
 - (NSMutableArray *) ownedParkingSpots {
-    return ownedParkingSpots;
+    return currentUser.ownedSpots;
+}
+
+- (PQUser *) theUser
+{
+    return currentUser;
 }
 @end

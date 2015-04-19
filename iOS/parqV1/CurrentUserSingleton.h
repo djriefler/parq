@@ -23,6 +23,8 @@
 
 - (BOOL) isUserSignedIn;
 - (NSString *) UUID;
+- (NSString *) getEmail;
+- (NSString *) getName;
 - (NSMutableArray *) reservedParkingSpots;
 - (NSMutableArray *) ownedParkingSpots;
 

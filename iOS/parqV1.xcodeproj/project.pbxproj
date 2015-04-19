@@ -66,6 +66,8 @@
 		7EDB25CD1905D3FE004868FC /* PQSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EDB25CB1905D3FE004868FC /* PQSignUpViewController.m */; };
 		7EDB25CE1905D3FE004868FC /* PQSignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EDB25CC1905D3FE004868FC /* PQSignUpViewController.xib */; };
 		835B90E21AE3419C0075133C /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835B90E11AE3419C0075133C /* SettingsViewController.m */; };
+		835B90E71AE363FB0075133C /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835B90E51AE363FB0075133C /* EditViewController.m */; };
+		835B90E81AE363FB0075133C /* EditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 835B90E61AE363FB0075133C /* EditViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -159,6 +161,9 @@
 		7EDB25CC1905D3FE004868FC /* PQSignUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PQSignUpViewController.xib; sourceTree = "<group>"; };
 		835B90E01AE3419C0075133C /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		835B90E11AE3419C0075133C /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		835B90E41AE363FB0075133C /* EditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditViewController.h; sourceTree = "<group>"; };
+		835B90E51AE363FB0075133C /* EditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditViewController.m; sourceTree = "<group>"; };
+		835B90E61AE363FB0075133C /* EditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -430,6 +435,9 @@
 			children = (
 				835B90E01AE3419C0075133C /* SettingsViewController.h */,
 				835B90E11AE3419C0075133C /* SettingsViewController.m */,
+				835B90E41AE363FB0075133C /* EditViewController.h */,
+				835B90E51AE363FB0075133C /* EditViewController.m */,
+				835B90E61AE363FB0075133C /* EditViewController.xib */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -524,6 +532,7 @@
 				7E9B19CD1AE35396007DBAD8 /* settingsIcon.jpg in Resources */,
 				7EAA3ED8185979D6002DB255 /* AddParkingSpotController.xib in Resources */,
 				7E563F40185FFF1C009FDE8D /* location.png in Resources */,
+				835B90E81AE363FB0075133C /* EditViewController.xib in Resources */,
 				7E42D4AE1866A308003376DB /* SearchViewControllerNew.xib in Resources */,
 				7E442BE7185D677500C516EE /* parq_logo_2.png in Resources */,
 				7E4CE7E51861083F0089E227 /* Mckenzie.jpg in Resources */,
@@ -563,6 +572,7 @@
 				7EAA3F111859A3A3002DB255 /* ReserveSpotController.m in Sources */,
 				7EAA3EDE18597A50002DB255 /* MapPin.m in Sources */,
 				835B90E21AE3419C0075133C /* SettingsViewController.m in Sources */,
+				835B90E71AE363FB0075133C /* EditViewController.m in Sources */,
 				7EAA3EDF18597A50002DB255 /* MapViewFindParkingTab.m in Sources */,
 				7E42D4AD1866A308003376DB /* SearchViewControllerNew.m in Sources */,
 				7E9B19CB1AE3251D007DBAD8 /* SpotMangerTableViewController.m in Sources */,

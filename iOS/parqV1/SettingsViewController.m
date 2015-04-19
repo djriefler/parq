@@ -7,13 +7,20 @@
 //
 
 #import "SettingsViewController.h"
-#import "currentUserSingleton.h"
+#import "CurrentUserSingleton.h"
+#import "EditViewController.h"
 
 @interface SettingsViewController ()
 
 @end
 
 @implementation SettingsViewController
+
+//- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return indexPath.row <= 1;
+//}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -22,7 +29,7 @@
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+//     self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -60,30 +67,39 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *cellIdentifier = @"cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
     
     if (!cell) {
+        if (indexPath.row < 2)
         cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleValue2 reuseIdentifier: cellIdentifier];
+        else
+        cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: cellIdentifier];
+
     }
+    
+
     
     switch (indexPath.row) {
         case 0:
             cell.textLabel.text = @"Name";
-            cell.detailTextLabel.text = [[CurrentUserSingleton currentUser] getName];
+            //cell.detailTextLabel.text = [[CurrentUserSingleton currentUser] getName];
+            cell.detailTextLabel.text = @"Chris";
 
             break;
         case 1:
             cell.textLabel.text = @"Email";
-            cell.detailTextLabel.text = [[CurrentUserSingleton currentUser] getEmail];
+            //cell.detailTextLabel.text = [[CurrentUserSingleton currentUser] getEmail];
+            cell.detailTextLabel.text = @"chris@gmail.com";
             break;
             
         case 2:
             cell.textLabel.text = @"Send Feedback";
             //cell.detailTextLabel.text = @"";
+            
             break;
         case 3:
-            cell.textLabel.text = @"User Agreement/Privacy Policy";
+            cell.textLabel.text = @"Privacy Policy";
             //cell.detailTextLabel.text = @"";
             break;
         case 4:
@@ -101,25 +117,40 @@
 }
 
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
+// Tap on table Row
+- (void) tableView: (UITableView *) tableView didSelectRowAtIndexPath: (NSIndexPath *) indexPath
+{
+    if (indexPath.row <= 1)
+    {
+        //open the editviewcontroller
+        EditViewController * vc = [[EditViewController alloc] init];
+        [self presentViewController:vc animated:YES completion:nil];
+        
+        if (indexPath.row == 0)
+        {
+            [vc setTitleText:@"Name"];
+        }
+        else
+        {
+            [vc setTitleText:@"Email"];
+        }
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+    }
 }
-*/
+
+
+
+//
+//// Override to support editing the table view.
+//- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+//    if (editingStyle == UITableViewCellEditingStyleDelete) {
+//        // Delete the row from the data source
+//        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+//    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+//        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+//    }   
+//}
+
 
 /*
 // Override to support rearranging the table view.

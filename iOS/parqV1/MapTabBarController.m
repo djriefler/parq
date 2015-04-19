@@ -9,6 +9,7 @@
 #import "MapTabBarController.h"
 #import "MapViewFindParkingTab.h"
 #import "MapViewListParkingTab.h"
+#import "SettingsViewController.h"
 
 @interface MapTabBarController ()
 
@@ -28,6 +29,14 @@
     UIBarButtonItem * spotManagerButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"spotManagerIcon.png"] style:UIBarButtonItemStylePlain target:self action:@selector(loadSpotMangerPage)];
     [self.navigationController.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:spotManagerButton, nil]  animated:NO];
     
+    UIBarButtonItem * settingsButton = [[UIBarButtonItem alloc]
+                                        initWithBarButtonSystemItem:UIBarButtonSystemItemAction
+                                        target:self
+                                        action:@selector(loadSettingsPage)];
+    [settingsButton setEnabled:YES];
+    [self.navigationItem setLeftBarButtonItem:settingsButton];
+    
+    
     // Create Tabs
     MapViewFindParkingTab * findParkingTab;
     MapViewListParkingTab * listParkingTab;
@@ -44,6 +53,11 @@
 
 - (void) loadSpotMangerPage {
     
+}
+
+- (void) loadSettingsPage {
+    SettingsViewController * svc = [[SettingsViewController alloc] init];
+    [self.navigationController pushViewController:svc animated:YES];
 }
 
 /*

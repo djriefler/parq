@@ -303,7 +303,6 @@
                               JSONObjectWithData:data
                               options:kNilOptions
                               error:&error];
-    
     // If there are parking spots available, fill map with them
     if (data != nil) {
         [self performSelectorOnMainThread:@selector(fetchedData:)

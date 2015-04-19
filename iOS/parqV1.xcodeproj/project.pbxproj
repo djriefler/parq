@@ -63,6 +63,7 @@
 		7EDB25C91905C3A6004868FC /* PQUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EDB25C81905C3A6004868FC /* PQUser.m */; };
 		7EDB25CD1905D3FE004868FC /* PQSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EDB25CB1905D3FE004868FC /* PQSignUpViewController.m */; };
 		7EDB25CE1905D3FE004868FC /* PQSignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EDB25CC1905D3FE004868FC /* PQSignUpViewController.xib */; };
+		835B90E21AE3419C0075133C /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835B90E11AE3419C0075133C /* SettingsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -151,6 +152,8 @@
 		7EDB25CA1905D3FE004868FC /* PQSignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PQSignUpViewController.h; sourceTree = "<group>"; };
 		7EDB25CB1905D3FE004868FC /* PQSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PQSignUpViewController.m; sourceTree = "<group>"; };
 		7EDB25CC1905D3FE004868FC /* PQSignUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PQSignUpViewController.xib; sourceTree = "<group>"; };
+		835B90E01AE3419C0075133C /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		835B90E11AE3419C0075133C /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -308,6 +311,7 @@
 		7EAA3EAB185978EB002DB255 /* parqV1 */ = {
 			isa = PBXGroup;
 			children = (
+				835B90E31AE341A70075133C /* Settings */,
 				7E6A3C7818C81B1A00BBCC7D /* images */,
 				7EAA3F0718599B6C002DB255 /* AppDelegate.h */,
 				7EAA3F0818599B6C002DB255 /* AppDelegate.m */,
@@ -403,6 +407,15 @@
 				7EDB25CC1905D3FE004868FC /* PQSignUpViewController.xib */,
 			);
 			name = "Sign Up";
+			sourceTree = "<group>";
+		};
+		835B90E31AE341A70075133C /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				835B90E01AE3419C0075133C /* SettingsViewController.h */,
+				835B90E11AE3419C0075133C /* SettingsViewController.m */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -532,6 +545,7 @@
 				7E6A3C7618C81AFE00BBCC7D /* ReserveConfirmationPage.m in Sources */,
 				7EAA3F111859A3A3002DB255 /* ReserveSpotController.m in Sources */,
 				7EAA3EDE18597A50002DB255 /* MapPin.m in Sources */,
+				835B90E21AE3419C0075133C /* SettingsViewController.m in Sources */,
 				7EAA3EDF18597A50002DB255 /* MapViewFindParkingTab.m in Sources */,
 				7E42D4AD1866A308003376DB /* SearchViewControllerNew.m in Sources */,
 				7E64E2AE1AAF81F90099FE0F /* MapTabBarController.m in Sources */,

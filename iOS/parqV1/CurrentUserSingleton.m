@@ -75,6 +75,15 @@
     }
 }
 
+- (NSString *) getEmail
+{
+    return name;
+}
+- (NSString *) getName
+{
+    return email;
+}
+
 + (CurrentUserSingleton *) currentUser
 {
     static CurrentUserSingleton * _currentUser = nil;

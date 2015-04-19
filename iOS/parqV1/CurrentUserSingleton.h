@@ -17,6 +17,8 @@
 - (void) setEmail:(NSString *) email;
 - (void) setName:(NSString *) name;
 - (NSString *) UUID;
+- (NSString *) getEmail;
+- (NSString *) getName;
 - (void) setUUID:(NSString *) uuid;
 - (void) setRating:(float) rating;
 - (void) setReservedSpots: (NSMutableArray *) reserved;

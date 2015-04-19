@@ -32,6 +32,7 @@
 		7E6A3C7E18C81F6E00BBCC7D /* Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E6A3C7D18C81F6E00BBCC7D /* Checkmark.png */; };
 		7E7BA21D190762AC0014F06F /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E7BA21C190762AC0014F06F /* FacebookSDK.framework */; };
 		7E8D00501AA6629F00FB0417 /* CurrentUserSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E8D004F1AA6629F00FB0417 /* CurrentUserSingleton.m */; };
+		7E9B19CB1AE3251D007DBAD8 /* SpotMangerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E9B19CA1AE3251D007DBAD8 /* SpotMangerTableViewController.m */; };
 		7EAA3EA6185978EB002DB255 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAA3EA5185978EB002DB255 /* Foundation.framework */; };
 		7EAA3EA8185978EB002DB255 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAA3EA7185978EB002DB255 /* CoreGraphics.framework */; };
 		7EAA3EAA185978EB002DB255 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAA3EA9185978EB002DB255 /* UIKit.framework */; };
@@ -107,6 +108,8 @@
 		7E7BA21C190762AC0014F06F /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		7E8D004E1AA6629F00FB0417 /* CurrentUserSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentUserSingleton.h; sourceTree = "<group>"; };
 		7E8D004F1AA6629F00FB0417 /* CurrentUserSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentUserSingleton.m; sourceTree = "<group>"; };
+		7E9B19C91AE3251D007DBAD8 /* SpotMangerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotMangerTableViewController.h; sourceTree = "<group>"; };
+		7E9B19CA1AE3251D007DBAD8 /* SpotMangerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotMangerTableViewController.m; sourceTree = "<group>"; };
 		7EAA3EA2185978EB002DB255 /* parqV1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = parqV1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EAA3EA5185978EB002DB255 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7EAA3EA7185978EB002DB255 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -272,6 +275,15 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		7E9B19C31AE323C2007DBAD8 /* Spot Manager */ = {
+			isa = PBXGroup;
+			children = (
+				7E9B19C91AE3251D007DBAD8 /* SpotMangerTableViewController.h */,
+				7E9B19CA1AE3251D007DBAD8 /* SpotMangerTableViewController.m */,
+			);
+			name = "Spot Manager";
+			sourceTree = "<group>";
+		};
 		7EAA3E99185978EA002DB255 = {
 			isa = PBXGroup;
 			children = (
@@ -313,6 +325,7 @@
 				7EAA3F0818599B6C002DB255 /* AppDelegate.m */,
 				7EDB25CF1905D40F004868FC /* Sign Up */,
 				7E6A3C7A18C81BA000BBCC7D /* Main Screen */,
+				7E9B19C31AE323C2007DBAD8 /* Spot Manager */,
 				7E6A3C7918C81B6500BBCC7D /* Reserve Spot */,
 				7E6A3C7B18C81BF100BBCC7D /* Add Spot */,
 				7E6A3C7C18C81C0600BBCC7D /* Model */,
@@ -534,6 +547,7 @@
 				7EAA3EDE18597A50002DB255 /* MapPin.m in Sources */,
 				7EAA3EDF18597A50002DB255 /* MapViewFindParkingTab.m in Sources */,
 				7E42D4AD1866A308003376DB /* SearchViewControllerNew.m in Sources */,
+				7E9B19CB1AE3251D007DBAD8 /* SpotMangerTableViewController.m in Sources */,
 				7E64E2AE1AAF81F90099FE0F /* MapTabBarController.m in Sources */,
 				7EAA3ED7185979D6002DB255 /* AddParkingSpotController.m in Sources */,
 				7E8D00501AA6629F00FB0417 /* CurrentUserSingleton.m in Sources */,

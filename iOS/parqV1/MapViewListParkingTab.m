@@ -8,6 +8,7 @@
 
 #import "MapViewListParkingTab.h"
 #import "ListParkingView.h"
+#import "AddParkingSpotController.h"
 
 @interface MapViewListParkingTab ()
 {
@@ -161,6 +162,16 @@
     [self.listConfirmView setHidden:NO];
     [centerAnnotationView setHidden:YES];
 
+    
+    // Load add parking page (TEMP)
+    [self loadAddParkingSpotView];
+}
+
+- (void)loadAddParkingSpotView
+{
+    // Pushes the next view where you can add a parking spot (button on top right)
+    AddParkingSpotController *apsc = [[AddParkingSpotController alloc] initWithNibName:@"AddParkingSpotController" bundle:nil];
+    [[self navigationController] pushViewController:apsc animated:YES];
 }
 
 - (IBAction)updateLocationButtonPressed:(id)sender {

@@ -25,6 +25,9 @@
     self.navigationItem.titleView.layer.masksToBounds = NO;
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"texture3.jpg"]forBarMetrics:UIBarMetricsDefault];
     
+    UIBarButtonItem * spotManagerButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"spotManagerIcon.png"] style:UIBarButtonItemStylePlain target:self action:@selector(loadSpotMangerPage)];
+    [self.navigationController.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:spotManagerButton, nil]  animated:NO];
+    
     // Create Tabs
     MapViewFindParkingTab * findParkingTab;
     MapViewListParkingTab * listParkingTab;
@@ -37,6 +40,10 @@
     
     [self setSelectedIndex:0];
     // Dispose of any resources that can be recreated
+}
+
+- (void) loadSpotMangerPage {
+    
 }
 
 /*

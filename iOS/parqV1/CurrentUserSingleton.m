@@ -7,6 +7,7 @@
 //
 
 #import "CurrentUserSingleton.h"
+#import "PQUser.h"
 
 @implementation CurrentUserSingleton
 {
@@ -17,6 +18,7 @@
     NSString * email;
     NSString * UUID;
     float rating;
+
 }
 
 - (id) init
@@ -46,6 +48,25 @@
         ownedParkingSpots = [[NSMutableArray alloc] init];
     }
     return self;
+}
+
+- (NSString *)userDataArchivePath {
+    NSArray * documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString * documentDirectory = [documentDirectories objectAtIndex:0];
+    return [documentDirectory stringByAppendingPathComponent:@"userData.archive"];
+}
+
+- (BOOL) saveChanges
+{
+    NSString * path = [self userDataArchivePath];
+    PQUser * user = [[PQUser alloc] init];
+    [user setReservedSpots:reservedParkingSpots];
+    [user setOwnedSpots:ownedParkingSpots];
+    [user setRating:rating];
+    [user setName:name];
+    [user setEmail:email];
+    [user setUUID:UUID];
+    return [NSKeyedArchiver archiveRootObject:user toFile:path];
 }
 
 - (NSString *) UUID
@@ -94,5 +115,13 @@
 
 - (void) setUserSignedIn:(BOOL)isSignedIn {
     userSignedIn = isSignedIn;
+}
+
+- (NSMutableArray *) reservedParkingSpots {
+    return reservedParkingSpots;
+}
+
+- (NSMutableArray *) ownedParkingSpots {
+    return ownedParkingSpots;
 }
 @end

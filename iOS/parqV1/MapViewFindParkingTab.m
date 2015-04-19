@@ -12,7 +12,6 @@
 
 #import "MapViewFindParkingTab.h"
 #import "MapPin.h"
-#import "AddParkingSpotController.h"
 #import "ReserveSpotController.h"
 #import "SearchViewControllerNew.h"
 
@@ -145,7 +144,7 @@
                           error:&error];
     
     parkingSpots = [json objectForKey:@"spots"];
-    // 
+    
     if (parkingSpots != NULL) {
         [self populateMap];
     }
@@ -163,7 +162,7 @@
         int start = [[spot objectForKey:@"startTime"] integerValue];
         int end = [[spot objectForKey:@"endTime"] integerValue];
         NSString * name = [spot objectForKey:@"name"];
-        int uuid = [[spot objectForKey:@"UUID"] integerValue];
+        int uuid = [[spot objectForKey:@"USID"] integerValue];
 
         // Creates a pin that gets added to the map
         MapPin * pin = [[MapPin alloc] initWithCoord:CLLocationCoordinate2DMake([[coordinates objectAtIndex:0] doubleValue], [[coordinates objectAtIndex:1] doubleValue])
@@ -186,21 +185,11 @@
     [self.worldView setRegion:region animated:YES];
 }
 
-/************************
-  LOAD NEXT VIEW METHODS
- *************************/
-- (void)loadAddParkingSpotView
-{
-    // Pushes the next view where you can add a parking spot (button on top right)
-    AddParkingSpotController *apsc = [[AddParkingSpotController alloc] initWithNibName:@"AddParkingSpotController" bundle:nil];
-    [[self navigationController] pushViewController:apsc animated:YES];
-}
-
 - (void) loadReserveSpotView
 {
     NSDictionary * spotData;
     for (NSDictionary* spot in parkingSpots) {
-        if ([[spot objectForKey:@"UUID"] integerValue] == selectedSpotUUID) {
+        if ([[spot objectForKey:@"USID"] integerValue] == selectedSpotUUID) {
             spotData = [NSDictionary dictionaryWithDictionary:spot];
         }
     }
@@ -253,7 +242,6 @@
 
 - (void) requestNearestParkingSpots {
     // Request parking spot data
-    dispatch_async(kBgQueue, ^{
         NSLog(@"in hurr");
         float longitude = [[locationManager location] coordinate].longitude;
         float latitude = [[locationManager location] coordinate].latitude;
@@ -282,7 +270,6 @@
         // Send request
         [NSURLConnection connectionWithRequest:request delegate:self];
         
-    });
 
 }
 
@@ -303,6 +290,8 @@
                               JSONObjectWithData:data
                               options:kNilOptions
                               error:&error];
+    
+    NSLog(@"got response");
     
     // If there are parking spots available, fill map with them
     if (data != nil) {

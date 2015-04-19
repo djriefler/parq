@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "PQUser.h"
 
-@interface PQSpot : NSObject
+@interface PQSpot : NSObject <NSCoding>
 
 @property NSString * spotID;
 @property PQUser * owner;

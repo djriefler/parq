@@ -26,7 +26,7 @@
 
         // Update current user info - may need to add info from server database or app cache
         [[CurrentUserSingleton currentUser] setUserSignedIn:YES];
-        
+
         // Go straight to app
         UIViewController *mapTabBarController = [[MapTabBarController alloc] init];
         self.navController = [[UINavigationController alloc] initWithRootViewController:mapTabBarController];

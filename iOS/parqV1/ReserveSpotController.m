@@ -35,6 +35,7 @@
     if (self) {
         spot = spt;
         user = [spot owner];
+        NSLog(@"%@", spot);
     }
     return self;
 }
@@ -53,7 +54,8 @@
                           [[CurrentUserSingleton currentUser] UUID] , @"user_id",
                           [spot spotID], @"spot_id",
                           nil];
-    
+    NSLog(@"%@", [spot spotID]);
+    NSLog(@"%@", [[CurrentUserSingleton currentUser] UUID]);
     NSError *error;
     
     //convert object to data

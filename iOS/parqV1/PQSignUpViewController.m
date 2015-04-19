@@ -93,6 +93,8 @@
         // enter their information into the Singleton
         [[CurrentUserSingleton currentUser] setUserDataFromJSON:json];
         [[CurrentUserSingleton currentUser] setUserSignedIn:YES];
+        NSLog(@"%@", [[CurrentUserSingleton currentUser] UUID]);
+
         
         // If the user already exists, run the app normally
         if ([[json objectForKey:@"status"]  isEqual: @"existing user"]) {

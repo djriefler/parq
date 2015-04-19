@@ -98,11 +98,11 @@
 
 - (NSString *) getEmail
 {
-    return name;
+    return email;
 }
 - (NSString *) getName
 {
-    return email;
+    return name;
 }
 
 + (CurrentUserSingleton *) currentUser
@@ -133,4 +133,6 @@
 - (NSMutableArray *) ownedParkingSpots {
     return ownedParkingSpots;
 }
+
+
 @end

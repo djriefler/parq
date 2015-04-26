@@ -250,7 +250,7 @@
     [self requestNearestParkingSpots];
     
     // HACK to put pins on map
-    [self addFakePinToMap];
+//    [self addFakePinToMap];
 }
 
 - (void) requestNearestParkingSpots {

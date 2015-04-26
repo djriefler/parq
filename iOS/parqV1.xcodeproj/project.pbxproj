@@ -19,8 +19,6 @@
 		7E4CE7E51861083F0089E227 /* Mckenzie.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7E4CE7E11861083F0089E227 /* Mckenzie.jpg */; };
 		7E4CE7E61861083F0089E227 /* Ben.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7E4CE7E21861083F0089E227 /* Ben.jpg */; };
 		7E4CE7E71861083F0089E227 /* Fui.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7E4CE7E31861083F0089E227 /* Fui.jpg */; };
-		7E4E609A1A91AC320083CEB9 /* CheckInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4E60981A91AC320083CEB9 /* CheckInViewController.m */; };
-		7E4E609B1A91AC330083CEB9 /* CheckInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E4E60991A91AC320083CEB9 /* CheckInViewController.xib */; };
 		7E563F3A185FD689009FDE8D /* texture1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7E563F37185FD689009FDE8D /* texture1.jpg */; };
 		7E563F3E185FD7AA009FDE8D /* icon-garage1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E563F3D185FD7AA009FDE8D /* icon-garage1.png */; };
 		7E563F40185FFF1C009FDE8D /* location.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E563F3F185FFF1C009FDE8D /* location.png */; };
@@ -61,7 +59,6 @@
 		7EB668BB1AABCDB800A82EF7 /* PQSpot.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EB668BA1AABCDB800A82EF7 /* PQSpot.m */; };
 		7EB668BD1AAC03F400A82EF7 /* OpenSpot.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EB668BC1AAC03F400A82EF7 /* OpenSpot.png */; };
 		7EB668BF1AAC04AC00A82EF7 /* Driveway.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EB668BE1AAC04AC00A82EF7 /* Driveway.png */; };
-		7EC94D531AD0D8D10065D078 /* ListParkingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC94D521AD0D8D10065D078 /* ListParkingView.m */; };
 		7EC94D561AD0DB160065D078 /* CheckboxButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC94D551AD0DB160065D078 /* CheckboxButton.m */; };
 		7EDB25C91905C3A6004868FC /* PQUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EDB25C81905C3A6004868FC /* PQUser.m */; };
 		7EDB25CD1905D3FE004868FC /* PQSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EDB25CB1905D3FE004868FC /* PQSignUpViewController.m */; };
@@ -95,9 +92,6 @@
 		7E4CE7E11861083F0089E227 /* Mckenzie.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Mckenzie.jpg; sourceTree = "<group>"; };
 		7E4CE7E21861083F0089E227 /* Ben.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Ben.jpg; sourceTree = "<group>"; };
 		7E4CE7E31861083F0089E227 /* Fui.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Fui.jpg; sourceTree = "<group>"; };
-		7E4E60971A91AC320083CEB9 /* CheckInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckInViewController.h; sourceTree = "<group>"; };
-		7E4E60981A91AC320083CEB9 /* CheckInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckInViewController.m; sourceTree = "<group>"; };
-		7E4E60991A91AC320083CEB9 /* CheckInViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckInViewController.xib; sourceTree = "<group>"; };
 		7E563F37185FD689009FDE8D /* texture1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = texture1.jpg; sourceTree = "<group>"; };
 		7E563F3D185FD7AA009FDE8D /* icon-garage1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-garage1.png"; sourceTree = "<group>"; };
 		7E563F3F185FFF1C009FDE8D /* location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location.png; sourceTree = "<group>"; };
@@ -152,8 +146,6 @@
 		7EB668BA1AABCDB800A82EF7 /* PQSpot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PQSpot.m; sourceTree = "<group>"; };
 		7EB668BC1AAC03F400A82EF7 /* OpenSpot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = OpenSpot.png; sourceTree = "<group>"; };
 		7EB668BE1AAC04AC00A82EF7 /* Driveway.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Driveway.png; sourceTree = "<group>"; };
-		7EC94D511AD0D8D10065D078 /* ListParkingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListParkingView.h; sourceTree = "<group>"; };
-		7EC94D521AD0D8D10065D078 /* ListParkingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListParkingView.m; sourceTree = "<group>"; };
 		7EC94D541AD0DB160065D078 /* CheckboxButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckboxButton.h; sourceTree = "<group>"; };
 		7EC94D551AD0DB160065D078 /* CheckboxButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckboxButton.m; sourceTree = "<group>"; };
 		7EDB25C71905C3A6004868FC /* PQUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PQUser.h; sourceTree = "<group>"; };
@@ -234,8 +226,8 @@
 		7E6A3C7A18C81BA000BBCC7D /* Main Screen */ = {
 			isa = PBXGroup;
 			children = (
-				7EC94D581AD0DDEC0065D078 /* Views */,
 				7EC94D591AD0DE160065D078 /* Controllers */,
+				7EC94D581AD0DDEC0065D078 /* Views */,
 			);
 			name = "Main Screen";
 			sourceTree = "<group>";
@@ -272,8 +264,6 @@
 			children = (
 				7EAA3F0E1859A3A2002DB255 /* ReserveSpotController.h */,
 				7EAA3F0F1859A3A2002DB255 /* ReserveSpotController.m */,
-				7E4E60971A91AC320083CEB9 /* CheckInViewController.h */,
-				7E4E60981A91AC320083CEB9 /* CheckInViewController.m */,
 				7E6A3C7318C81AFE00BBCC7D /* ReserveConfirmationPage.h */,
 				7E6A3C7418C81AFE00BBCC7D /* ReserveConfirmationPage.m */,
 			);
@@ -285,7 +275,6 @@
 			children = (
 				7EAA3F101859A3A3002DB255 /* ReserveSpotController.xib */,
 				7E6A3C7518C81AFE00BBCC7D /* ReserveConfirmationPage.xib */,
-				7E4E60991A91AC320083CEB9 /* CheckInViewController.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -394,8 +383,6 @@
 				7EAA3EDD18597A50002DB255 /* MapViewFindParkingTab.xib */,
 				7E64E2A91AAF814C0099FE0F /* MapViewListParkingTab.xib */,
 				7E42D4AC1866A308003376DB /* SearchViewControllerNew.xib */,
-				7EC94D511AD0D8D10065D078 /* ListParkingView.h */,
-				7EC94D521AD0D8D10065D078 /* ListParkingView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -536,7 +523,6 @@
 				7EAA3EB0185978EB002DB255 /* InfoPlist.strings in Resources */,
 				7EAA3EB8185978EB002DB255 /* Images.xcassets in Resources */,
 				7E6A3C7718C81AFE00BBCC7D /* ReserveConfirmationPage.xib in Resources */,
-				7E4E609B1A91AC330083CEB9 /* CheckInViewController.xib in Resources */,
 				7E442BE1185D543B00C516EE /* Driveway.jpg in Resources */,
 				7EAA3F0D1859A0AC002DB255 /* House.png in Resources */,
 				7E442BE5185D64AB00C516EE /* parq_logo.png in Resources */,
@@ -580,9 +566,7 @@
 				7EB668BB1AABCDB800A82EF7 /* PQSpot.m in Sources */,
 				7EDB25C91905C3A6004868FC /* PQUser.m in Sources */,
 				7EAA3F0918599B6C002DB255 /* AppDelegate.m in Sources */,
-				7E4E609A1A91AC320083CEB9 /* CheckInViewController.m in Sources */,
 				7EDB25CD1905D3FE004868FC /* PQSignUpViewController.m in Sources */,
-				7EC94D531AD0D8D10065D078 /* ListParkingView.m in Sources */,
 				7EC94D561AD0DB160065D078 /* CheckboxButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

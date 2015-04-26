@@ -64,4 +64,31 @@
     spotID = [data objectForKey:@"USID"];
 }
 
+//+ (PQSpot *) createSpotFromSpotJSON:(NSDictionary *)data
+//{
+//    
+//    PQSpot * newSpot = [PQSpot new];
+//    if ([data objectForKey:@"address"]) {
+//        [newSpot setAddress:[data objectForKey:@"address"]];
+//    }
+//    else {
+//        NSLog(@"ERROR: No Spot Address Given");
+//    }
+//    if ([data objectForKey:@"coordinates"]) {
+//        [newSpot setCoordinates:[data objectForKey:@"coordinates"]];
+//    }
+//    else {
+//        NSLog(@"ERROR: No spot coordinates given");
+//    }
+//    if ([data objectForKey:@"owner"]) {
+//        [newSpot setOwner:[data objectForKey:@"owner"]];
+//    }
+//    else {
+//        NSLog(@"ERROR: No spot owner given");
+//    }
+//    
+//    // TODO: Start time and end time not accounted for...
+//    return newSpot;
+//}
+
 @end

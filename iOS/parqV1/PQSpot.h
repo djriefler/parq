@@ -20,4 +20,5 @@
 @property NSString * endTime;
 
 - (void) setInfoWithJSON:(NSDictionary *) data;
++ (PQSpot *) createSpotFromJSON: (NSDictionary *) data;
 @end

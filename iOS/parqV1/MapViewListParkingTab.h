@@ -9,13 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 #import <QuartzCore/QuartzCore.h>
-#import "ListParkingView.h"
 
 @interface MapViewListParkingTab : UIViewController<CLLocationManagerDelegate, MKMapViewDelegate>
 @property (weak, nonatomic) IBOutlet MKMapView *worldView;
 @property (weak, nonatomic) IBOutlet UIButton *userLocationButton;
 @property (weak, nonatomic) IBOutlet UIButton *listParkingButton;
-@property (weak, nonatomic) IBOutlet ListParkingView *listConfirmView;
 @property (weak, nonatomic) IBOutlet UIButton *addressBar;
 
 - (IBAction)listParkingButtonTapped:(id)sender;

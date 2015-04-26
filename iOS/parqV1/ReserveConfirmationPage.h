@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import <FacebookSDK/FacebookSDK.h>
+#import "PQSpot.h"
 
-@interface ReserveConfirmationPage : UIViewController<FBLoginViewDelegate>
+@interface ReserveConfirmationPage : UIViewController
 
-
+//- (void) setInfoWithSpot:(PQSpot *) spot;
+- (void) setAddress:(NSString *) address;
+- (id) initWithAddress:(NSString *) address andCoordinate:(NSArray *) coordinates;
 @end

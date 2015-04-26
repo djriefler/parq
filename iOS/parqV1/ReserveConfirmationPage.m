@@ -10,7 +10,11 @@
 #import <MapKit/MapKit.h>
 
 @interface ReserveConfirmationPage ()
-@property (weak, nonatomic) IBOutlet UILabel *address;
+{
+    NSString * addressText;
+    CLLocationCoordinate2D spotCoordinates;
+}
+@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 
 @end
 
@@ -25,10 +29,33 @@
     return self;
 }
 
+- (id) initWithAddress:(NSString *)address andCoordinate:(NSArray *)coordinates{
+    self = [super init];
+    if (self) {
+        addressText = address;
+        NSNumber * latNum =[coordinates objectAtIndex:0];
+        NSNumber * lonNum = [coordinates objectAtIndex:1];
+        double lat = [latNum doubleValue];
+        double lon = [lonNum doubleValue];
+        spotCoordinates = CLLocationCoordinate2DMake(lat, lon);
+    }
+    return self;
+}
+
+//- (void) setInfoWithSpot:(PQSpot *)spot
+//{
+//    [[self address] setText:[spot address]];
+//}
+
+- (void) setAddress:(NSString *)address
+{
+    [[self addressLabel] setText:address];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    [[self addressLabel] setText:addressText];
 }
 
 - (void)didReceiveMemoryWarning
@@ -38,10 +65,12 @@
 }
 
 - (IBAction)getDirectionsPressed:(id)sender {
+    [[self navigationController] popToRootViewControllerAnimated:NO];
+
     Class mapClass = [MKMapItem class];
     if (mapClass && [mapClass respondsToSelector:@selector(openMapsWithItems:launchOptions:)]) {
-        CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(34.0205, 118.2856);
-        MKPlacemark * placemark = [[MKPlacemark alloc] initWithCoordinate:coordinate addressDictionary:nil];
+
+        MKPlacemark * placemark = [[MKPlacemark alloc] initWithCoordinate:spotCoordinates addressDictionary:nil];
         NSDictionary *launchOptions = @{MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving};
         
         MKMapItem * destination = [[MKMapItem alloc] initWithPlacemark:placemark];
@@ -51,8 +80,4 @@
     }
 }
 
-- (IBAction)checkInButtonPressed:(id)sender {
-
-    
-}
 @end

@@ -91,7 +91,9 @@
 
     // If spot reservation is confirmed, then load confirmation controller
     if ([[json objectForKey:@"status"]  isEqual: @"confirmed"]) {
-        ReserveConfirmationPage *rcp = [[ReserveConfirmationPage alloc] initWithNibName:@"ReserveConfirmationPage" bundle:nil];
+        NSString * address = [[json objectForKey:@"spots"] objectForKey:@"address"];
+        NSArray * coordinates = [[json objectForKey:@"spots"] objectForKey:@"latlng"];
+        ReserveConfirmationPage *rcp = [[ReserveConfirmationPage alloc] initWithAddress:address andCoordinate:coordinates];
         [[self navigationController] pushViewController:rcp animated:YES];
     }
 }

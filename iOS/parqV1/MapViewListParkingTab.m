@@ -7,7 +7,6 @@
 //
 
 #import "MapViewListParkingTab.h"
-#import "ListParkingView.h"
 #import "AddParkingSpotController.h"
 
 @interface MapViewListParkingTab ()
@@ -157,12 +156,6 @@
 
 - (IBAction)listParkingButtonTapped:(id)sender {
     
-    // create a new view
-    [self.listConfirmView setHidden:NO];
-    [centerAnnotationView setHidden:YES];
-
-    
-    // Load add parking page (TEMP)
     [self loadAddParkingSpotView];
 }
 

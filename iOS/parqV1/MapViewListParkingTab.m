@@ -115,13 +115,12 @@
     
     CLGeocoder * geocoder = [[CLGeocoder alloc] init];
     [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray * placemarks, NSError * error){
-        NSLog(@"reverseGeocodeLocation:completionHandler: Completion Handler called!");
+//        NSLog(@"reverseGeocodeLocation:completionHandler: Completion Handler called!");
         if (error){
             NSLog(@"Geocode failed with error: %@", error);
             return;
         }
         MKPlacemark * placemark = [placemarks lastObject];
-        NSLog(@"Placemark: %@", placemark);
 
         NSString * addressString = @"";
         if ([placemark.subThoroughfare length] != 0) {
@@ -142,7 +141,7 @@
         if ([placemark.country length] != 0) {
             addressString = [NSString stringWithFormat:@"%@, %@", addressString,placemark.country];
         }
-        NSLog(@"Address String: %@", addressString);
+//        NSLog(@"Address String: %@", addressString);
         NSAttributedString * attributedString;
         if (![addressString isEqualToString:@""]) {
             attributedString = [[NSAttributedString alloc] initWithString:addressString];

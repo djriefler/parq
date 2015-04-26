@@ -10,6 +10,7 @@
 #import "MapViewFindParkingTab.h"
 #import "MapViewListParkingTab.h"
 #import "SettingsViewController.h"
+#import "SpotMangerTableViewController.h"
 #import "CurrentUserSingleton.h"
 
 @interface MapTabBarController ()
@@ -35,8 +36,8 @@
     self.navigationItem.titleView.layer.masksToBounds = NO;
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"texture3.jpg"]forBarMetrics:UIBarMetricsDefault];
     
-    UIBarButtonItem * spotManagerButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"spotManagerIcon.png"] style:UIBarButtonItemStylePlain target:self action:@selector(loadSpotMangerPage)];
-    [self.navigationController.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:spotManagerButton, nil]  animated:NO];
+    UIBarButtonItem * spotManagerButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize target:self action:@selector(loadSpotMangerPage)];
+    [self.navigationItem setRightBarButtonItem:spotManagerButton];
     
     UIBarButtonItem * settingsButton = [[UIBarButtonItem alloc]
                                         initWithBarButtonSystemItem:UIBarButtonSystemItemAction
@@ -61,7 +62,8 @@
 }
 
 - (void) loadSpotMangerPage {
-    
+    SpotMangerTableViewController * smvc = [[SpotMangerTableViewController alloc] init];
+    [self.navigationController pushViewController:smvc animated:YES];
 }
 
 - (void) loadSettingsPage {

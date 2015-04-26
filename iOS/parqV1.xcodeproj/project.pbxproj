@@ -34,6 +34,7 @@
 		7E8D00501AA6629F00FB0417 /* CurrentUserSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E8D004F1AA6629F00FB0417 /* CurrentUserSingleton.m */; };
 		7E9B19CB1AE3251D007DBAD8 /* SpotMangerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E9B19CA1AE3251D007DBAD8 /* SpotMangerTableViewController.m */; };
 		7E9B19CD1AE35396007DBAD8 /* settingsIcon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7E9B19CC1AE35396007DBAD8 /* settingsIcon.jpg */; };
+		7E9B19CF1AE3792D007DBAD8 /* spotManagerIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E9B19CE1AE3792D007DBAD8 /* spotManagerIcon.png */; };
 		7EAA3EA6185978EB002DB255 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAA3EA5185978EB002DB255 /* Foundation.framework */; };
 		7EAA3EA8185978EB002DB255 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAA3EA7185978EB002DB255 /* CoreGraphics.framework */; };
 		7EAA3EAA185978EB002DB255 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAA3EA9185978EB002DB255 /* UIKit.framework */; };
@@ -115,6 +116,7 @@
 		7E9B19C91AE3251D007DBAD8 /* SpotMangerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotMangerTableViewController.h; sourceTree = "<group>"; };
 		7E9B19CA1AE3251D007DBAD8 /* SpotMangerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotMangerTableViewController.m; sourceTree = "<group>"; };
 		7E9B19CC1AE35396007DBAD8 /* settingsIcon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = settingsIcon.jpg; sourceTree = "<group>"; };
+		7E9B19CE1AE3792D007DBAD8 /* spotManagerIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spotManagerIcon.png; sourceTree = "<group>"; };
 		7EAA3EA2185978EB002DB255 /* parqV1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = parqV1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EAA3EA5185978EB002DB255 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7EAA3EA7185978EB002DB255 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -196,6 +198,7 @@
 		7E6A3C7818C81B1A00BBCC7D /* images */ = {
 			isa = PBXGroup;
 			children = (
+				7E9B19CE1AE3792D007DBAD8 /* spotManagerIcon.png */,
 				7E9B19CC1AE35396007DBAD8 /* settingsIcon.jpg */,
 				7EB668BC1AAC03F400A82EF7 /* OpenSpot.png */,
 				7EB668BE1AAC04AC00A82EF7 /* Driveway.png */,
@@ -231,7 +234,6 @@
 		7E6A3C7A18C81BA000BBCC7D /* Main Screen */ = {
 			isa = PBXGroup;
 			children = (
-				7EC94D5A1AD0DE1E0065D078 /* Models */,
 				7EC94D581AD0DDEC0065D078 /* Views */,
 				7EC94D591AD0DE160065D078 /* Controllers */,
 			);
@@ -251,6 +253,8 @@
 		7E6A3C7C18C81C0600BBCC7D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7EC94D541AD0DB160065D078 /* CheckboxButton.h */,
+				7EC94D551AD0DB160065D078 /* CheckboxButton.m */,
 				7E8D004E1AA6629F00FB0417 /* CurrentUserSingleton.h */,
 				7E8D004F1AA6629F00FB0417 /* CurrentUserSingleton.m */,
 				7EB668B91AABCDB800A82EF7 /* PQSpot.h */,
@@ -331,12 +335,12 @@
 		7EAA3EAB185978EB002DB255 /* parqV1 */ = {
 			isa = PBXGroup;
 			children = (
-				835B90E31AE341A70075133C /* Settings */,
 				7E6A3C7818C81B1A00BBCC7D /* images */,
 				7EAA3F0718599B6C002DB255 /* AppDelegate.h */,
 				7EAA3F0818599B6C002DB255 /* AppDelegate.m */,
 				7EDB25CF1905D40F004868FC /* Sign Up */,
 				7E6A3C7A18C81BA000BBCC7D /* Main Screen */,
+				835B90E31AE341A70075133C /* Settings */,
 				7E9B19C31AE323C2007DBAD8 /* Spot Manager */,
 				7E6A3C7918C81B6500BBCC7D /* Reserve Spot */,
 				7E6A3C7B18C81BF100BBCC7D /* Add Spot */,
@@ -409,15 +413,6 @@
 				7E42D4AB1866A308003376DB /* SearchViewControllerNew.m */,
 			);
 			name = Controllers;
-			sourceTree = "<group>";
-		};
-		7EC94D5A1AD0DE1E0065D078 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				7EC94D541AD0DB160065D078 /* CheckboxButton.h */,
-				7EC94D551AD0DB160065D078 /* CheckboxButton.m */,
-			);
-			name = Models;
 			sourceTree = "<group>";
 		};
 		7EDB25CF1905D40F004868FC /* Sign Up */ = {
@@ -532,6 +527,7 @@
 				7E9B19CD1AE35396007DBAD8 /* settingsIcon.jpg in Resources */,
 				7EAA3ED8185979D6002DB255 /* AddParkingSpotController.xib in Resources */,
 				7E563F40185FFF1C009FDE8D /* location.png in Resources */,
+				7E9B19CF1AE3792D007DBAD8 /* spotManagerIcon.png in Resources */,
 				835B90E81AE363FB0075133C /* EditViewController.xib in Resources */,
 				7E42D4AE1866A308003376DB /* SearchViewControllerNew.xib in Resources */,
 				7E442BE7185D677500C516EE /* parq_logo_2.png in Resources */,

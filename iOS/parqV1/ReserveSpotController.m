@@ -88,9 +88,9 @@
                           error:&error];
     
     NSLog(@"%@", json);
-    NSLog(@"fasdfasdf");
+
     // If spot reservation is confirmed, then load confirmation controller
-    if ([[json objectForKey:@"confirmed"]  isEqual: @"confirmed"]) {
+    if ([[json objectForKey:@"status"]  isEqual: @"confirmed"]) {
         ReserveConfirmationPage *rcp = [[ReserveConfirmationPage alloc] initWithNibName:@"ReserveConfirmationPage" bundle:nil];
         [[self navigationController] pushViewController:rcp animated:YES];
     }

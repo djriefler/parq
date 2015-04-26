@@ -98,11 +98,11 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O2M-GH-PuP">
-                            <rect key="frame" x="0.0" y="57" width="320" height="102"/>
+                            <rect key="frame" x="8" y="57" width="304" height="102"/>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QYS-V1-4jV">
                             <rect key="frame" x="10" y="505" width="300" height="43"/>
-                            <color key="backgroundColor" red="0.36470588235294116" green="0.73725490196078436" blue="0.82352941176470584" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="0.058823533359999999" green="0.87450987099999999" blue="0.86666673419999996" alpha="1" colorSpace="deviceRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="22"/>
                             <state key="normal" title="Reserve">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>

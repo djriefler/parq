@@ -143,10 +143,24 @@
                           options:kNilOptions
                           error:&error];
     
-    parkingSpots = [json objectForKey:@"spots"];
-    
-    if (parkingSpots != NULL) {
-        [self populateMap];
+    if ([json objectForKey:@"spots"]) {
+        parkingSpots = [json objectForKey:@"spots"];
+        if (parkingSpots != NULL) {
+            [self populateMap];
+        }
+    }
+    else if ([[json objectForKey:@"status"]  isEqual: @"no_spots"]) {
+        NSString * message = @"We are sorry, there are no spots available in this area.";
+        NSString * title = @"No Spots Available";
+        NSString * cancelButtonTitle = @"OK";
+        UIAlertView * noSpotsAlert = [[UIAlertView alloc]
+                                      initWithTitle:title
+                                      message:message
+                                      delegate:self
+                                      cancelButtonTitle:cancelButtonTitle
+                                      otherButtonTitles:nil,
+                                      nil];
+        [noSpotsAlert show];
     }
     else {
         NSLog(@"No available parking spots");
@@ -227,7 +241,6 @@
 
 - (IBAction)showUserLocation:(id)sender
 {
-    
     [self zoomToUserLocation:self.worldView.userLocation];
 }
 
@@ -242,7 +255,7 @@
 
 - (void) requestNearestParkingSpots {
     // Request parking spot data
-        NSLog(@"in hurr");
+
         float longitude = [[locationManager location] coordinate].longitude;
         float latitude = [[locationManager location] coordinate].latitude;
         

@@ -6,17 +6,15 @@
 //  Copyright (c) 2014 Duncan Riefler. All rights reserved.
 //
 
-#define kUpdateSpotStatusURL [NSURL URLWithString:@"http://intense-hollows-4714.herokuapp.com/status"] //2
-
 #import "ReserveConfirmationPage.h"
 #import <MapKit/MapKit.h>
 
 @interface ReserveConfirmationPage ()
+@property (weak, nonatomic) IBOutlet UILabel *address;
 
 @end
 
 @implementation ReserveConfirmationPage
-@synthesize currentUser;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -53,41 +51,8 @@
     }
 }
 
-- (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
-                            user:(id<FBGraphUser>)user {
-    currentUser = user;
-}
-
 - (IBAction)checkInButtonPressed:(id)sender {
-    // Send data to server
-    NSDictionary* info = [[NSDictionary alloc] initWithObjectsAndKeys:
-                          [currentUser objectForKey:@"UUID"],@"id",
-                          nil];
-    
-    NSError *error;
-    
-    //convert object to data
-    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:info
-                                                       options:NSJSONWritingPrettyPrinted error:&error];
-    if (jsonData) {
-        NSLog(@"request sent");
-        NSString *postLength = [NSString stringWithFormat:@"%d", [jsonData length]];
-        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:kUpdateSpotStatusURL];
-        [request setHTTPMethod:@"POST"];
-        [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
-        [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-        [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-        [request setHTTPBody:jsonData];
-        
-        // generates an autoreleased NSURLConnection
-        [NSURLConnection connectionWithRequest:request delegate:self];
-    }
-    else if (error) {
-        NSLog(@"%@", [error localizedDescription]);
-    }
-    // Load confirmation page
-    ReserveConfirmationPage *rcp = [[ReserveConfirmationPage alloc] initWithNibName:@"ReserveConfirmationPage" bundle:nil];
-    [[self navigationController] pushViewController:rcp animated:YES];
+
     
 }
 @end

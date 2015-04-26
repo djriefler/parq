@@ -8,6 +8,8 @@
 
 #import "CurrentUserSingleton.h"
 #import "PQUser.h"
+#define settingsURL [NSURL URLWithString:@"http://intense-hollows-4714.herokuapp.com/settings"]
+
 
 @implementation CurrentUserSingleton
 {
@@ -161,6 +163,55 @@
 {
     return currentUser;
 }
+
+- (void) updateServer
+{
+    // Convert object to data
+    
+    NSMutableDictionary * data = [[NSMutableDictionary alloc] init];
+    [data setObject:currentUser.name forKey:@"name"];
+    [data setObject:currentUser.email forKey:@"email"];
+    [data setObject:currentUser.UUID forKey:@"UUID"];
+    
+//    NSData* postData = [NSKeyedArchiver archivedDataWithRootObject:data ];
+//    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+//    [request setURL: settingsURL];
+//    [request setHTTPMethod:@"POST"];
+//    [request setHTTPBody:postData];
+//
+//    NSURLResponse *requestResponse;
+//    NSData *requestHandler = [NSURLConnection sendSynchronousRequest:request returningResponse:&requestResponse error:nil];
+//    
+//    NSString *requestReply = [[NSString alloc] initWithBytes:[requestHandler bytes] length:[requestHandler length] encoding:NSASCIIStringEncoding];
+//    NSLog(@"requestReply: %@", requestReply);
+//    
+//    
+    NSError *error;
+
+    
+    // Convert object to data
+    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:data
+                                                       options:NSJSONWritingPrettyPrinted
+                                                         error:&error];
+    
+    // Create POST request
+    NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[jsonData length]];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:settingsURL];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPBody:jsonData];
+    
+    // Send request
+    [NSURLConnection connectionWithRequest:request delegate:self];
+}
+
+
+
+
+
+
 
 
 @end

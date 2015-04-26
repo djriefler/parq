@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *saveButton;
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 
+
 @end
 
 @implementation EditViewController
@@ -24,6 +25,10 @@
     [self.saveButton setEnabled:NO];
 
 }
+
+
+
+
 - (IBAction)editingChanged:(id)sender {
     if (self.textField.text.length ==0)
     {
@@ -57,7 +62,7 @@
         
     }
     
-    
+    [_delegate doneEditing];
     
     [self dismissViewControllerAnimated:YES completion:nil];
 

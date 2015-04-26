@@ -7,8 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EditViewController.h"
+#import <MessageUI/MessageUI.h>
 
-@interface SettingsViewController : UITableViewController
+
+@class EditViewController;
+
+@interface SettingsViewController : UITableViewController <MFMailComposeViewControllerDelegate, EditViewControllerDelegate>
 
 - (id)initWithStyle:(UITableViewStyle)style;
 

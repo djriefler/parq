@@ -23,6 +23,8 @@
 - (void) setRating:(float) rating;
 - (void) setReservedSpots: (NSMutableArray *) reserved;
 - (void) setOwnedSpots: (NSMutableArray *) owned;
+- (void) updateServer;
+
 
 - (BOOL) isUserSignedIn;
 - (NSString *) UUID;

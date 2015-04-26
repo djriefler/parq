@@ -66,6 +66,7 @@
 		835B90E21AE3419C0075133C /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835B90E11AE3419C0075133C /* SettingsViewController.m */; };
 		835B90E71AE363FB0075133C /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835B90E51AE363FB0075133C /* EditViewController.m */; };
 		835B90E81AE363FB0075133C /* EditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 835B90E61AE363FB0075133C /* EditViewController.xib */; };
+		837A9D8D1AEC7B120032E02F /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 837A9D8C1AEC7B120032E02F /* MessageUI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -158,6 +159,7 @@
 		835B90E41AE363FB0075133C /* EditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditViewController.h; sourceTree = "<group>"; };
 		835B90E51AE363FB0075133C /* EditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditViewController.m; sourceTree = "<group>"; };
 		835B90E61AE363FB0075133C /* EditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditViewController.xib; sourceTree = "<group>"; };
+		837A9D8C1AEC7B120032E02F /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +167,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				837A9D8D1AEC7B120032E02F /* MessageUI.framework in Frameworks */,
 				7EAA3EE418597ABE002DB255 /* MapKit.framework in Frameworks */,
 				7EAA3EE218597AB1002DB255 /* CoreLocation.framework in Frameworks */,
 				7EAA3EA8185978EB002DB255 /* CoreGraphics.framework in Frameworks */,
@@ -310,6 +313,7 @@
 		7EAA3EA4185978EB002DB255 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				837A9D8C1AEC7B120032E02F /* MessageUI.framework */,
 				7E7BA21C190762AC0014F06F /* FacebookSDK.framework */,
 				7EAA3EE318597ABE002DB255 /* MapKit.framework */,
 				7EAA3EE118597AB1002DB255 /* CoreLocation.framework */,

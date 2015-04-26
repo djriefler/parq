@@ -10,6 +10,9 @@
 #import "CurrentUserSingleton.h"
 #import "EditViewController.h"
 
+
+
+
 @interface SettingsViewController ()
 
 @end
@@ -20,6 +23,12 @@
 //{
 //    return indexPath.row <= 1;
 //}
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    [self.view setNeedsDisplay];
+
+}
 
 
 - (void)viewDidLoad {
@@ -52,13 +61,11 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
     return 5;
 }
@@ -83,14 +90,14 @@
     switch (indexPath.row) {
         case 0:
             cell.textLabel.text = @"Name";
-            //cell.detailTextLabel.text = [[CurrentUserSingleton currentUser] getName];
-            cell.detailTextLabel.text = @"Chris";
+            cell.detailTextLabel.text = [[CurrentUserSingleton currentUser] getName];
+            //cell.detailTextLabel.text = @"Chris";
 
             break;
         case 1:
             cell.textLabel.text = @"Email";
-            //cell.detailTextLabel.text = [[CurrentUserSingleton currentUser] getEmail];
-            cell.detailTextLabel.text = @"chris@gmail.com";
+            cell.detailTextLabel.text = [[CurrentUserSingleton currentUser] getEmail];
+            //cell.detailTextLabel.text = @"chris@gmail.com";
             break;
             
         case 2:
@@ -107,7 +114,6 @@
             //cell.detailTextLabel.text = @"";
             break;
 
-            
         default:
             break;
     }
@@ -125,6 +131,7 @@
         //open the editviewcontroller
         EditViewController * vc = [[EditViewController alloc] init];
         [self presentViewController:vc animated:YES completion:nil];
+        vc.delegate = self;
         
         if (indexPath.row == 0)
         {
@@ -136,6 +143,43 @@
         }
 
     }
+    
+    if (indexPath.row == 2)
+    {
+        //handle feedback form
+        if ([MFMailComposeViewController canSendMail]) {
+            MFMailComposeViewController *composeViewController = [[MFMailComposeViewController alloc] initWithNibName:nil bundle:nil];
+            [composeViewController setMailComposeDelegate:self];
+            [composeViewController setToRecipients:@[@"parqfeedback@gmail.com"]];
+            [composeViewController setSubject:@"Parq Feedback"];
+            [self presentViewController:composeViewController animated:YES completion:nil];
+        }
+        
+        if (indexPath.row == 3)
+        {
+            //privacy policy
+        }
+        
+        if (indexPath.row == 4)
+        {
+            //sign out
+        }
+    }
+}
+
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
+{
+    //Add an alert in case of failure
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void) doneEditing
+{
+    [self.tableView reloadData];
+    //talk to server and update it in model call
+    [[CurrentUserSingleton currentUser] updateServer];
+
+    
 }
 
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -8,7 +8,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MapViewFindParkingTab">
             <connections>
                 <outlet property="addressBar" destination="zmT-ZF-h5E" id="ulE-YS-BTz"/>
-                <outlet property="bottomView" destination="CGI-dF-2xs" id="fwW-DJ-uhK"/>
                 <outlet property="findParkingButton" destination="jxT-Ah-Apk" id="qLl-9s-Vr9"/>
                 <outlet property="userLocationButton" destination="RvT-lG-sgp" id="zOU-Y1-9G0"/>
                 <outlet property="view" destination="RRF-E6-NNy" id="vTE-Jr-N6J"/>
@@ -26,24 +25,6 @@
                         <outlet property="delegate" destination="-1" id="CTK-8X-b9W"/>
                     </connections>
                 </mapView>
-                <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CGI-dF-2xs">
-                    <rect key="frame" x="0.0" y="453" width="320" height="66"/>
-                    <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jxT-Ah-Apk">
-                            <rect key="frame" x="8" y="8" width="304" height="50"/>
-                            <color key="backgroundColor" red="0.058823533356189728" green="0.87450987100601196" blue="0.86666673421859741" alpha="1" colorSpace="deviceRGB"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                            <state key="normal" title="Find Parking">
-                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="findParking:" destination="-1" eventType="touchUpInside" id="z4e-93-P7j"/>
-                            </connections>
-                        </button>
-                    </subviews>
-                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                </view>
                 <button contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RvT-lG-sgp">
                     <rect key="frame" x="13" y="394" width="35" height="35"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -72,6 +53,18 @@
                     </state>
                     <connections>
                         <action selector="addressBarButtonTapped:" destination="-1" eventType="touchUpInside" id="UKJ-6X-pLn"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jxT-Ah-Apk">
+                    <rect key="frame" x="8" y="460" width="304" height="50"/>
+                    <color key="backgroundColor" red="0.058823533356189728" green="0.87450987100601196" blue="0.86666673421859741" alpha="1" colorSpace="deviceRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                    <state key="normal" title="Find Parking">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="findParking:" destination="-1" eventType="touchUpInside" id="z4e-93-P7j"/>
                     </connections>
                 </button>
             </subviews>

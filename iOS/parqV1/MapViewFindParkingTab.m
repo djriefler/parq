@@ -15,6 +15,7 @@
 #import "ReserveSpotController.h"
 #import "SearchViewControllerNew.h"
 
+
 @interface MapViewFindParkingTab()
 {
     CLLocationManager *locationManager;
@@ -88,39 +89,9 @@
     // Add corner radius
     self.findParkingButton.layer.cornerRadius = 4.0f;
     self.findParkingButton.layer.masksToBounds = NO;
-    
-    // Gradient
-//    // Create colors for a gradient
-//    UIColor *color1 =
-//    [UIColor colorWithRed:(float)62/255 green:(float)177/255 blue:(float)213/255 alpha:1.0];
-//    UIColor *color2 =
-//    [UIColor colorWithRed:(float)72/255 green:(float)200/255 blue:(float)222/255 alpha:1.0];
-//    UIColor *color3 =
-//    [UIColor colorWithRed:(float)72/255 green:(float)200/255 blue:(float)222/255 alpha:1.0];
-//    UIColor *color4 =
-//    [UIColor colorWithRed:(float)72/255 green:(float)200/255 blue:(float)222/255 alpha:1.0];
-//    UIColor *color5 =
-//    [UIColor colorWithRed:(float)62/255 green:(float)177/255 blue:(float)213/255 alpha:1.0];
-//    
-//    // Create the gradient
-//    CAGradientLayer *gradient = [CAGradientLayer layer];
-//    
-//    // Set colors
-//    gradient.colors = [NSArray arrayWithObjects:
-//                       (id)color1.CGColor,
-//                       (id)color2.CGColor,
-//                       (id)color3.CGColor,
-//                       (id)color4.CGColor,
-//                       (id)color5.CGColor,
-//                       nil];
-//    
-//    // Set bounds
-//    gradient.frame = self.findParkingButton.bounds;
-//    gradient.cornerRadius = 4.0f;
-//    
-//    // Add the gradient to the view
-//    [self.findParkingButton.layer insertSublayer:gradient atIndex:0];
-    
+    self.findParkingButton.layer.borderWidth = 1.0f;
+    self.findParkingButton.layer.borderColor = [[UIColor whiteColor] CGColor];
+
     // Bottom view
     UIImage *background =[UIImage imageNamed:@"texture3.jpg"];
     UIImageView *imageView = [[UIImageView alloc] initWithImage:background];

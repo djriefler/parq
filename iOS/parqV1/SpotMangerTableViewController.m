@@ -8,6 +8,8 @@
 
 #import "SpotMangerTableViewController.h"
 #import "CurrentUserSingleton.h"
+#import "ReserveTableViewCell.h"
+#import "OwnedTableViewCell.h"
 
 @interface SpotMangerTableViewController ()
 
@@ -27,13 +29,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
+    [self.tableView registerNib:[UINib nibWithNibName:@"ReserveTableViewCell" bundle:nil] forCellReuseIdentifier:@"ReservedCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"OwnedTableViewCell" bundle:nil] forCellReuseIdentifier:@"OwnedCell"];
+//    [self.tableView registerClass: [ReserveTableViewCell class] forCellReuseIdentifier:@"ReservedCell"];
+//    [self.tableView registerClass: [OwnedTableViewCell class] forCellReuseIdentifier:@"OwnedCell"];
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+//     self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    self.tableView.sectionFooterHeight = 0.0;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -54,24 +57,89 @@
     
     // Section 0 represents reserved spots
     if (section == 0) {
-        return [[[CurrentUserSingleton currentUser] reservedParkingSpots] count];
+        return 4;
+//        return [[[CurrentUserSingleton currentUser] reservedParkingSpots] count];
     }
     
     // Section 1 represents owned spots
     else if (section == 1) {
-        return [[[CurrentUserSingleton currentUser] ownedParkingSpots] count];
+        return 3;
+//        return [[[CurrentUserSingleton currentUser] ownedParkingSpots] count];
     }
     return 0;
 }
 
 
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-//    
-//    // Configure the cell...
-//    
-//    return cell;
-//}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    NSInteger cellType = indexPath.section;
+    
+    NSString * reservedCellIdentifier = @"ReservedCell";
+    NSString * ownedCellIdentifier = @"OwnedCell";
+
+    // Reserved Spot
+    if (cellType == 0) {
+        ReserveTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reservedCellIdentifier forIndexPath:indexPath];
+        if (cell == nil) {
+            cell = [[ReserveTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reservedCellIdentifier];
+        }
+        return cell;
+    }
+    
+    // Owned Spot
+    else if (cellType == 1) {
+        OwnedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ownedCellIdentifier forIndexPath:indexPath];
+        if (cell == nil) {
+            cell = [[OwnedTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ownedCellIdentifier];
+        }
+        return cell;
+    }
+    
+    return nil;
+}
+
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Reserved Spot
+    if (indexPath.section == 0) {
+        return 200;
+    }
+    if (indexPath.section == 1) {
+        return 200;
+    }
+    return 0;
+}
+
+#pragma mark - Section Headers
+
+- (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 20)];
+
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 20)];
+    [label setTextAlignment:NSTextAlignmentCenter];
+    [label setTextColor:[UIColor whiteColor]];
+    [label setFont:[UIFont boldSystemFontOfSize:14]];
+    [view setBackgroundColor:[UIColor colorWithRed:15.0/255.0 green:223.0/255.0f blue:221.0/255.0f alpha:1.0f]];;
+
+    if (section == 0) {
+        [label setText:@"Reserved Spots"];
+        [label setFrame:CGRectMake(0, 5, tableView.frame.size.width, 20)];
+    }
+    else if (section == 1) {
+        [label setText:@"Owned Spots"];
+        [label setFrame:CGRectMake(0, 5, tableView.frame.size.width, 20)];
+
+    }
+    [view addSubview:label];
+
+    return view;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 30;
+}
 
 
 /*

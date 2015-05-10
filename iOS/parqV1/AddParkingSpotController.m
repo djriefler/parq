@@ -61,6 +61,22 @@
     }
 }
 
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    
+    NSError * error;
+    NSDictionary* json = [NSJSONSerialization
+                          JSONObjectWithData:data
+                          options:kNilOptions
+                          error:&error];
+    
+    NSLog(@"%@", json);
+    
+    // If spot reservation is confirmed, then load confirmation controller
+    if ([[json objectForKey:@"status"]  isEqual: @"confirmed"]) {
+        NSLog(@"GOOD!");
+    }
+}
+
 - (NSString *) getStringFromDate: (NSDate *) date
 {
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];

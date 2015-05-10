@@ -63,6 +63,9 @@
     // Add corner radius
     self.listParkingButton.layer.cornerRadius = 4.0f;
     self.listParkingButton.layer.masksToBounds = NO;
+    self.listParkingButton.layer.borderColor = [[UIColor whiteColor] CGColor];
+    self.listParkingButton.layer.borderWidth = 1.0f;
+
     
     // Create pin
     centerAnnotationPoint = [[MKPointAnnotation alloc] init];

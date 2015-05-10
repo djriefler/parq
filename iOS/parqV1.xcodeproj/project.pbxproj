@@ -22,6 +22,14 @@
 		7E563F3A185FD689009FDE8D /* texture1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7E563F37185FD689009FDE8D /* texture1.jpg */; };
 		7E563F3E185FD7AA009FDE8D /* icon-garage1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E563F3D185FD7AA009FDE8D /* icon-garage1.png */; };
 		7E563F40185FFF1C009FDE8D /* location.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E563F3F185FFF1C009FDE8D /* location.png */; };
+		7E59A3A41AFFF18D00A05C2B /* OwnedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E59A3A21AFFF18D00A05C2B /* OwnedTableViewCell.m */; };
+		7E59A3A51AFFF18D00A05C2B /* OwnedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E59A3A31AFFF18D00A05C2B /* OwnedTableViewCell.xib */; };
+		7E5A0A7A1B00152200E71311 /* home-icon-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E5A0A761B00152200E71311 /* home-icon-selected.png */; };
+		7E5A0A7B1B00152200E71311 /* home-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E5A0A771B00152200E71311 /* home-icon.png */; };
+		7E5A0A7C1B00152200E71311 /* home-icon-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E5A0A781B00152200E71311 /* home-icon-selected@2x.png */; };
+		7E5A0A7D1B00152200E71311 /* home-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E5A0A791B00152200E71311 /* home-icon@2x.png */; };
+		7E5A0A811B001A0B00E71311 /* AddParkingSpotConfirmationPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E5A0A7F1B001A0B00E71311 /* AddParkingSpotConfirmationPageViewController.m */; };
+		7E5A0A821B001A0B00E71311 /* AddParkingSpotConfirmationPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E5A0A801B001A0B00E71311 /* AddParkingSpotConfirmationPageViewController.xib */; };
 		7E64E2AA1AAF814C0099FE0F /* MapViewListParkingTab.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E64E2A81AAF814C0099FE0F /* MapViewListParkingTab.m */; };
 		7E64E2AB1AAF814C0099FE0F /* MapViewListParkingTab.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E64E2A91AAF814C0099FE0F /* MapViewListParkingTab.xib */; };
 		7E64E2AE1AAF81F90099FE0F /* MapTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E64E2AD1AAF81F90099FE0F /* MapTabBarController.m */; };
@@ -63,6 +71,8 @@
 		7EDB25C91905C3A6004868FC /* PQUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EDB25C81905C3A6004868FC /* PQUser.m */; };
 		7EDB25CD1905D3FE004868FC /* PQSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EDB25CB1905D3FE004868FC /* PQSignUpViewController.m */; };
 		7EDB25CE1905D3FE004868FC /* PQSignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EDB25CC1905D3FE004868FC /* PQSignUpViewController.xib */; };
+		7EDF9FC51AF6CA38001D31B7 /* ReserveTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EDF9FC31AF6CA38001D31B7 /* ReserveTableViewCell.m */; };
+		7EDF9FC61AF6CA38001D31B7 /* ReserveTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EDF9FC41AF6CA38001D31B7 /* ReserveTableViewCell.xib */; };
 		835B90E21AE3419C0075133C /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835B90E11AE3419C0075133C /* SettingsViewController.m */; };
 		835B90E71AE363FB0075133C /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835B90E51AE363FB0075133C /* EditViewController.m */; };
 		835B90E81AE363FB0075133C /* EditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 835B90E61AE363FB0075133C /* EditViewController.xib */; };
@@ -96,6 +106,16 @@
 		7E563F37185FD689009FDE8D /* texture1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = texture1.jpg; sourceTree = "<group>"; };
 		7E563F3D185FD7AA009FDE8D /* icon-garage1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-garage1.png"; sourceTree = "<group>"; };
 		7E563F3F185FFF1C009FDE8D /* location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location.png; sourceTree = "<group>"; };
+		7E59A3A11AFFF18D00A05C2B /* OwnedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OwnedTableViewCell.h; sourceTree = "<group>"; };
+		7E59A3A21AFFF18D00A05C2B /* OwnedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OwnedTableViewCell.m; sourceTree = "<group>"; };
+		7E59A3A31AFFF18D00A05C2B /* OwnedTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OwnedTableViewCell.xib; sourceTree = "<group>"; };
+		7E5A0A761B00152200E71311 /* home-icon-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-icon-selected.png"; sourceTree = "<group>"; };
+		7E5A0A771B00152200E71311 /* home-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-icon.png"; sourceTree = "<group>"; };
+		7E5A0A781B00152200E71311 /* home-icon-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-icon-selected@2x.png"; sourceTree = "<group>"; };
+		7E5A0A791B00152200E71311 /* home-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-icon@2x.png"; sourceTree = "<group>"; };
+		7E5A0A7E1B001A0B00E71311 /* AddParkingSpotConfirmationPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddParkingSpotConfirmationPageViewController.h; sourceTree = "<group>"; };
+		7E5A0A7F1B001A0B00E71311 /* AddParkingSpotConfirmationPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddParkingSpotConfirmationPageViewController.m; sourceTree = "<group>"; };
+		7E5A0A801B001A0B00E71311 /* AddParkingSpotConfirmationPageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddParkingSpotConfirmationPageViewController.xib; sourceTree = "<group>"; };
 		7E64E2A71AAF814C0099FE0F /* MapViewListParkingTab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewListParkingTab.h; sourceTree = "<group>"; };
 		7E64E2A81AAF814C0099FE0F /* MapViewListParkingTab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewListParkingTab.m; sourceTree = "<group>"; };
 		7E64E2A91AAF814C0099FE0F /* MapViewListParkingTab.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapViewListParkingTab.xib; sourceTree = "<group>"; };
@@ -154,6 +174,9 @@
 		7EDB25CA1905D3FE004868FC /* PQSignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PQSignUpViewController.h; sourceTree = "<group>"; };
 		7EDB25CB1905D3FE004868FC /* PQSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PQSignUpViewController.m; sourceTree = "<group>"; };
 		7EDB25CC1905D3FE004868FC /* PQSignUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PQSignUpViewController.xib; sourceTree = "<group>"; };
+		7EDF9FC21AF6CA38001D31B7 /* ReserveTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReserveTableViewCell.h; sourceTree = "<group>"; };
+		7EDF9FC31AF6CA38001D31B7 /* ReserveTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReserveTableViewCell.m; sourceTree = "<group>"; };
+		7EDF9FC41AF6CA38001D31B7 /* ReserveTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReserveTableViewCell.xib; sourceTree = "<group>"; };
 		835B90E01AE3419C0075133C /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		835B90E11AE3419C0075133C /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		835B90E41AE363FB0075133C /* EditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditViewController.h; sourceTree = "<group>"; };
@@ -193,6 +216,10 @@
 		7E6A3C7818C81B1A00BBCC7D /* images */ = {
 			isa = PBXGroup;
 			children = (
+				7E5A0A761B00152200E71311 /* home-icon-selected.png */,
+				7E5A0A771B00152200E71311 /* home-icon.png */,
+				7E5A0A781B00152200E71311 /* home-icon-selected@2x.png */,
+				7E5A0A791B00152200E71311 /* home-icon@2x.png */,
 				7E9B19CE1AE3792D007DBAD8 /* spotManagerIcon.png */,
 				7E9B19CC1AE35396007DBAD8 /* settingsIcon.jpg */,
 				7EB668BC1AAC03F400A82EF7 /* OpenSpot.png */,
@@ -241,6 +268,9 @@
 				7EAA3ED4185979D6002DB255 /* AddParkingSpotController.h */,
 				7EAA3ED5185979D6002DB255 /* AddParkingSpotController.m */,
 				7EAA3ED6185979D6002DB255 /* AddParkingSpotController.xib */,
+				7E5A0A7E1B001A0B00E71311 /* AddParkingSpotConfirmationPageViewController.h */,
+				7E5A0A7F1B001A0B00E71311 /* AddParkingSpotConfirmationPageViewController.m */,
+				7E5A0A801B001A0B00E71311 /* AddParkingSpotConfirmationPageViewController.xib */,
 			);
 			name = "Add Spot";
 			sourceTree = "<group>";
@@ -285,8 +315,8 @@
 		7E9B19C31AE323C2007DBAD8 /* Spot Manager */ = {
 			isa = PBXGroup;
 			children = (
-				7E9B19C91AE3251D007DBAD8 /* SpotMangerTableViewController.h */,
-				7E9B19CA1AE3251D007DBAD8 /* SpotMangerTableViewController.m */,
+				7EDF9FC11AF6C9A0001D31B7 /* Cells */,
+				7EDF9FC01AF6C997001D31B7 /* Controllers */,
 			);
 			name = "Spot Manager";
 			sourceTree = "<group>";
@@ -416,6 +446,28 @@
 			name = "Sign Up";
 			sourceTree = "<group>";
 		};
+		7EDF9FC01AF6C997001D31B7 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				7E9B19C91AE3251D007DBAD8 /* SpotMangerTableViewController.h */,
+				7E9B19CA1AE3251D007DBAD8 /* SpotMangerTableViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		7EDF9FC11AF6C9A0001D31B7 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				7E59A3A11AFFF18D00A05C2B /* OwnedTableViewCell.h */,
+				7E59A3A21AFFF18D00A05C2B /* OwnedTableViewCell.m */,
+				7E59A3A31AFFF18D00A05C2B /* OwnedTableViewCell.xib */,
+				7EDF9FC21AF6CA38001D31B7 /* ReserveTableViewCell.h */,
+				7EDF9FC31AF6CA38001D31B7 /* ReserveTableViewCell.m */,
+				7EDF9FC41AF6CA38001D31B7 /* ReserveTableViewCell.xib */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
 		835B90E31AE341A70075133C /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -511,8 +563,10 @@
 				7E6A3C7E18C81F6E00BBCC7D /* Checkmark.png in Resources */,
 				7E563F3E185FD7AA009FDE8D /* icon-garage1.png in Resources */,
 				7E4CE7E71861083F0089E227 /* Fui.jpg in Resources */,
+				7E5A0A7D1B00152200E71311 /* home-icon@2x.png in Resources */,
 				7E4CE7DF186104470089E227 /* Yen.jpg in Resources */,
 				7E4CE7E61861083F0089E227 /* Ben.jpg in Resources */,
+				7E59A3A51AFFF18D00A05C2B /* OwnedTableViewCell.xib in Resources */,
 				7EB668BD1AAC03F400A82EF7 /* OpenSpot.png in Resources */,
 				7EAA3EE918597CCA002DB255 /* DJ.jpg in Resources */,
 				7E9B19CD1AE35396007DBAD8 /* settingsIcon.jpg in Resources */,
@@ -520,13 +574,17 @@
 				7E563F40185FFF1C009FDE8D /* location.png in Resources */,
 				7E9B19CF1AE3792D007DBAD8 /* spotManagerIcon.png in Resources */,
 				835B90E81AE363FB0075133C /* EditViewController.xib in Resources */,
+				7E5A0A7C1B00152200E71311 /* home-icon-selected@2x.png in Resources */,
 				7E42D4AE1866A308003376DB /* SearchViewControllerNew.xib in Resources */,
 				7E442BE7185D677500C516EE /* parq_logo_2.png in Resources */,
 				7E4CE7E51861083F0089E227 /* Mckenzie.jpg in Resources */,
 				7E64E2AB1AAF814C0099FE0F /* MapViewListParkingTab.xib in Resources */,
 				7EAA3EB0185978EB002DB255 /* InfoPlist.strings in Resources */,
 				7EAA3EB8185978EB002DB255 /* Images.xcassets in Resources */,
+				7E5A0A7B1B00152200E71311 /* home-icon.png in Resources */,
 				7E6A3C7718C81AFE00BBCC7D /* ReserveConfirmationPage.xib in Resources */,
+				7EDF9FC61AF6CA38001D31B7 /* ReserveTableViewCell.xib in Resources */,
+				7E5A0A821B001A0B00E71311 /* AddParkingSpotConfirmationPageViewController.xib in Resources */,
 				7E442BE1185D543B00C516EE /* Driveway.jpg in Resources */,
 				7EAA3F0D1859A0AC002DB255 /* House.png in Resources */,
 				7E442BE5185D64AB00C516EE /* parq_logo.png in Resources */,
@@ -536,6 +594,7 @@
 				7E4CE7DE186104470089E227 /* Justin.jpg in Resources */,
 				7EB668BF1AAC04AC00A82EF7 /* Driveway.png in Resources */,
 				7E442BE3185D5E2000C516EE /* lightGreyTexture.jpg in Resources */,
+				7E5A0A7A1B00152200E71311 /* home-icon-selected.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -557,7 +616,9 @@
 				7E6A3C7618C81AFE00BBCC7D /* ReserveConfirmationPage.m in Sources */,
 				7EAA3F111859A3A3002DB255 /* ReserveSpotController.m in Sources */,
 				7EAA3EDE18597A50002DB255 /* MapPin.m in Sources */,
+				7E59A3A41AFFF18D00A05C2B /* OwnedTableViewCell.m in Sources */,
 				835B90E21AE3419C0075133C /* SettingsViewController.m in Sources */,
+				7EDF9FC51AF6CA38001D31B7 /* ReserveTableViewCell.m in Sources */,
 				835B90E71AE363FB0075133C /* EditViewController.m in Sources */,
 				7EAA3EDF18597A50002DB255 /* MapViewFindParkingTab.m in Sources */,
 				7E42D4AD1866A308003376DB /* SearchViewControllerNew.m in Sources */,
@@ -567,6 +628,7 @@
 				7E8D00501AA6629F00FB0417 /* CurrentUserSingleton.m in Sources */,
 				7E64E2AA1AAF814C0099FE0F /* MapViewListParkingTab.m in Sources */,
 				7EAA3EB2185978EB002DB255 /* main.m in Sources */,
+				7E5A0A811B001A0B00E71311 /* AddParkingSpotConfirmationPageViewController.m in Sources */,
 				7EB668BB1AABCDB800A82EF7 /* PQSpot.m in Sources */,
 				7EDB25C91905C3A6004868FC /* PQUser.m in Sources */,
 				7EAA3F0918599B6C002DB255 /* AppDelegate.m in Sources */,

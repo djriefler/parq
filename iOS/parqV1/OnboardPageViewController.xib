@@ -19,6 +19,9 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="img1.png" translatesAutoresizingMaskIntoConstraints="NO" id="UNx-pV-fdx">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     </imageView>
+                    <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" translatesAutoresizingMaskIntoConstraints="NO" id="Yt5-rP-53U">
+                        <rect key="frame" x="100" y="511" width="121" height="37"/>
+                    </pageControl>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             </view>
@@ -36,6 +39,9 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="img2.png" translatesAutoresizingMaskIntoConstraints="NO" id="1WR-JB-1az">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     </imageView>
+                    <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" currentPage="1" translatesAutoresizingMaskIntoConstraints="NO" id="5CM-Jt-Wed">
+                        <rect key="frame" x="100" y="511" width="121" height="37"/>
+                    </pageControl>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             </view>
@@ -53,6 +59,9 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="img3.png" translatesAutoresizingMaskIntoConstraints="NO" id="c1A-eS-uS1">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     </imageView>
+                    <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" currentPage="2" translatesAutoresizingMaskIntoConstraints="NO" id="Hs3-8s-BL2">
+                        <rect key="frame" x="100" y="511" width="121" height="37"/>
+                    </pageControl>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             </view>
@@ -70,6 +79,9 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="img4.png" translatesAutoresizingMaskIntoConstraints="NO" id="cCw-Jc-d2K">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     </imageView>
+                    <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" currentPage="3" translatesAutoresizingMaskIntoConstraints="NO" id="lwC-SA-xaW">
+                        <rect key="frame" x="100" y="511" width="121" height="37"/>
+                    </pageControl>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             </view>

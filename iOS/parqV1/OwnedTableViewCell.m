@@ -12,7 +12,7 @@
 
 - (void)awakeFromNib {
     CGFloat cornerRadius = 5.0f;
-    [self.contentView.layer setCornerRadius:cornerRadius];
+    [self.mainContentView.layer setCornerRadius:cornerRadius];
     [self.cancelButton.layer setCornerRadius:cornerRadius];
     [self.directionsButton.layer setCornerRadius:cornerRadius];
 }

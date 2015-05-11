@@ -30,7 +30,7 @@
     BOOL atUserLocation;
     
     // used to keep track of which pin is currently selected
-    int selectedSpotUUID;
+    NSString * selectedSpotUUID;
     
 }
 
@@ -145,9 +145,9 @@
         int price = 0;
         int start = 0;
         int end = 0;
-        int uuid = 0;
-        NSString * name = @"";
+        NSString * uuid = @"";
         NSArray * coordinates = [NSArray new];
+        NSString * address = @"";
         if ([[spot objectForKey:@"price"] integerValue]) {
             price = [[spot objectForKey:@"price"] integerValue];
         }
@@ -160,17 +160,17 @@
         if ([[spot objectForKey:@"endTime"] integerValue]) {
             end = [[spot objectForKey:@"endTime"] integerValue];
         }
-        if ([spot objectForKey:@"name"]) {
-            name = [spot objectForKey:@"name"];
+        if ([spot objectForKey:@"USID"]) {
+            uuid = [spot objectForKey:@"USID"];
         }
-        if ([[spot objectForKey:@"USID"] integerValue]) {
-            uuid = [[spot objectForKey:@"USID"] integerValue];
+        if ([spot objectForKey:@"address"]) {
+            address = [spot objectForKey:@"address"];
         }
 
         // Creates a pin that gets added to the map
         MapPin * pin = [[MapPin alloc] initWithCoord:CLLocationCoordinate2DMake([[coordinates objectAtIndex:0] doubleValue], [[coordinates objectAtIndex:1] doubleValue])
                                              andUUID:uuid
-                                             andName:name
+                                          andAddress:address
                                            andRating:5
                                              andRate:price
                                         andStartTime:start
@@ -192,7 +192,7 @@
 {
     NSDictionary * spotData;
     for (NSDictionary* spot in parkingSpots) {
-        if ([[spot objectForKey:@"USID"] integerValue] == selectedSpotUUID) {
+        if ([spot objectForKey:@"USID"] == selectedSpotUUID) {
             spotData = [NSDictionary dictionaryWithDictionary:spot];
         }
     }
@@ -277,8 +277,8 @@
 
 - (void) addFakePinToMap {
     MapPin * pin = [[MapPin alloc] initWithCoord:CLLocationCoordinate2DMake((double)34.1205,(double)-118.2856)
-                                         andUUID:1
-                                         andName:@"DJ"
+                                         andUUID:@"fasdf43f"
+                                      andAddress:@"FAkes "
                                        andRating:5
                                          andRate:0.5
                                     andStartTime:2
@@ -323,22 +323,10 @@
     
     if (!pinView) {
         pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:parkingSpotIdentifier];
-        [pinView setPinColor:MKPinAnnotationColorGreen];
+        [pinView setPinColor:MKPinAnnotationColorPurple];
         pinView.animatesDrop = YES; // animates the pin dropping
         pinView.canShowCallout = YES; // can display a text bubble when tapped on
-        
-        // Setting the image to be an image of me hehe
-        UIImage *originalImage = [UIImage imageNamed:@"Driveway.jpg"];
-        CGSize destinationSize = CGSizeMake(40, 40);
-        UIGraphicsBeginImageContext(destinationSize);
-        [originalImage drawInRect:CGRectMake(0,0,destinationSize.width,destinationSize.height)];
-        UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        
-        // Adding the image as the left item on the pin bubble
-        UIImageView * hostPicture = [[UIImageView alloc] initWithImage:newImage];
-        pinView.leftCalloutAccessoryView = hostPicture;
-        
+
         // Add a button as the right item on the pin bubble
         UIButton * moreButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
         [moreButton addTarget:self action:@selector(loadReserveSpotView) forControlEvents:UIControlEventTouchUpInside];
@@ -361,7 +349,7 @@
 
 - (void) mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
-    selectedSpotUUID = (int)[(MapPin *)view.annotation getUUID];
+    selectedSpotUUID = (NSString *)[(MapPin *)view.annotation getUUID];
 }
 
 /***************

@@ -14,6 +14,10 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QZ2-FY-HLF">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    </view>
                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eQe-Ze-6pM">
                         <rect key="frame" x="10" y="10" width="300" height="180"/>
                         <subviews>
@@ -105,8 +109,8 @@
             <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="cancelButton" destination="5mk-dd-6QO" id="djr-wT-8wh"/>
-                <outlet property="contentView" destination="eQe-Ze-6pM" id="q5c-eZ-J6J"/>
                 <outlet property="directionsButton" destination="ton-A1-vY6" id="k2H-hX-17v"/>
+                <outlet property="mainContentView" destination="eQe-Ze-6pM" id="Iaj-ot-QIS"/>
             </connections>
             <point key="canvasLocation" x="590" y="215"/>
         </tableViewCell>

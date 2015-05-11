@@ -10,9 +10,15 @@
 #import "CurrentUserSingleton.h"
 #import "ReserveTableViewCell.h"
 #import "OwnedTableViewCell.h"
+#import "PQSpot.h"
+
+#define kLatestParkingSpotsURL [NSURL URLWithString:@"http://intense-hollows-4714.herokuapp.com/manager"] //2
 
 @interface SpotMangerTableViewController ()
-
+{
+    NSMutableArray * reservedSpots;
+    NSMutableArray * ownedSpots;
+}
 @end
 
 @implementation SpotMangerTableViewController
@@ -21,7 +27,7 @@
 {
     self = [super initWithStyle:UITableViewStyleGrouped];
     if (self) {
-        
+        [self updateTable];
         
     }
     return self;
@@ -31,17 +37,61 @@
     [super viewDidLoad];
     [self.tableView registerNib:[UINib nibWithNibName:@"ReserveTableViewCell" bundle:nil] forCellReuseIdentifier:@"ReservedCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"OwnedTableViewCell" bundle:nil] forCellReuseIdentifier:@"OwnedCell"];
-//    [self.tableView registerClass: [ReserveTableViewCell class] forCellReuseIdentifier:@"ReservedCell"];
-//    [self.tableView registerClass: [OwnedTableViewCell class] forCellReuseIdentifier:@"OwnedCell"];
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-//     self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
+
     self.tableView.sectionFooterHeight = 0.0;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Server Connections
+
+- (void)updateTable;
+{
+    NSDictionary* info = [[NSDictionary alloc] initWithObjectsAndKeys:
+                          [[CurrentUserSingleton currentUser] UUID], @"uuid",
+                          nil];
+    
+    NSError *error;
+    
+    //convert object to data
+    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:info
+                                                       options:NSJSONWritingPrettyPrinted error:&error];
+    if (jsonData) {
+        NSLog(@"request sent");
+        NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[jsonData length]];
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:kLatestParkingSpotsURL];
+        [request setHTTPMethod:@"POST"];
+        [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+        [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+        [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        [request setHTTPBody:jsonData];
+        
+        // generates an autoreleased NSURLConnection
+        [NSURLConnection connectionWithRequest:request delegate:self];
+    }
+    else if (error) {
+        NSLog(@"%@", [error localizedDescription]);
+    }
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    
+    NSError * error;
+    NSDictionary* json = [NSJSONSerialization
+                          JSONObjectWithData:data
+                          options:kNilOptions
+                          error:&error];
+    
+    NSLog(@"%@", json);
+    
+    // If JSON
+    if (json != nil) {
+        ownedSpots = [json objectForKey:@"ownedSpots"];
+        reservedSpots = [json objectForKey:@"reservedSpots"];
+    }
 }
 
 #pragma mark - Table view data source
@@ -57,14 +107,14 @@
     
     // Section 0 represents reserved spots
     if (section == 0) {
-        return 4;
-//        return [[[CurrentUserSingleton currentUser] reservedParkingSpots] count];
+        return 1;
+        return [reservedSpots count];
     }
     
     // Section 1 represents owned spots
     else if (section == 1) {
-        return 3;
-//        return [[[CurrentUserSingleton currentUser] ownedParkingSpots] count];
+        return 1;
+        return [ownedSpots count];
     }
     return 0;
 }
@@ -83,6 +133,11 @@
         if (cell == nil) {
             cell = [[ReserveTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reservedCellIdentifier];
         }
+        PQSpot * reservedSpot = [reservedSpots objectAtIndex:indexPath.row];
+        [cell.spotAddress setText:reservedSpot.address];
+        [cell.ownerName setText:reservedSpot.owner.name];
+        [cell.ownerNumber setText:reservedSpot.owner.phoneNumber];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
     
@@ -92,6 +147,7 @@
         if (cell == nil) {
             cell = [[OwnedTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ownedCellIdentifier];
         }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
     

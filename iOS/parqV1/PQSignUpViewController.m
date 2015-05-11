@@ -116,6 +116,7 @@
     [super viewDidLoad];
     self.loginView.readPermissions = @[@"public_profile", @"email"];
     self.loginView.delegate = self;
+    [self.navigationController.navigationBar setHidden:YES];
 }
 
 - (void)didReceiveMemoryWarning

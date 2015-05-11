@@ -12,7 +12,7 @@
 @synthesize coordinate, title, UUID;
 
 // Test to see if works with just a coordinate
-- (id)initWithCoord: (CLLocationCoordinate2D) coord andUUID: (int) uuid andName: (NSString *) nam andRating: (int)rating andRate: (float) rate andStartTime: (int) strt andEndTime: (int) end
+- (id)initWithCoord: (CLLocationCoordinate2D) coord andUUID: (NSString *) uuid andAddress:(NSString *)address andRating: (int)rating andRate: (float) rate andStartTime: (int) strt andEndTime: (int) end
 {
     self = [super init];
     if (self) {
@@ -22,10 +22,20 @@
         _endHour = end;
         UUID = uuid;
         coordinate = coord;
-        title = [NSString stringWithFormat: @"%@ - $%.02f", nam, rate];
+        title = [self cropAddress: address];
+        
         _subtitle = [NSString stringWithFormat:@"Hours: %@", [self convertToAMPMFromStart:strt andEnd:end]];
     }
     return self;
+}
+
+- (NSString *) cropAddress:(NSString *) addr
+{
+    NSString * croppedString = @"";
+    NSScanner * scanner = [NSScanner scannerWithString:addr];
+    [scanner scanUpToString:@"," intoString:&croppedString];
+    NSLog(@"%@", croppedString);
+    return croppedString;
 }
 
 - (NSString *) convertToAMPMFromStart: (int) start andEnd: (int) end {
@@ -51,7 +61,7 @@
     return [NSString stringWithFormat:@"%@-%@",startStr,endStr];
 }
 
-- (int) getUUID
+- (NSString *) getUUID
 {
     return UUID;
 }

@@ -25,9 +25,9 @@
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
 @property (nonatomic, readonly, copy) NSString * title;
 @property (nonatomic, readonly, copy) NSString * subtitle;
-@property int UUID;
+@property NSString * UUID;
 
-- (int) getUUID;
-- (id)initWithCoord: (CLLocationCoordinate2D) coord andUUID: (int) uuid andName: (NSString *) nam andRating: (int)rating andRate: (float) rate andStartTime: (int) strt andEndTime: (int) end;
+- (NSString *) getUUID;
+- (id)initWithCoord: (CLLocationCoordinate2D) coord andUUID: (NSString *) uuid andAddress: (NSString *) address andRating: (int)rating andRate: (float) rate andStartTime: (int) strt andEndTime: (int) end;
 
 @end

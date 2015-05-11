@@ -12,6 +12,7 @@
 @property NSString * name;
 @property NSString * email;
 @property NSString * UUID;
+@property NSString * phoneNumber;
 @property float rating;
 @property NSMutableArray * reservedSpots;
 @property NSMutableArray * ownedSpots;

@@ -368,7 +368,6 @@
 				7E6A3C7918C81B6500BBCC7D /* Reserve Spot */,
 				7E6A3C7B18C81BF100BBCC7D /* Add Spot */,
 				7E6A3C7C18C81C0600BBCC7D /* Model */,
-				7EC94D571AD0DB240065D078 /* Checkbox Button */,
 				7EAA3EB7185978EB002DB255 /* Images.xcassets */,
 				7EAA3EAC185978EB002DB255 /* Supporting Files */,
 			);
@@ -402,13 +401,6 @@
 				7EAA3EC7185978EB002DB255 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		7EC94D571AD0DB240065D078 /* Checkbox Button */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "Checkbox Button";
 			sourceTree = "<group>";
 		};
 		7EC94D581AD0DDEC0065D078 /* Views */ = {

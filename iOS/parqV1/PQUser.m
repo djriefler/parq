@@ -14,7 +14,7 @@
 
 @implementation PQUser
 
-@synthesize UUID, email, name, ownedSpots, reservedSpots, rating;
+@synthesize UUID, email, name, ownedSpots, reservedSpots, rating, phoneNumber;
 
 - (id)init
 {

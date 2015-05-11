@@ -78,7 +78,9 @@
 - (void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self moveMapAnnotationToCoordinate:self.worldView.centerCoordinate];
+    [self zoomToUserLocation:self.worldView.userLocation];
+
+//    [self moveMapAnnotationToCoordinate:self.worldView.centerCoordinate];
 }
 
 #define PIN_WIDTH_OFFSET 7.75

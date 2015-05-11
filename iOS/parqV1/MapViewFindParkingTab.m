@@ -142,12 +142,30 @@
 {
     // Iterates through the parking spots array (which gets populated when the find parking button is pressed and fetchedData is called
     for (NSDictionary* spot in parkingSpots) {
-        NSArray *coordinates = [spot objectForKey:@"latlng"];
-        int price = [[spot objectForKey:@"price"] integerValue];
-        int start = [[spot objectForKey:@"startTime"] integerValue];
-        int end = [[spot objectForKey:@"endTime"] integerValue];
-        NSString * name = [spot objectForKey:@"name"];
-        int uuid = [[spot objectForKey:@"USID"] integerValue];
+        int price = 0;
+        int start = 0;
+        int end = 0;
+        int uuid = 0;
+        NSString * name = @"";
+        NSArray * coordinates = [NSArray new];
+        if ([[spot objectForKey:@"price"] integerValue]) {
+            price = [[spot objectForKey:@"price"] integerValue];
+        }
+        if ([spot objectForKey:@"latlng"]) {
+            coordinates = [spot objectForKey:@"latlng"];
+        }
+        if ([[spot objectForKey:@"startTime"] integerValue]) {
+            start = [[spot objectForKey:@"startTime"] integerValue];
+        }
+        if ([[spot objectForKey:@"endTime"] integerValue]) {
+            end = [[spot objectForKey:@"endTime"] integerValue];
+        }
+        if ([spot objectForKey:@"name"]) {
+            name = [spot objectForKey:@"name"];
+        }
+        if ([[spot objectForKey:@"USID"] integerValue]) {
+            uuid = [[spot objectForKey:@"USID"] integerValue];
+        }
 
         // Creates a pin that gets added to the map
         MapPin * pin = [[MapPin alloc] initWithCoord:CLLocationCoordinate2DMake([[coordinates objectAtIndex:0] doubleValue], [[coordinates objectAtIndex:1] doubleValue])
@@ -230,7 +248,7 @@
         float longitude = [[locationManager location] coordinate].longitude;
         float latitude = [[locationManager location] coordinate].latitude;
         
-        // Prepare request for server to see if user already exists
+        // Prepare request for server to see if parking spots are available near user
         NSDictionary* info = [[NSDictionary alloc] initWithObjectsAndKeys:
                               [NSNumber numberWithFloat:longitude], @"longitude",
                               [NSNumber numberWithFloat:latitude], @"latitude", nil];
@@ -243,7 +261,7 @@
                                                              error:&error];
         
         // Create POST request
-        NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[jsonData length]];
+        NSString *postLength = [NSString stringWithFormat:@"%d", [jsonData length]];
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:kLatestParkingSpotsURL];
         [request setHTTPMethod:@"POST"];
         [request setValue:postLength forHTTPHeaderField:@"Content-Length"];

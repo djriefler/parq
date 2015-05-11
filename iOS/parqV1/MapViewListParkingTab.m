@@ -164,8 +164,25 @@
 
 - (void)loadAddParkingSpotView
 {
-    // Pushes the next view where you can add a parking spot (button on top right)
+    int mapImageX = 8;
+    int mapImageY = _worldView.center.y - 75;
+    int mapImageWidth = 304;
+    int mapImageHeight = 150;
+    CGRect rect = CGRectMake(mapImageX, mapImageY, mapImageWidth, mapImageHeight);
+    
+    UIGraphicsBeginImageContext(self.view.bounds.size);
+    [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *mapImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+
+    CGImageRef imageRef = CGImageCreateWithImageInRect([mapImage CGImage], rect);
+    // or use the UIImage wherever you like
+    UIImage * croppedMapImage = [UIImage imageWithCGImage:imageRef];
+    CGImageRelease(imageRef);
+    
     AddParkingSpotController *apsc = [[AddParkingSpotController alloc] initWithNibName:@"AddParkingSpotController" bundle:nil];
+    [apsc setAddress:[[[self addressBar] titleLabel] text]];
+    [apsc setMapSnapshot:croppedMapImage];
     [[self navigationController] pushViewController:apsc animated:YES];
 }
 

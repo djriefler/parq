@@ -114,7 +114,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.loginView.readPermissions = @[@"basic_info", @"email"];
+    self.loginView.readPermissions = @[@"public_profile", @"email"];
     self.loginView.delegate = self;
 }
 

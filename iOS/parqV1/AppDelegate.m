@@ -28,7 +28,7 @@
         UIViewController *mapTabBarController = [[MapTabBarController alloc] init];
         self.navController = [[UINavigationController alloc] initWithRootViewController:mapTabBarController];
         
-        [FBSession openActiveSessionWithReadPermissions:@[@"basic_info", @"email"] allowLoginUI:NO completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
+        [FBSession openActiveSessionWithReadPermissions:@[@"public_profile", @"email"] allowLoginUI:NO completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
             // Handler for session state changes
             // Call this method EACH time the session state changes,
             //  NOT just when the session open

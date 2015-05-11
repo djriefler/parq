@@ -9,12 +9,14 @@
 #import <UIKit/UIKit.h>
 
 @interface AddParkingSpotController : UIViewController <UITextFieldDelegate>
-@property (weak, nonatomic) IBOutlet UITextField *nameField;
 @property (weak, nonatomic) IBOutlet UITextField *addressField;
-@property (weak, nonatomic) IBOutlet UITextField *priceField;
 @property (weak, nonatomic) IBOutlet UIDatePicker *startTimePicker;
 @property (weak, nonatomic) IBOutlet UIDatePicker *endTimePicker;
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
 
+@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 - (IBAction)submitDataToServer:(id)sender;
+
+@property (nonatomic) NSString * address;
+@property (nonatomic) UIImage * mapSnapshot;
 @end

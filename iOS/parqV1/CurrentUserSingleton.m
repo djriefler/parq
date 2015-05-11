@@ -90,6 +90,7 @@
     if ([data objectForKey:@"owned"]) {
         currentUser.ownedSpots = [data objectForKey:@"owned"];
     }
+    [self saveChanges];
 }
 
 - (void) setUserSignedIn:(BOOL)isSignedIn {

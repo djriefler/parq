@@ -48,7 +48,7 @@
     
     // Adjust position of view to fix a bug
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    
+    [self.searchDisplayController.searchBar sizeToFit];
     self.searchDisplayController.displaysSearchBarInNavigationBar = YES;
     
     // Get rid of back button
@@ -66,7 +66,7 @@
  SEARCH DELEGATE METHODS
  ************************/
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
-    //    [searchBar setShowsCancelButton:YES animated:YES];
+        [searchBar setShowsCancelButton:YES animated:YES];
 }
 
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller

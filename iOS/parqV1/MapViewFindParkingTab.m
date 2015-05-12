@@ -129,6 +129,7 @@
 {
     NSMutableArray * spotAnnotations = [[NSMutableArray alloc] initWithArray:worldView.annotations];
     [spotAnnotations removeObject:desiredParkingPin];
+    [spotAnnotations removeObject:[worldView userLocation]];
     [worldView removeAnnotations:spotAnnotations];
     // Get nearest parking spots
     [self requestNearestParkingSpots];
@@ -137,8 +138,8 @@
 - (void) requestNearestParkingSpots {
     // Request parking spot data
 
-        float longitude = [desiredParkingPin coordinate].longitude;
-        float latitude = [desiredParkingPin coordinate].latitude;
+        double longitude = [desiredParkingPin coordinate].longitude;
+        double latitude = [desiredParkingPin coordinate].latitude;
         
         // Prepare request for server to see if parking spots are available near user
         NSDictionary* info = [[NSDictionary alloc] initWithObjectsAndKeys:
@@ -168,6 +169,7 @@
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
     NSError * error;
+
     NSDictionary* json = [NSJSONSerialization
                               JSONObjectWithData:data
                               options:kNilOptions

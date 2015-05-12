@@ -48,6 +48,7 @@
 		7E8D00501AA6629F00FB0417 /* CurrentUserSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E8D004F1AA6629F00FB0417 /* CurrentUserSingleton.m */; };
 		7E9B19CB1AE3251D007DBAD8 /* SpotMangerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E9B19CA1AE3251D007DBAD8 /* SpotMangerTableViewController.m */; };
 		7E9B19CF1AE3792D007DBAD8 /* spotManagerIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E9B19CE1AE3792D007DBAD8 /* spotManagerIcon.png */; };
+		7EA8FC9E1B01D4820095E016 /* SearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA8FC9D1B01D4820095E016 /* SearchTableViewController.m */; };
 		7EAA3EA6185978EB002DB255 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAA3EA5185978EB002DB255 /* Foundation.framework */; };
 		7EAA3EA8185978EB002DB255 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAA3EA7185978EB002DB255 /* CoreGraphics.framework */; };
 		7EAA3EAA185978EB002DB255 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EAA3EA9185978EB002DB255 /* UIKit.framework */; };
@@ -152,6 +153,8 @@
 		7E9B19C91AE3251D007DBAD8 /* SpotMangerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotMangerTableViewController.h; sourceTree = "<group>"; };
 		7E9B19CA1AE3251D007DBAD8 /* SpotMangerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotMangerTableViewController.m; sourceTree = "<group>"; };
 		7E9B19CE1AE3792D007DBAD8 /* spotManagerIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spotManagerIcon.png; sourceTree = "<group>"; };
+		7EA8FC9C1B01D4820095E016 /* SearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTableViewController.h; sourceTree = "<group>"; };
+		7EA8FC9D1B01D4820095E016 /* SearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTableViewController.m; sourceTree = "<group>"; };
 		7EAA3EA2185978EB002DB255 /* parqV1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = parqV1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EAA3EA5185978EB002DB255 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7EAA3EA7185978EB002DB255 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -463,6 +466,8 @@
 				7E64E2A81AAF814C0099FE0F /* MapViewListParkingTab.m */,
 				7E42D4AA1866A308003376DB /* SearchViewControllerNew.h */,
 				7E42D4AB1866A308003376DB /* SearchViewControllerNew.m */,
+				7EA8FC9C1B01D4820095E016 /* SearchTableViewController.h */,
+				7EA8FC9D1B01D4820095E016 /* SearchTableViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -615,7 +620,6 @@
 				7EB668BD1AAC03F400A82EF7 /* OpenSpot.png in Resources */,
 				7EAA3EE918597CCA002DB255 /* DJ.jpg in Resources */,
 				831B6B601B009F15007236E7 /* OnboardPageViewController.xib in Resources */,
-				7E9B19CD1AE35396007DBAD8 /* settingsIcon.jpg in Resources */,
 				831B6B711B00A002007236E7 /* img4.png in Resources */,
 				7EAA3ED8185979D6002DB255 /* AddParkingSpotController.xib in Resources */,
 				7E563F40185FFF1C009FDE8D /* location.png in Resources */,
@@ -672,6 +676,7 @@
 				7EAA3F111859A3A3002DB255 /* ReserveSpotController.m in Sources */,
 				7EAA3EDE18597A50002DB255 /* MapPin.m in Sources */,
 				7E59A3A41AFFF18D00A05C2B /* OwnedTableViewCell.m in Sources */,
+				7EA8FC9E1B01D4820095E016 /* SearchTableViewController.m in Sources */,
 				835B90E21AE3419C0075133C /* SettingsViewController.m in Sources */,
 				7EDF9FC51AF6CA38001D31B7 /* ReserveTableViewCell.m in Sources */,
 				835B90E71AE363FB0075133C /* EditViewController.m in Sources */,

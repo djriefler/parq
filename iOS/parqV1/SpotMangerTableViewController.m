@@ -36,6 +36,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[self navigationController] setTitle:@"Spot Manager"];
     [self.tableView registerNib:[UINib nibWithNibName:@"ReserveTableViewCell" bundle:nil] forCellReuseIdentifier:@"ReservedCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"OwnedTableViewCell" bundle:nil] forCellReuseIdentifier:@"OwnedCell"];
 

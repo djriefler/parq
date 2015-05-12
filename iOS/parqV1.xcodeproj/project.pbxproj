@@ -82,11 +82,12 @@
 		7EDF9FC51AF6CA38001D31B7 /* ReserveTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EDF9FC31AF6CA38001D31B7 /* ReserveTableViewCell.m */; };
 		7EDF9FC61AF6CA38001D31B7 /* ReserveTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EDF9FC41AF6CA38001D31B7 /* ReserveTableViewCell.xib */; };
 		831B6B5F1B009F15007236E7 /* OnboardPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 831B6B5D1B009F15007236E7 /* OnboardPageViewController.m */; };
-		831B6B601B009F15007236E7 /* OnboardPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 831B6B5E1B009F15007236E7 /* OnboardPageViewController.xib */; };
 		831B6B6E1B00A002007236E7 /* img1.png in Resources */ = {isa = PBXBuildFile; fileRef = 831B6B6A1B00A002007236E7 /* img1.png */; };
 		831B6B6F1B00A002007236E7 /* img2.png in Resources */ = {isa = PBXBuildFile; fileRef = 831B6B6B1B00A002007236E7 /* img2.png */; };
 		831B6B701B00A002007236E7 /* img3.png in Resources */ = {isa = PBXBuildFile; fileRef = 831B6B6C1B00A002007236E7 /* img3.png */; };
 		831B6B711B00A002007236E7 /* img4.png in Resources */ = {isa = PBXBuildFile; fileRef = 831B6B6D1B00A002007236E7 /* img4.png */; };
+		831B6B741B01C306007236E7 /* ContinuePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 831B6B731B01C306007236E7 /* ContinuePageViewController.m */; };
+		831B6B761B01C9EA007236E7 /* OnboardPageStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 831B6B751B01C9EA007236E7 /* OnboardPageStoryboard.storyboard */; };
 		835B90E21AE3419C0075133C /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835B90E11AE3419C0075133C /* SettingsViewController.m */; };
 		835B90E71AE363FB0075133C /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835B90E51AE363FB0075133C /* EditViewController.m */; };
 		835B90E81AE363FB0075133C /* EditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 835B90E61AE363FB0075133C /* EditViewController.xib */; };
@@ -202,11 +203,13 @@
 		7EDF9FC41AF6CA38001D31B7 /* ReserveTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReserveTableViewCell.xib; sourceTree = "<group>"; };
 		831B6B5C1B009F15007236E7 /* OnboardPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnboardPageViewController.h; sourceTree = "<group>"; };
 		831B6B5D1B009F15007236E7 /* OnboardPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnboardPageViewController.m; sourceTree = "<group>"; };
-		831B6B5E1B009F15007236E7 /* OnboardPageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OnboardPageViewController.xib; sourceTree = "<group>"; };
 		831B6B6A1B00A002007236E7 /* img1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img1.png; sourceTree = "<group>"; };
 		831B6B6B1B00A002007236E7 /* img2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img2.png; sourceTree = "<group>"; };
 		831B6B6C1B00A002007236E7 /* img3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img3.png; sourceTree = "<group>"; };
 		831B6B6D1B00A002007236E7 /* img4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img4.png; sourceTree = "<group>"; };
+		831B6B721B01C306007236E7 /* ContinuePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContinuePageViewController.h; path = ../ContinuePageViewController.h; sourceTree = "<group>"; };
+		831B6B731B01C306007236E7 /* ContinuePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContinuePageViewController.m; path = ../ContinuePageViewController.m; sourceTree = "<group>"; };
+		831B6B751B01C9EA007236E7 /* OnboardPageStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = OnboardPageStoryboard.storyboard; sourceTree = "<group>"; };
 		835B90E01AE3419C0075133C /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		835B90E11AE3419C0075133C /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		835B90E41AE363FB0075133C /* EditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditViewController.h; sourceTree = "<group>"; };
@@ -507,9 +510,11 @@
 		831B6B611B009F1A007236E7 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				831B6B721B01C306007236E7 /* ContinuePageViewController.h */,
+				831B6B731B01C306007236E7 /* ContinuePageViewController.m */,
 				831B6B5C1B009F15007236E7 /* OnboardPageViewController.h */,
 				831B6B5D1B009F15007236E7 /* OnboardPageViewController.m */,
-				831B6B5E1B009F15007236E7 /* OnboardPageViewController.xib */,
+				831B6B751B01C9EA007236E7 /* OnboardPageStoryboard.storyboard */,
 			);
 			name = Onboarding;
 			sourceTree = "<group>";
@@ -619,7 +624,6 @@
 				7E59A3A51AFFF18D00A05C2B /* OwnedTableViewCell.xib in Resources */,
 				7EB668BD1AAC03F400A82EF7 /* OpenSpot.png in Resources */,
 				7EAA3EE918597CCA002DB255 /* DJ.jpg in Resources */,
-				831B6B601B009F15007236E7 /* OnboardPageViewController.xib in Resources */,
 				831B6B711B00A002007236E7 /* img4.png in Resources */,
 				7EAA3ED8185979D6002DB255 /* AddParkingSpotController.xib in Resources */,
 				7E563F40185FFF1C009FDE8D /* location.png in Resources */,
@@ -648,6 +652,7 @@
 				7EAA3EE018597A50002DB255 /* MapViewFindParkingTab.xib in Resources */,
 				7E563F3A185FD689009FDE8D /* texture1.jpg in Resources */,
 				7E4CE7E41861083F0089E227 /* Maria.jpg in Resources */,
+				831B6B761B01C9EA007236E7 /* OnboardPageStoryboard.storyboard in Resources */,
 				7E4CE7DE186104470089E227 /* Justin.jpg in Resources */,
 				7EB668BF1AAC04AC00A82EF7 /* Driveway.png in Resources */,
 				7E5A0A961B008F6400E71311 /* Parking-50@2x.png in Resources */,
@@ -672,6 +677,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E6A3C7618C81AFE00BBCC7D /* ReserveConfirmationPage.m in Sources */,
+				831B6B741B01C306007236E7 /* ContinuePageViewController.m in Sources */,
 				831B6B5F1B009F15007236E7 /* OnboardPageViewController.m in Sources */,
 				7EAA3F111859A3A3002DB255 /* ReserveSpotController.m in Sources */,
 				7EAA3EDE18597A50002DB255 /* MapPin.m in Sources */,

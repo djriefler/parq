@@ -21,6 +21,8 @@
 {
     [super viewDidLoad];
     
+    [[self navigationController] setNavigationBarHidden:YES];
+    
     self.delegate = self;
     self.dataSource = self;
     

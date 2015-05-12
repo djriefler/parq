@@ -13,6 +13,7 @@
 #import "PQSignUpViewController.h"
 #import "MapTabBarController.h"
 #import "CurrentUserSingleton.h"
+#import "OnboardPageViewController.h"
 
 @interface PQSignUpViewController ()
 {
@@ -104,8 +105,9 @@
         
         // The user doesn't exist, onboard them
         else {
-            UIViewController *mapTabBarController = [[MapTabBarController alloc] init];
-            self.navController = [[UINavigationController alloc] initWithRootViewController:mapTabBarController];
+            UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"OnboardPageStoryboard" bundle:nil];
+            OnboardPageViewController *obc = [mainStoryboard instantiateViewControllerWithIdentifier:@"OnboardStoryController"];
+            self.navController = [[UINavigationController alloc] initWithRootViewController:obc];
             [[UIApplication sharedApplication]delegate].window.rootViewController = navController;
         }
     }

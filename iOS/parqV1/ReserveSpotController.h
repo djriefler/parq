@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 #import "PQSpot.h"
+#import "ReserveConfirmationPage.h"
 
 typedef enum {None,Start,End} DatePickerState;
 
-@interface ReserveSpotController : UIViewController<MKMapViewDelegate>
+@interface ReserveSpotController : UIViewController<MKMapViewDelegate, ReservationConfirmationPageDelegate>
 {
     DatePickerState datePickerState;
 }

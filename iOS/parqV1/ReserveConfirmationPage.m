@@ -65,8 +65,8 @@
 }
 
 - (IBAction)getDirectionsPressed:(id)sender {
-    [[self navigationController] popToRootViewControllerAnimated:NO];
-
+    [self.delegate reservePageDismissed];
+    
     Class mapClass = [MKMapItem class];
     if (mapClass && [mapClass respondsToSelector:@selector(openMapsWithItems:launchOptions:)]) {
 

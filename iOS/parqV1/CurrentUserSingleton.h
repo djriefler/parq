@@ -19,6 +19,7 @@
 - (void) setUserSignedIn: (BOOL) isSignedIn;
 - (void) setEmail:(NSString *) email;
 - (void) setName:(NSString *) name;
+- (void) setPhoneNumber: (NSString *) phoneNumber;
 - (void) setUUID:(NSString *) uuid;
 - (void) setRating:(float) rating;
 - (void) setReservedSpots: (NSMutableArray *) reserved;
@@ -28,8 +29,9 @@
 
 - (BOOL) isUserSignedIn;
 - (NSString *) UUID;
-- (NSString *) getEmail;
-- (NSString *) getName;
+- (NSString *) email;
+- (NSString *) name;
+- (NSString *) phoneNumber;
 - (float) rating;
 - (NSMutableArray *) reservedParkingSpots;
 - (NSMutableArray *) ownedParkingSpots;

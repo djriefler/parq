@@ -9,7 +9,6 @@
 #define kLatestParkingSpotsURL [NSURL URLWithString:@"http://intense-hollows-4714.herokuapp.com/reserve"] //2
 
 #import "ReserveSpotController.h"
-#import "ReserveConfirmationPage.h"
 #import "CurrentUserSingleton.h"
 
 @interface ReserveSpotController ()
@@ -94,23 +93,30 @@
         NSString * address = [[json objectForKey:@"spots"] objectForKey:@"address"];
         NSArray * coordinates = [[json objectForKey:@"spots"] objectForKey:@"latlng"];
         ReserveConfirmationPage *rcp = [[ReserveConfirmationPage alloc] initWithAddress:address andCoordinate:coordinates];
-        [[self navigationController] pushViewController:rcp animated:YES];
+        rcp.delegate = self;
+        [[self navigationController] presentViewController:rcp animated:YES completion:nil];
     }
+}
+
+- (void) reservePageDismissed
+{
+    [[self navigationController] dismissViewControllerAnimated:YES completion:nil];
+    [[self navigationController] popToRootViewControllerAnimated:NO];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    // Update Navbar
+    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"parq.png"]];
+    self.navigationItem.titleView.layer.frame = CGRectMake(50, -10, 50, 34);
+    self.navigationItem.titleView.layer.masksToBounds = NO;
+    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"texture3.jpg"]forBarMetrics:UIBarMetricsDefault];
+
     
-    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"parq_logo_2.png"]];
-    
-    
-    // Top Section
-    [self setDrivewayPic:[self getDrivewayPic]];
-    
-    // Middle Section
-    [self setHoursAvailable:[self getHoursAvailable]];
-    [self setTheAddress:[self getAddress]];
+    [[self address] setText:[spot address]];
+
+    [[self numHours] setText:[self getHoursAvailable]];
     
     // Bottom Section
     [self setTheStartTime:[self getStartHour]];
@@ -119,39 +125,7 @@
     // Reserve button
     // Add corner radius
     self.reserveButton.layer.cornerRadius = 4.0f;
-    self.reserveButton.layer.masksToBounds = NO;
     
-    // Create colors for a gradient
-    UIColor *color1 =
-    [UIColor colorWithRed:(float)62/255 green:(float)177/255 blue:(float)213/255 alpha:1.0];
-    UIColor *color2 =
-    [UIColor colorWithRed:(float)72/255 green:(float)200/255 blue:(float)222/255 alpha:1.0];
-    UIColor *color3 =
-    [UIColor colorWithRed:(float)72/255 green:(float)200/255 blue:(float)222/255 alpha:1.0];
-    UIColor *color4 =
-    [UIColor colorWithRed:(float)72/255 green:(float)200/255 blue:(float)222/255 alpha:1.0];
-    UIColor *color5 =
-    [UIColor colorWithRed:(float)62/255 green:(float)177/255 blue:(float)213/255 alpha:1.0];
-    
-    // Create the gradient
-    CAGradientLayer *gradient = [CAGradientLayer layer];
-    
-    // Set colors
-    gradient.colors = [NSArray arrayWithObjects:
-                       (id)color1.CGColor,
-                       (id)color2.CGColor,
-                       (id)color3.CGColor,
-                       (id)color4.CGColor,
-                       (id)color5.CGColor,
-                       nil];
-    
-    // Set bounds
-    gradient.frame = self.reserveButton.bounds;
-    gradient.cornerRadius = 4.0f;
-    
-    // Add the gradient to the view
-    [self.reserveButton.layer insertSublayer:gradient atIndex:0];
-
 }
 
 - (CLLocationCoordinate2D) getPinCoordinates {
@@ -179,23 +153,23 @@
     NSString * startStr;
     NSString * endStr;
     if (start < 12) {
-        startStr = [NSString stringWithFormat:@"%dam",start];
+        startStr = [NSString stringWithFormat:@"%d:00am",start];
     } else {
         if (start != 12) {
             start -= 12;
         }
-        startStr = [NSString stringWithFormat:@"%dpm",start];
+        startStr = [NSString stringWithFormat:@"%d:00pm",start];
     }
     if (end < 12) {
-        endStr = [NSString stringWithFormat:@"%dam",end];
+        endStr = [NSString stringWithFormat:@"%d:00am",end];
     }
     else {
         if (end != 12) {
             end -= 12;
         }
-        endStr = [NSString stringWithFormat:@"%dpm",end];
+        endStr = [NSString stringWithFormat:@"%d:00pm",end];
     }
-    return [NSString stringWithFormat:@"%@-%@",startStr,endStr];
+    return [NSString stringWithFormat:@"%@ - %@",startStr,endStr];
 }
 
 - (void) setHoursAvailable:(NSString *) hours {

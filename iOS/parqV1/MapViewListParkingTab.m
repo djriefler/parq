@@ -78,9 +78,6 @@
 - (void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self zoomToUserLocation:self.worldView.userLocation];
-
-//    [self moveMapAnnotationToCoordinate:self.worldView.centerCoordinate];
 }
 
 #define PIN_WIDTH_OFFSET 7.75
@@ -104,6 +101,15 @@
         return;
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(userLocation.location.coordinate, 1200, 1200);
     [self.worldView setRegion:region animated:YES];
+}
+
+- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
+{
+    // Only called when the app is first opened
+    if (atUserLocation == false) {
+        [self zoomToUserLocation:userLocation];
+        atUserLocation = true;
+    }
 }
 
 - (void) mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated {

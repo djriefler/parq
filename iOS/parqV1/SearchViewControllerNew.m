@@ -8,6 +8,7 @@
 
 
 #import "SearchViewControllerNew.h"
+#import "MapViewFindParkingTab.h"
 
 @interface SearchViewControllerNew ()
 
@@ -125,27 +126,9 @@ shouldReloadTableForSearchString:(NSString *)searchString
 {
     // Create a mapItem from the chosen result
     MKMapItem *item = [searchResults objectAtIndex:indexPath.row];
-    // set the searchBar text on the MapViewController to the address of the chosen place
     
-    // Dismiss the search view controller
-    [self dismissController];
-    // get all the parking spots in that area and display them on the map (probably send a message to the server to ask for that data)
-    
-}
-
-/***********************
- END CONTROLLER METHODS
- ************************/
-- (void) dismissController
-{
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.3;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionMoveIn;
-    transition.subtype = kCATransitionFromBottom;
-    [self.navigationController.view.layer addAnimation:transition
-                                                forKey:kCATransition];
-    [self.navigationController popViewControllerAnimated:NO];
+    // Dismiss the search view controller and set text of the find parking tab to the selected address
+    [self.delegate searchOptionSelected:item];
     
 }
 

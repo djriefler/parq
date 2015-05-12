@@ -10,7 +10,7 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
-#import "MapViewFindParkingTab.h"
+@class MapViewFindParkingTab;
 
 @interface SearchViewControllerNew : UIViewController <UISearchBarDelegate, UISearchDisplayDelegate>
 {
@@ -18,7 +18,13 @@
     MapViewFindParkingTab *mapViewController;
 }
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
-
+@property (nonatomic) id delegate;
 - (id) initWithMapViewController: (MapViewFindParkingTab *) mvc;
+
+@end
+
+@protocol SearchViewControllerDelegate
+
+- (void) searchOptionSelected:(MKMapItem *) mapItem;
 
 @end

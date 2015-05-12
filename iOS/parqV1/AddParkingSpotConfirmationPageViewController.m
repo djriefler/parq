@@ -7,22 +7,36 @@
 //
 
 #import "AddParkingSpotConfirmationPageViewController.h"
+#import "CurrentUserSingleton.h"
 
 @interface AddParkingSpotConfirmationPageViewController ()
-
+{
+    NSString * address;
+}
+@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
+@property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
+- (IBAction)okButtonPressed:(id)sender;
 @end
 
 @implementation AddParkingSpotConfirmationPageViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    [[self addressLabel] setText:address];
+    [[self phoneLabel ] setText:[[CurrentUserSingleton currentUser] phoneNumber]];
+    [[self navigationController] setNavigationBarHidden:YES];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void) setAddress:(NSString *)addr
+{
+    address = addr;
+}
+
 
 /*
 #pragma mark - Navigation
@@ -34,4 +48,7 @@
 }
 */
 
+- (IBAction)okButtonPressed:(id)sender {
+    [self.delegate doneWithConfirmation];
+}
 @end

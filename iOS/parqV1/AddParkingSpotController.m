@@ -81,8 +81,28 @@ typedef enum {None,Start,End} DatePickerState;
     
     // If spot reservation is confirmed, then load confirmation controller
     if ([[json objectForKey:@"status"]  isEqual: @"confirmed"]) {
-        NSLog(@"GOOD!");
+        [self loadConfirmationPage];
     }
+}
+
+- (void) loadConfirmationPage
+{
+    AddParkingSpotConfirmationPageViewController * apsc = [[AddParkingSpotConfirmationPageViewController alloc] initWithNibName:@"AddParkingSpotConfirmationPageViewController" bundle:nil];
+    apsc.delegate = self;
+    [apsc setAddress:address];
+    // Set phone number
+//    [apsc ]
+    [[self navigationController] presentViewController:apsc
+                                              animated:YES
+                                            completion:nil];
+}
+
+// Confirmation Delegate Method
+- (void) doneWithConfirmation
+{
+    [[self navigationController] dismissViewControllerAnimated:YES completion:^(void){
+        [[self navigationController] popToRootViewControllerAnimated:NO];
+    }];
 }
 
 #pragma mark - Date Picking
@@ -229,7 +249,7 @@ typedef enum {None,Start,End} DatePickerState;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setTitle:@"parq"];
+    [self setTitle:@"List Parking"];
     [_addressLabel setText:address];
     [_mapImageView setImage:mapSnapshot];
 }

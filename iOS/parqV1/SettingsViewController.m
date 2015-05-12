@@ -90,13 +90,13 @@
     switch (indexPath.row) {
         case 0:
             cell.textLabel.text = @"Name";
-            cell.detailTextLabel.text = [[CurrentUserSingleton currentUser] getName];
+            cell.detailTextLabel.text = [[CurrentUserSingleton currentUser] name];
             //cell.detailTextLabel.text = @"Chris";
 
             break;
         case 1:
             cell.textLabel.text = @"Email";
-            cell.detailTextLabel.text = [[CurrentUserSingleton currentUser] getEmail];
+            cell.detailTextLabel.text = [[CurrentUserSingleton currentUser] email];
             //cell.detailTextLabel.text = @"chris@gmail.com";
             break;
             

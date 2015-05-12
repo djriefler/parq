@@ -28,7 +28,8 @@
     self = [super initWithStyle:UITableViewStyleGrouped];
     if (self) {
         [self updateTable];
-        
+        reservedSpots = [[NSMutableArray alloc] init];
+        ownedSpots = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -89,9 +90,18 @@
     
     // If JSON
     if (json != nil) {
-        ownedSpots = [json objectForKey:@"ownedSpots"];
-        reservedSpots = [json objectForKey:@"reservedSpots"];
+        NSArray * ownedSpotData = [json objectForKey:@"ownedSpots"];
+        NSArray * reservedSpotData = [json objectForKey:@"reservedSpots"];
+        for (int i= 0; i< [ownedSpotData count]; i++) {
+            PQSpot *newSpot = [PQSpot createSpotFromJSON:(NSDictionary *)[ownedSpotData objectAtIndex:i]];
+            [ownedSpots addObject:newSpot];
+        }
+        for (int i= 0; i< [reservedSpotData count]; i++) {
+            PQSpot *newSpot = [PQSpot createSpotFromJSON:[reservedSpotData objectAtIndex:i]];
+            [reservedSpots addObject:newSpot];
+        }
     }
+    [[self tableView] reloadData];
 }
 
 #pragma mark - Table view data source
@@ -107,13 +117,11 @@
     
     // Section 0 represents reserved spots
     if (section == 0) {
-        return 1;
         return [reservedSpots count];
     }
     
     // Section 1 represents owned spots
     else if (section == 1) {
-        return 1;
         return [ownedSpots count];
     }
     return 0;
@@ -135,7 +143,7 @@
         }
         PQSpot * reservedSpot = [reservedSpots objectAtIndex:indexPath.row];
         [cell.spotAddress setText:reservedSpot.address];
-        [cell.ownerName setText:reservedSpot.owner.name];
+        [cell.ownerName setText:reservedSpot.ownerName];
         [cell.ownerNumber setText:reservedSpot.owner.phoneNumber];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
@@ -147,11 +155,40 @@
         if (cell == nil) {
             cell = [[OwnedTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ownedCellIdentifier];
         }
+        PQSpot * ownedSpot = [ownedSpots objectAtIndex:indexPath.row];
+        [cell.availabilityLabel setText:[self getHoursStringFromStart:ownedSpot.startTime andEnd:ownedSpot.endTime]];
+        [cell.addressLabel setText:ownedSpot.address];
+        [cell.phoneNumber setText:[[CurrentUserSingleton currentUser] phoneNumber]];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
     
     return nil;
+}
+
+- (NSString *) getHoursStringFromStart:(NSString *) strt andEnd:(NSString *) nd {
+    int start = [strt integerValue];
+    int end = [nd integerValue];
+    NSString * startStr;
+    NSString * endStr;
+    if (start < 12) {
+        startStr = [NSString stringWithFormat:@"%d:00am",start];
+    } else {
+        if (start != 12) {
+            start -= 12;
+        }
+        startStr = [NSString stringWithFormat:@"%d:00pm",start];
+    }
+    if (end < 12) {
+        endStr = [NSString stringWithFormat:@"%d:00am",end];
+    }
+    else {
+        if (end != 12) {
+            end -= 12;
+        }
+        endStr = [NSString stringWithFormat:@"%d:00pm",end];
+    }
+    return [NSString stringWithFormat:@"%@ - %@",startStr,endStr];
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

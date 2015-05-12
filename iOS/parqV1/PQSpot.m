@@ -26,7 +26,7 @@
 @end
 
 @implementation PQSpot
-@synthesize address, owner, spotID, coordinates, startTime, endTime, latitude, longitude;
+@synthesize address, owner, spotID, coordinates, startTime, endTime, latitude, longitude, ownerName;
 
 - (id) initWithCoder:(NSCoder *)aDecoder {
     self = [super init];
@@ -64,31 +64,55 @@
     spotID = [data objectForKey:@"USID"];
 }
 
-//+ (PQSpot *) createSpotFromSpotJSON:(NSDictionary *)data
-//{
-//    
-//    PQSpot * newSpot = [PQSpot new];
-//    if ([data objectForKey:@"address"]) {
-//        [newSpot setAddress:[data objectForKey:@"address"]];
-//    }
-//    else {
-//        NSLog(@"ERROR: No Spot Address Given");
-//    }
-//    if ([data objectForKey:@"coordinates"]) {
-//        [newSpot setCoordinates:[data objectForKey:@"coordinates"]];
-//    }
-//    else {
-//        NSLog(@"ERROR: No spot coordinates given");
-//    }
-//    if ([data objectForKey:@"owner"]) {
-//        [newSpot setOwner:[data objectForKey:@"owner"]];
-//    }
-//    else {
-//        NSLog(@"ERROR: No spot owner given");
-//    }
-//    
-//    // TODO: Start time and end time not accounted for...
-//    return newSpot;
-//}
++ (PQSpot *) createSpotFromJSON:(NSDictionary *)data
+{
+    
+    PQSpot * newSpot = [PQSpot new];
+    if ([data objectForKey:@"address"]) {
+        [newSpot setAddress:[data objectForKey:@"address"]];
+    }
+    else {
+        NSLog(@"ERROR: No Spot Address Given");
+    }
+    if ([data objectForKey:@"latlng"]) {
+        [newSpot setCoordinates:[data objectForKey:@"latlng"]];
+    }
+    else {
+        NSLog(@"ERROR: No spot coordinates given");
+    }
+    if ([data objectForKey:@"ownerName"]) {
+        [newSpot setOwnerName:[data objectForKey:@"ownerName"]];
+    }
+    else {
+        NSLog(@"ERROR: No spot owner given");
+    }
+    if ([data objectForKey:@"startTime"]) {
+        [newSpot setStartTime:[data objectForKey:@"startTime"]];
+    }
+    else {
+        NSLog(@"ERROR: No start Time given");
+    }
+    if ([data objectForKey:@"endTime"]) {
+        [newSpot setEndTime:[data objectForKey:@"endTime"]];
+    }
+    else {
+        NSLog(@"ERROR: No end time given");
+    }
+    if ([data objectForKey:@"USID"]) {
+        [newSpot setSpotID:[data objectForKey:@"USID"]];
+    }
+    else {
+        NSLog(@"ERROR: No spot ID given");
+    }
+    if ([data objectForKey:@"price"]) {
+        [newSpot setPrice:[data objectForKey:@"price"]];
+    }
+    else {
+        NSLog(@"ERROR: No price given");
+    }
+
+    // TODO: Start time and end time not accounted for...
+    return newSpot;
+}
 
 @end

@@ -10,4 +10,13 @@
 
 @interface AddParkingSpotConfirmationPageViewController : UIViewController
 
+- (void) setAddress: (NSString *) addr;
+@property id delegate;
+
+@end
+
+@protocol ListingConfirmationDelegate
+
+- (void) doneWithConfirmation;
+
 @end

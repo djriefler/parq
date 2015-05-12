@@ -22,8 +22,8 @@
     CLPlacemark *_location;
 }
 
-@property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
-@property (nonatomic, readonly, copy) NSString * title;
+@property (nonatomic) CLLocationCoordinate2D coordinate;
+@property (nonatomic, copy) NSString * title;
 @property (nonatomic, readonly, copy) NSString * subtitle;
 @property NSString * UUID;
 

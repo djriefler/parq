@@ -13,7 +13,7 @@
 #import "MapViewFindParkingTab.h"
 #import "MapPin.h"
 #import "ReserveSpotController.h"
-#import "SearchViewControllerNew.h"
+#import <CoreLocation/CoreLocation.h>
 
 
 @interface MapViewFindParkingTab()
@@ -32,6 +32,7 @@
     // used to keep track of which pin is currently selected
     NSString * selectedSpotUUID;
     
+    MapPin * desiredParkingPin;
 }
 
 @end
@@ -59,6 +60,8 @@
         atUserLocation = false;
         
         _parkingSpots = [[NSMutableArray alloc] init];
+        
+        desiredParkingPin = [[MapPin alloc] init];
     }
     return self;
 }
@@ -91,19 +94,96 @@
     self.findParkingButton.layer.masksToBounds = NO;
     self.findParkingButton.layer.borderWidth = 1.0f;
     self.findParkingButton.layer.borderColor = [[UIColor whiteColor] CGColor];
-
-    // Bottom view
-    UIImage *background =[UIImage imageNamed:@"texture3.jpg"];
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:background];
-    [_bottomView addSubview:imageView];
-    [_bottomView sendSubviewToBack:imageView ];
     
 }
 
 - (void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self zoomToUserLocation:self.worldView.userLocation];
+}
+
+#pragma mark - Search Methods
+
+- (IBAction)addressBarButtonTapped:(id)sender {
+    SearchViewControllerNew * svc = [[SearchViewControllerNew alloc] initWithMapViewController:self];
+    svc.delegate = self;
+    [[self navigationController] presentViewController:svc animated:YES completion:nil];
+}
+
+- (void) searchOptionSelected:(MKMapItem *) mapItem
+{
+    [[self navigationController] dismissViewControllerAnimated:YES completion:nil];
+    NSString * thoroughfare = [[mapItem placemark] thoroughfare];
+    NSString * subthoroughfare = [[mapItem placemark] subThoroughfare];
+    NSString * addr = [NSString stringWithFormat:@"%@ %@", subthoroughfare, thoroughfare];
+    [[self addressBar] setTitle:addr forState:UIControlStateNormal];
+    [self updateDesiredParkingPinLocation:[[mapItem placemark] coordinate] andTitle:addr];
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(desiredParkingPin.coordinate, 1200, 1200);
+    [self.worldView setRegion:region animated:YES];
+    
+}
+
+#pragma mark - Server Methods
+
+- (IBAction)findParking:(id)sender
+{
+    NSMutableArray * spotAnnotations = [[NSMutableArray alloc] initWithArray:worldView.annotations];
+    [spotAnnotations removeObject:desiredParkingPin];
+    [worldView removeAnnotations:spotAnnotations];
+    // Get nearest parking spots
+    [self requestNearestParkingSpots];
+}
+
+- (void) requestNearestParkingSpots {
+    // Request parking spot data
+
+        float longitude = [desiredParkingPin coordinate].longitude;
+        float latitude = [desiredParkingPin coordinate].latitude;
+        
+        // Prepare request for server to see if parking spots are available near user
+        NSDictionary* info = [[NSDictionary alloc] initWithObjectsAndKeys:
+                              [NSNumber numberWithFloat:longitude], @"longitude",
+                              [NSNumber numberWithFloat:latitude], @"latitude", nil];
+        
+        NSError *error;
+        
+        // Convert object to data
+        NSData* jsonData = [NSJSONSerialization dataWithJSONObject:info
+                                                           options:NSJSONWritingPrettyPrinted
+                                                             error:&error];
+        
+        // Create POST request
+        NSString *postLength = [NSString stringWithFormat:@"%d", [jsonData length]];
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:kLatestParkingSpotsURL];
+        [request setHTTPMethod:@"POST"];
+        [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+        [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+        [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        [request setHTTPBody:jsonData];
+        
+        // Send request
+        [NSURLConnection connectionWithRequest:request delegate:self];
+    
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    NSError * error;
+    NSDictionary* json = [NSJSONSerialization
+                              JSONObjectWithData:data
+                              options:kNilOptions
+                              error:&error];
+
+    // If there are parking spots available, fill map with them
+    if (data != nil) {
+        [self performSelectorOnMainThread:@selector(fetchedData:)
+                               withObject:data waitUntilDone:YES];
+    }
+    else {
+        NSLog(@"NO DATA! Check internet connection or server connection");
+    }
+
+    NSLog(@"%@", json);
+        
 }
 
 - (void)fetchedData:(NSData *)responseData {
@@ -166,7 +246,7 @@
         if ([spot objectForKey:@"address"]) {
             address = [spot objectForKey:@"address"];
         }
-
+        
         // Creates a pin that gets added to the map
         MapPin * pin = [[MapPin alloc] initWithCoord:CLLocationCoordinate2DMake([[coordinates objectAtIndex:0] doubleValue], [[coordinates objectAtIndex:1] doubleValue])
                                              andUUID:uuid
@@ -177,15 +257,6 @@
                                           andEndTime:end];
         [worldView addAnnotation:pin];
     }
-}
-
-
-- (void)zoomToUserLocation:(MKUserLocation *)userLocation
-{
-    if (!userLocation)
-        return;
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(userLocation.location.coordinate, 1200, 1200);
-    [self.worldView setRegion:region animated:YES];
 }
 
 - (void) loadReserveSpotView
@@ -199,8 +270,7 @@
     
     NSLog(@"%@",spotData);
     
-    PQSpot * selectedSpot = [[PQSpot alloc] init];
-    [selectedSpot setInfoWithJSON:spotData];
+    PQSpot * selectedSpot = [PQSpot createSpotFromJSON:spotData];
     
     // Pushes the next view where you can add a parking spot (button on top right)
     ReserveSpotController *rsc = [[ReserveSpotController alloc] initWithMapView:worldView andSpot:selectedSpot];
@@ -208,71 +278,48 @@
     [[self navigationController] pushViewController:rsc animated:YES];
 }
 
-/******************************************
- IBACTIONS (CALLED WHEN BUTTONS ARE PRESSED)
- ********************************************/
+#pragma mark - Map Methods
 
-- (IBAction)searchBarButtonPressed:(id)sender {
-    SearchViewControllerNew * svc = [[SearchViewControllerNew alloc] initWithMapViewController:self];
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.4;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionMoveIn;
-    transition.subtype = kCATransitionFromTop;
-    [self.navigationController.view.layer addAnimation:transition
-                                                forKey:kCATransition];
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
     
-    [[self navigationController] pushViewController:svc animated:NO];
-}
-
-- (IBAction)addressBarButtonTapped:(id)sender {
-}
-
-- (IBAction)showUserLocation:(id)sender
-{
-    [self zoomToUserLocation:self.worldView.userLocation];
-}
-
-- (IBAction)findParking:(id)sender
-{
-    // Get nearest parking spots
-    [self requestNearestParkingSpots];
+    // If the pin is on the users location, don't display it
+    if (annotation == mapView.userLocation) {
+        return nil;
+    }
     
-    // HACK to put pins on map
-//    [self addFakePinToMap];
-}
+    MKPinAnnotationView *pinView;
+    NSString * desiredParkingIdentifier = @"DesiredParkingLocation";
+    NSString * parkingSpotIdentifier = @"ParkingSpot";
+    
+    if (annotation == desiredParkingPin) {
+        pinView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:desiredParkingIdentifier];
+    }
+    else {
+        pinView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:parkingSpotIdentifier];
+    }
+    
+    if (!pinView) {
+        if (annotation == desiredParkingPin) {
+            pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:desiredParkingIdentifier];
+            [pinView setPinColor:MKPinAnnotationColorRed];
+        }
+        else {
+            pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:parkingSpotIdentifier];
+            [pinView setPinColor:MKPinAnnotationColorPurple];
 
-- (void) requestNearestParkingSpots {
-    // Request parking spot data
-
-        float longitude = [[locationManager location] coordinate].longitude;
-        float latitude = [[locationManager location] coordinate].latitude;
-        
-        // Prepare request for server to see if parking spots are available near user
-        NSDictionary* info = [[NSDictionary alloc] initWithObjectsAndKeys:
-                              [NSNumber numberWithFloat:longitude], @"longitude",
-                              [NSNumber numberWithFloat:latitude], @"latitude", nil];
-        
-        NSError *error;
-        
-        // Convert object to data
-        NSData* jsonData = [NSJSONSerialization dataWithJSONObject:info
-                                                           options:NSJSONWritingPrettyPrinted
-                                                             error:&error];
-        
-        // Create POST request
-        NSString *postLength = [NSString stringWithFormat:@"%d", [jsonData length]];
-        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:kLatestParkingSpotsURL];
-        [request setHTTPMethod:@"POST"];
-        [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
-        [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-        [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-        [request setHTTPBody:jsonData];
-        
-        // Send request
-        [NSURLConnection connectionWithRequest:request delegate:self];
-        
-
+            // Add a button as the right item on the pin bubble
+            UIButton * moreButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+            [moreButton addTarget:self action:@selector(loadReserveSpotView) forControlEvents:UIControlEventTouchUpInside];
+            pinView.rightCalloutAccessoryView = moreButton;
+        }
+        pinView.animatesDrop = YES;
+        pinView.canShowCallout = YES;
+    }
+    else {
+        pinView.annotation = annotation;
+    }
+    
+    return pinView;
 }
 
 - (void) addFakePinToMap {
@@ -286,71 +333,44 @@
     [worldView addAnnotation:pin];
 }
 
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    NSError * error;
-    NSDictionary* json = [NSJSONSerialization
-                              JSONObjectWithData:data
-                              options:kNilOptions
-                              error:&error];
-
-    // If there are parking spots available, fill map with them
-    if (data != nil) {
-        [self performSelectorOnMainThread:@selector(fetchedData:)
-                               withObject:data waitUntilDone:YES];
-    }
-    else {
-        NSLog(@"NO DATA! Check internet connection or server connection");
-    }
-
-    NSLog(@"%@", json);
-        
-}
-
-/****************************
- MKMAP VIEW DELEGATE METHODS
- ****************************/
-- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
-    
-    // If the pin is on the users location, don't display it
-    if (annotation == mapView.userLocation) {
-        return nil;
-    }
-    NSString * parkingSpotIdentifier = @"ParkingSpot"; // identifier used for parking spot pins, makes pins reusable to save memory
-    
-    // The view that will be displayed when a user taps on a pin
-    MKPinAnnotationView *pinView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:parkingSpotIdentifier];
-    
-    
-    if (!pinView) {
-        pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:parkingSpotIdentifier];
-        [pinView setPinColor:MKPinAnnotationColorPurple];
-        pinView.animatesDrop = YES; // animates the pin dropping
-        pinView.canShowCallout = YES; // can display a text bubble when tapped on
-
-        // Add a button as the right item on the pin bubble
-        UIButton * moreButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-        [moreButton addTarget:self action:@selector(loadReserveSpotView) forControlEvents:UIControlEventTouchUpInside];
-        pinView.rightCalloutAccessoryView = moreButton;
-    }
-    else {
-        pinView.annotation = annotation;
-    }
-    
-    return pinView;
-}
-
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
+    // Only called when the app is first opened
     if (atUserLocation == false) {
         [self zoomToUserLocation:userLocation];
+        [self updateDesiredParkingPinLocation:[userLocation coordinate] andTitle:@"Current Location"];
+        [[self addressBar] setTitle:@"Current Location" forState:UIControlStateNormal];
+        [worldView addAnnotation:desiredParkingPin];
         atUserLocation = true;
     }
+}
+
+- (void) updateDesiredParkingPinLocation:(CLLocationCoordinate2D) coord andTitle:(NSString *) title
+{
+    [desiredParkingPin setCoordinate:coord];
+    [desiredParkingPin setTitle:title];
 }
 
 - (void) mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
     selectedSpotUUID = (NSString *)[(MapPin *)view.annotation getUUID];
 }
+
+- (void)zoomToUserLocation:(MKUserLocation *)userLocation
+{
+    if (!userLocation)
+        return;
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(userLocation.location.coordinate, 1200, 1200);
+    [self updateDesiredParkingPinLocation:[userLocation coordinate] andTitle:@"Current Location"];
+    [[self addressBar] setTitle:@"Current Location" forState:UIControlStateNormal];
+    [self.worldView setRegion:region animated:YES];
+}
+
+- (IBAction)showUserLocation:(id)sender
+{
+    [self zoomToUserLocation:self.worldView.userLocation];
+}
+
 
 /***************
    ACCESORS/ETC

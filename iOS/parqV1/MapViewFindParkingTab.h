@@ -9,15 +9,14 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 #import <QuartzCore/QuartzCore.h>
+#import "SearchViewControllerNew.h"
 
-
-@interface MapViewFindParkingTab : UIViewController<CLLocationManagerDelegate, MKMapViewDelegate, UIGestureRecognizerDelegate>
+@interface MapViewFindParkingTab : UIViewController<CLLocationManagerDelegate, MKMapViewDelegate, UIGestureRecognizerDelegate, SearchViewControllerDelegate>
 {
     IBOutlet MKMapView * worldView;
 }
 
 @property (nonatomic, retain) IBOutlet MKMapView * worldView;
-@property (weak, nonatomic) IBOutlet UIView *bottomView;
 @property (nonatomic) NSArray * parkingSpots;
 @property (weak, nonatomic) IBOutlet UIButton *userLocationButton;
 @property (weak, nonatomic) IBOutlet UIButton *findParkingButton;

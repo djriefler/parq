@@ -11,7 +11,10 @@
 @interface OwnedTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
-@property (weak, nonatomic) IBOutlet UIButton *directionsButton;
 @property (weak, nonatomic) IBOutlet UIView *mainContentView;
+@property (weak, nonatomic) IBOutlet UILabel *phoneNumber;
+@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
+@property (weak, nonatomic) IBOutlet UILabel *availabilityLabel;
+- (IBAction)removeListingPressed:(id)sender;
 
 @end

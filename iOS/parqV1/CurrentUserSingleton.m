@@ -111,6 +111,11 @@
     currentUser.name = name;
 }
 
+- (void) setPhoneNumber:(NSString *)phoneNumber
+{
+    currentUser.phoneNumber = phoneNumber;
+}
+
 - (void) setEmail:(NSString *)email
 {
     currentUser.email = email;
@@ -133,13 +138,18 @@
 
 // Getters
 
-- (NSString *) getEmail
+- (NSString *) email
 {
     return currentUser.email;
 }
-- (NSString *) getName
+- (NSString *) name
 {
     return currentUser.name;
+}
+
+- (NSString *) phoneNumber
+{
+    return currentUser.phoneNumber;
 }
 
 - (NSString *) UUID

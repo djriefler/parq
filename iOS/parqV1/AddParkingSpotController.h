@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AddParkingSpotConfirmationPageViewController.h"
 
-@interface AddParkingSpotController : UIViewController <UITextFieldDelegate>
+@interface AddParkingSpotController : UIViewController <UITextFieldDelegate, ListingConfirmationDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *addressField;
 @property (weak, nonatomic) IBOutlet UIDatePicker *startTimePicker;
 @property (weak, nonatomic) IBOutlet UIDatePicker *endTimePicker;
@@ -19,4 +20,5 @@
 
 @property (nonatomic) NSString * address;
 @property (nonatomic) UIImage * mapSnapshot;
+
 @end

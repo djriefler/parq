@@ -13,6 +13,7 @@
 
 @property NSString * spotID;
 @property PQUser * owner;
+@property NSString * ownerName;
 @property NSString * address;
 @property NSArray * coordinates;
 @property NSString * price;

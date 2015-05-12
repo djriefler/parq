@@ -22,8 +22,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSLog(@"Email: %@",[[CurrentUserSingleton currentUser] getEmail]);
-    NSLog(@"Name: %@",[[CurrentUserSingleton currentUser] getName]);
+    NSLog(@"Email: %@",[[CurrentUserSingleton currentUser] email]);
+    NSLog(@"Name: %@",[[CurrentUserSingleton currentUser] name]);
     NSLog(@"UUID: %@",[[CurrentUserSingleton currentUser] UUID]);
     NSLog(@"reserved spots: %@",[[CurrentUserSingleton currentUser] reservedParkingSpots]);
     NSLog(@"owned spots: %@",[[CurrentUserSingleton currentUser] ownedParkingSpots]);
@@ -31,18 +31,25 @@
 
     
     // Update Navbar
-    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"parq_logo_2.png"]];
-    self.navigationItem.titleView.layer.frame = CGRectMake(50, 0, 125, 84);
+    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"parq.png"]];
+    self.navigationItem.titleView.layer.frame = CGRectMake(50, -10, 50, 34);
     self.navigationItem.titleView.layer.masksToBounds = NO;
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"texture3.jpg"]forBarMetrics:UIBarMetricsDefault];
     
-    UIBarButtonItem * spotManagerButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize target:self action:@selector(loadSpotMangerPage)];
+    UIBarButtonItem * spotManagerButton = [[UIBarButtonItem alloc]
+                                           initWithImage:[UIImage imageNamed:@"Garage-50.png"]
+                                           style:UIBarButtonItemStylePlain
+                                           target:self
+                                           action:@selector(loadSpotMangerPage)];
+    [spotManagerButton setTintColor:[UIColor blackColor]];
     [self.navigationItem setRightBarButtonItem:spotManagerButton];
     
     UIBarButtonItem * settingsButton = [[UIBarButtonItem alloc]
-                                        initWithBarButtonSystemItem:UIBarButtonSystemItemAction
+                                        initWithImage:[UIImage imageNamed:@"Settings-50.png"]
+                                        style:UIBarButtonItemStylePlain
                                         target:self
                                         action:@selector(loadSettingsPage)];
+    [settingsButton setTintColor:[UIColor blackColor]];
     [settingsButton setEnabled:YES];
     [self.navigationItem setLeftBarButtonItem:settingsButton];
     
@@ -57,7 +64,17 @@
     [listParkingTab setTitle:@"List Parking"];
     [self setViewControllers:[NSArray arrayWithObjects:findParkingTab, listParkingTab, nil]];
     
-//    UITabBarItem * reserveItem = [UITabBarItem alloc] ini
+    UITabBarItem * reserveItem = [self.tabBar.items objectAtIndex:0];
+    UITabBarItem * listItem = [self.tabBar.items objectAtIndex:1];
+
+    [reserveItem initWithTitle:@"Find Parking"
+                         image:[UIImage imageNamed:@"Parking-50.png"]
+                 selectedImage:[UIImage imageNamed:@"ParkingFilled-50.png"]];
+    
+    [listItem initWithTitle:@"List Parking"
+                      image:[UIImage imageNamed:@"Bank-50.png"]
+              selectedImage:[UIImage imageNamed:@"BankFilled-50.png"]];
+    
     [self setSelectedIndex:0];
     // Dispose of any resources that can be recreated
 }

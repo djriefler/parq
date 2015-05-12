@@ -12,7 +12,15 @@
 
 @interface ReserveConfirmationPage : UIViewController
 
-//- (void) setInfoWithSpot:(PQSpot *) spot;
+@property (nonatomic) id delegate;
+
 - (void) setAddress:(NSString *) address;
 - (id) initWithAddress:(NSString *) address andCoordinate:(NSArray *) coordinates;
+
+@end
+
+@protocol ReservationConfirmationPageDelegate
+
+- (void) reservePageDismissed;
+
 @end

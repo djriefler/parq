@@ -36,21 +36,13 @@
                         <action selector="showUserLocation:" destination="-1" eventType="touchUpInside" id="n56-nB-kpo"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zmT-ZF-h5E">
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zmT-ZF-h5E">
                     <rect key="frame" x="13" y="80" width="294" height="38"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" name="CenturyGothic" family="Century Gothic" pointSize="15"/>
                     <color key="tintColor" red="0.14509804549999999" green="0.09803922474" blue="0.03529411927" alpha="1" colorSpace="deviceRGB"/>
                     <inset key="contentEdgeInsets" minX="4" minY="0.0" maxX="4" maxY="0.0"/>
-                    <state key="normal" title="Button">
-                        <attributedString key="attributedTitle">
-                            <fragment content="No Address Available">
-                                <attributes>
-                                    <font key="NSFont" size="15" name="CenturyGothic"/>
-                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                </attributes>
-                            </fragment>
-                        </attributedString>
-                    </state>
+                    <state key="normal" title="No Address Available"/>
                     <connections>
                         <action selector="addressBarButtonTapped:" destination="-1" eventType="touchUpInside" id="UKJ-6X-pLn"/>
                     </connections>
